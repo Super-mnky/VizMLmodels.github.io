@@ -28,6 +28,13 @@ d3.csv('iris.csv').then(function(dataset) {
     g.append("circle")
     .attr("r", 3.5)
 
+    d3.selectAll('.button')
+    .on('click', function(){
+        console.log("Button was clicked")
+        d3.select('.button').attr('fill','blue');
+    });
+
+
 });
 
 function scaleLength(SepalLengthCm) {
@@ -62,4 +69,7 @@ svg.append('text')
     .attr('class', 'label')
     .attr('transform','translate(15,200) rotate(90)')
     .text('Sepal Width');
+
+
+
 
