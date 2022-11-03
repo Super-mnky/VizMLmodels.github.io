@@ -1,15 +1,7 @@
 //var main = d3.select('#main');
-irisLength = []
-irisWidth = []
-
 
 d3.csv('iris.csv').then(function(dataset) {
     //console.table(dataset)
-
-    for (i=0;i<dataset.length;i++){
-        irisLength.push(dataset[i]['SepalLengthCm'])
-        irisWidth.push(dataset[i]['SepalWidthCm'])
-    }
 
     var g = svg.selectAll("g")
     .data(dataset)
@@ -34,7 +26,7 @@ d3.csv('iris.csv').then(function(dataset) {
     .data(dataset)
     .enter()
     g.append("circle")
-    .attr("r", 2)
+    .attr("r", 3.5)
 
 });
 
@@ -48,10 +40,10 @@ function scaleWidth(SepalWidthCm) {
 var svg = d3.select('svg');
 
 var lengthScale = d3.scaleLinear()
-    .domain([3.3,8.9]).range([60,700]);
+    .domain([4,8]).range([60,700]);
 
 var widthScale = d3.scaleLinear()
-    .domain([1,5.4]).range([340,20]);
+    .domain([1.5,4.5]).range([340,20]);
 
 svg.append('g').attr('class', 'x axis')
     .attr('transform', 'translate(0,345)')
