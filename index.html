@@ -2,15 +2,33 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Test</title>
+<title>Main Page</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
 <p>This is a very simple HTML file.</p>
+<p>
+What is model comparison?
+How is the systemic process evaluated?
+What metrics do we need to consider?
 
+Machine Learning systems work by using data to generate a model from the features composing each observation. The hypothesis is that a given model can generalize from data that we do have, to perform well on data that we don't have or hasn't been screne before.  This typically involves looking at many models at first then working  to understand how they are performing.
+</p>
+
+<p>
+The primary objective of a model is to maximize the performance of the model on the given task. The aforementioned performance metrics gives information about how the model will perform when the system is deployed in the real world. These will have to be compared and assessed to ensure the business requirement ment is met.
+</p>
+<p>
+Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+</p>
 </body>
+
+<div id="chart"></div>
+
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="iris.js"></script>
-<script src="d3interactions.js"></script>
+<script src="rmse.js"></script>
+<script src="main.js"></script>
+
 </html>
