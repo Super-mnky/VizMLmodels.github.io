@@ -1,33 +1,107 @@
-//var main = d3.select('#main');
+// Scrolling Mechanism:
 
-d3.csv('iris.csv').then(function(dataset) {
-    console.table(dataset)
-    console.log("Line 1: inside the callback function");
+var current_viz = 0
+var viz_ids = [
+  '#viz_1_1',
+  '#viz_1_2',
+  '#viz_1_3'
+]
+
+d3.graphScroll()
+    .graph(d3.selectAll('#graph'))
+    .container(d3.select('#main'))
+    .sections(d3.selectAll('#sections > div'))
+    .on('active', function (i) {
+        console.log("At section " + i);
+        updateViz(i)
+    })
+
+function updateViz(i) {
+  d3.select(viz_ids[current_viz]).style('display', 'none')
+  d3.select(viz_ids[i]).style('display','block')
+  current_viz = i
+}
+
+// Getting the data via promise so you can work through irises as well to get the data
+
+var irises = {}
+
+Promise.all([
+  d3.csv('iris.csv', function (row) {
+    var node = {
+        id: +row['Id'], sepalLength: +row['SepalLengthCm'],
+        sepalWidth: +row['SepalWidthCm'],petalLength: +row['PetalLengthCm'],
+        petalWidth: +row['PetalWidthCm'],species: +row['Species'],
+    };
+    irises[node-id] = node;
+
+    return node;
+  }), 
+])
+
+/* Visualizations: */
+
+var width = 680
+var widthMargin = 20
+var height = 640
+var heightMargin = 60
+
+// Display for viz 1.1
+function viz11(){
+
+  var lengthScale = d3.scaleLinear()
+  .domain([4,8]).range([heightMargin, height-heightMargin]);
+
+  var widthScale = d3.scaleLinear()
+  .domain([1.5,4.5]).range([height-heightMargin, heightMargin]);
+
+  function scaleLength(SepalLengthCm) {
+    return lengthScale(SepalLengthCm);
+  }
+
+  function scaleWidth(SepalWidthCm) {
+    return widthScale(SepalWidthCm);
+  }
+
+  d3.csv('iris.csv').then(function(dataset) {
+    //console.table(dataset)
+    var svg = d3.select('#viz_1_1').append('svg')
+    .attr('width', width)
+    .attr('height', height)
 
     var g = svg.selectAll("g")
     .data(dataset)
     .enter()
     .append("g")
+    .attr("transform", function(d) {
+    return ("translate(" + scaleLength(d.SepalLengthCm) + "," + scaleWidth(d.SepalWidthCm) + ")")
+    })
 
     var circles = svg.selectAll("g")
     .data(dataset)
     .enter()
     g.append("circle")
-    .attr("r", 2)
+    .attr("r", 3.5)
+    
+    svg.append('g').attr('class', 'x axis')
+    .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")
+    .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}));
 
-})
+    svg.append('g').attr('class', 'y axis')
+    .attr("transform", "translate("+(widthMargin+heightMargin)+",0)")
+    .call(d3.axisLeft(widthScale));
 
-/*
+    svg.append('text')
+      .attr('class', 'label')
+      .attr('transform','translate('+((width-widthMargin)/2 - 20)+','+(height-(heightMargin/3))+')')
+      .text('Sepal Length');
 
-var trace1 = {
-  x: [1, 2, 3, 4],
-  y: [10, 15, 13, 17],
-  mode: 'markers',
-  type: 'scatter'
-};
+    svg.append('text')
+      .attr('class', 'label')
+      .attr('transform','translate('+widthMargin+','+(height - heightMargin)/2+') rotate(90)')
+      .text('Sepal Width');
 
-var data = [trace1];
+  });
+}
 
-Plotly.newPlot('chart', data);
-
- */
+viz11();

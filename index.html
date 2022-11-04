@@ -1,42 +1,83 @@
 <!DOCTYPE HTML>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Main Page</title>
-<link rel="stylesheet" href="./style.css">
+        <meta charset="UTF-8">
+        <title>Main Page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
+        <div id="main">
+                <!-- Add a section block for every visualization we want -->
+                <div id="s1_1_viz">
+                        <div class="viz" id="viz_1_1"
+                                style="margin: 0 auto; height: 640px; width: 680px; display: none;"></div>
+                </div>
+                <div id="s1_2_viz">
+                        <div class="viz" id="viz_1_2"
+                                style="margin: 0 auto; height: 640px; width: 680px; border: 1px solid red; display: none;"></div>
+                </div>
+                <div id="s1_3_viz">
+                        <div class="viz" id="viz_1_3"
+                                style="margin: 0 auto; height: 640px; width: 680px; border: 1px solid blue; display: none;"></div>
+                </div>
 
-<p>This is a very simple HTML file.</p>
-<p>
-What is model comparison?
-How is the systemic process evaluated?
-What metrics do we need to consider?
+                <!-- Add a section block for every text we want -->
+                <div id="sections">
+                        <div class="section-text" id="s1_1_text">
+                                What is model comparison?
+                                How is the systemic process evaluated?
+                                What metrics do we need to consider?
 
-Machine Learning systems work by using data to generate a model from the features composing each observation. The hypothesis is that a given model can generalize from data that we do have, to perform well on data that we don't have or hasn't been screne before.  This typically involves looking at many models at first then working  to understand how they are performing.
-</p>
-
-<p>
-The primary objective of a model is to maximize the performance of the model on the given task. The aforementioned performance metrics gives information about how the model will perform when the system is deployed in the real world. These will have to be compared and assessed to ensure the business requirement ment is met.
-</p>
-<p>
-Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
-</p>
-
-<div id="main">
+                                Machine Learning systems work by using data to generate a model from the features
+                                composing each
+                                observation. The hypothesis is that a given model can generalize from data that we do
+                                have, to perform
+                                well on data that we don't have or hasn't been screne before. This typically involves
+                                looking at many
+                                models at first then working to understand how they are performing.
+                                <p class="block"></p>
+                        </div>
+                        <div class="section-text" id="s1_2_text">
+                                The primary objective of a model is to maximize the performance of the model on the
+                                given task. The
+                                aforementioned performance metrics gives information about how the model will perform
+                                when the system is
+                                deployed in the real world. These will have to be compared and assessed to ensure the
+                                business
+                                requirement ment is met.
+                                <p class="block"></p>
+                        </div>
+                        <div class="section-text" id="s1_3_text">
+                                Statistical analysis of the models performance help inform decisions on which models are
+                                appropriate for
+                                the given task. Comparing how all of the test cases perform, helps ensure the business
+                                requirement is
+                                met whne it is ultimately deployed.
+                                <p class="block"></p>
+                        </div>
+                </div>
+        </div>
+        <!--
+    <div id="main">
         <svg width="720" height="400" style="border: 1px solid #777;">
         </svg>
-</div>
-
+    </div>
+    -->
 </body>
 
-<div id="chart"></div>
-
 <script src="https://d3js.org/d3.v5.min.js"></script>
-<head><!-- Include Plotly.js --><script src="https://cdn.plot.ly/plotly-latest.min.js"></script></head>
 
-<script src="iris.csv"></script>
+<head>
+        <!-- Include Plotly.js -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!--<script src="iris.csv"></script>-->
 <script src="rmse.js"></script>
+<script src="graph-scroll.js"></script>
 <script src="main.js"></script>
 
 </html>
