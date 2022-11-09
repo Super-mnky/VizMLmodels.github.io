@@ -53,7 +53,7 @@ function viz11(){
   .domain([4,8]).range([heightMargin, height-heightMargin]);
 
   var widthScale = d3.scaleLinear()
-  .domain([1.5,4.5]).range([height-heightMargin, heightMargin]);
+  .domain([1.8,4.5]).range([height-heightMargin, heightMargin]);
 
   function scaleLength(SepalLengthCm) {
     return lengthScale(SepalLengthCm);
@@ -77,8 +77,6 @@ function viz11(){
     return ("translate(" + scaleLength(d.SepalLengthCm) + "," + scaleWidth(d.SepalWidthCm) + ")")
     })
 
-    //start snip
-
     svg.append('g').attr('class', 'x axis')
     .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")
     .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}));
@@ -86,7 +84,6 @@ function viz11(){
     svg.append('g').attr('class', 'y axis')
     .attr("transform", "translate("+(widthMargin+heightMargin)+",0)")
     .call(d3.axisLeft(widthScale));
-    //end snip
 
     svg.append('text')
       .attr('class', 'label')
@@ -101,7 +98,6 @@ function viz11(){
     d3.selectAll('.button1')
     .on('click', function(d){
         // Remove the currently selected classname from that element
-        console.log("Button1 is clicked, something cool should happen!")
           var circles = svg.selectAll("g")
           .data(dataset)
           .enter()
@@ -116,25 +112,72 @@ function viz11(){
             } else {
             if (d.Species == 'Iris-setosa') {
               return 'blue';
-            }
-            }
-            }
-          })
-    });
+            }}}})});
 
     d3.selectAll('.button2')
     .on('click', function(){
         // Remove the currently selected classname from that element
-        console.log("Button2 is clicked, something cool should also happen!")
       var circles = svg.selectAll("g")
           .data(dataset)
           .enter()
           g.append("circle")
           .attr("r", 3.5)
-          .attr('fill','black')
+          .attr('fill','green')
     });
-
   });
 }
 
 viz11();
+
+function viz12(){
+
+  var lengthScale = d3.scaleLinear()
+  .domain([4,8]).range([heightMargin, height-heightMargin]);
+
+  var widthScale = d3.scaleLinear()
+  .domain([1.8,4.5]).range([height-heightMargin, heightMargin]);
+
+  function scaleLength(SepalLengthCm) {
+    return lengthScale(SepalLengthCm);
+  }
+
+  function scaleWidth(SepalWidthCm) {
+    return widthScale(SepalWidthCm);
+  }
+
+  d3.csv('iris.csv').then(function(dataset) {
+    //console.table(dataset)
+    var svg = d3.select('#viz_1_2').append('svg')
+    .attr('width', width)
+    .attr('height', height)
+
+    var g = svg.selectAll("g")
+    .data(dataset)
+    .enter()
+    .append("g")
+    .attr("transform", function(d) {
+    return ("translate(" + scaleLength(d.SepalLengthCm) + "," + scaleWidth(d.SepalWidthCm) + ")")
+    })
+
+    svg.append('g').attr('class', 'x axis')
+    .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")
+    .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}));
+
+    svg.append('g').attr('class', 'y axis')
+    .attr("transform", "translate("+(widthMargin+heightMargin)+",0)")
+    .call(d3.axisLeft(widthScale));
+
+    svg.append('text')
+      .attr('class', 'label')
+      .attr('transform','translate('+((width-widthMargin)/2 - 20)+','+(height-(heightMargin/3))+')')
+      .text('Sepal Length');
+
+    svg.append('text')
+      .attr('class', 'label')
+      .attr('transform','translate('+widthMargin+','+(height - heightMargin)/2+') rotate(90)')
+      .text('Sepal Width');
+
+  });
+}
+
+viz12();
