@@ -77,12 +77,8 @@ function viz11(){
     return ("translate(" + scaleLength(d.SepalLengthCm) + "," + scaleWidth(d.SepalWidthCm) + ")")
     })
 
-    var circles = svg.selectAll("g")
-    .data(dataset)
-    .enter()
-    g.append("circle")
-    .attr("r", 3.5)
-    
+    //start snip
+
     svg.append('g').attr('class', 'x axis')
     .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")
     .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}));
@@ -90,6 +86,7 @@ function viz11(){
     svg.append('g').attr('class', 'y axis')
     .attr("transform", "translate("+(widthMargin+heightMargin)+",0)")
     .call(d3.axisLeft(widthScale));
+    //end snip
 
     svg.append('text')
       .attr('class', 'label')
@@ -100,6 +97,46 @@ function viz11(){
       .attr('class', 'label')
       .attr('transform','translate('+widthMargin+','+(height - heightMargin)/2+') rotate(90)')
       .text('Sepal Width');
+
+    d3.selectAll('.button1')
+    .on('click', function(d){
+        // Remove the currently selected classname from that element
+        console.log("Button1 is clicked, something cool should happen!")
+          var circles = svg.selectAll("g")
+          .data(dataset)
+          .enter()
+
+          for (let i = 0; i<(dataset.length); i++) {
+            if (dataset[i].Species == "Iris-setosa") {
+            console.log("Found setosa")
+            g.append("circle")
+            .attr("r", 3.5)
+            .attr('fill', "black")}
+            else {
+            if (dataset[i].Species == "Iris-versicolor") {
+            console.log("Found versicolor")
+            g.append("circle")
+            .attr("r", 3.5)
+            .attr('fill', "blue")}
+            else {
+            if (dataset[i].Species == "Iris-virginica") {
+            console.log("Found virginica")
+            g.append("circle")
+            .attr("r", 3.5)
+            .attr('fill', "red")}
+            }}}
+
+
+
+
+
+    });
+
+    d3.selectAll('.button2')
+    .on('click', function(){
+        // Remove the currently selected classname from that element
+        console.log("Button2 is clicked, something cool should also happen!")
+    });
 
   });
 }

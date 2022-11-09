@@ -74,6 +74,6 @@ html, body {
     float: right;
 }
 
-g:hover {
+circle:hover {
     fill: red;
 }
