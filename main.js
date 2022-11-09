@@ -105,37 +105,33 @@ function viz11(){
           var circles = svg.selectAll("g")
           .data(dataset)
           .enter()
-
-          for (let i = 0; i<(dataset.length); i++) {
-            if (dataset[i].Species == "Iris-setosa") {
-            console.log("Found setosa")
-            g.append("circle")
-            .attr("r", 3.5)
-            .attr('fill', "black")}
-            else {
-            if (dataset[i].Species == "Iris-versicolor") {
-            console.log("Found versicolor")
-            g.append("circle")
-            .attr("r", 3.5)
-            .attr('fill', "blue")}
-            else {
-            if (dataset[i].Species == "Iris-virginica") {
-            console.log("Found virginica")
-            g.append("circle")
-            .attr("r", 3.5)
-            .attr('fill', "red")}
-            }}}
-
-
-
-
-
+          g.append("circle")
+          .attr("r", 3.5)
+          .attr('fill', function(d) {
+            if (d.Species == 'Iris-virginica') {
+              return 'orange';
+            } else {
+            if (d.Species == 'Iris-versicolor') {
+              return 'red';
+            } else {
+            if (d.Species == 'Iris-setosa') {
+              return 'blue';
+            }
+            }
+            }
+          })
     });
 
     d3.selectAll('.button2')
     .on('click', function(){
         // Remove the currently selected classname from that element
         console.log("Button2 is clicked, something cool should also happen!")
+      var circles = svg.selectAll("g")
+          .data(dataset)
+          .enter()
+          g.append("circle")
+          .attr("r", 3.5)
+          .attr('fill','black')
     });
 
   });
