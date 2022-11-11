@@ -81,3 +81,5 @@ circle:hover {
 .button-container-div {
     text-align: center;
 }
+
+line {    transition: 0.5s;}
