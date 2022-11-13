@@ -3,7 +3,8 @@ var current_viz = 0
 var viz_ids = [
   '#viz_1_1',
   '#viz_1_2',
-  '#viz_1_3', '#viz_1_3'
+  '#viz_1_3', 
+  '#viz_1_3'
 ]
 
 var viz_fns = [
