@@ -82,4 +82,9 @@ circle:hover {
     text-align: center;
 }
 
-line {    transition: 0.5s;}
+line {    
+    transition: 0.5s;
+}
+.button-container-div2 {
+    text-align: center;
+}
