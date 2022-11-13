@@ -255,7 +255,7 @@ svg.append('text').attr('class','label').attr('fill','white')
 
 viz13();
 
-/*
+
 d3.graphScroll()
     .graph(d3.selectAll('#graph'))
     .container(d3.select('#main'))
@@ -263,4 +263,3 @@ d3.graphScroll()
     .on('active', function (i) {
       viz13 ();
     })
-*/
