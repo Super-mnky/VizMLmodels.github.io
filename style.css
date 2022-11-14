@@ -54,7 +54,7 @@ html, body {
     margin-right: calc(100%-500px);
     width: 75%;
     position: sticky;
-    top: 0px;
+    top: 70px;
     float: right;
 }
 
@@ -62,7 +62,7 @@ html, body {
     margin-right: calc(100%-500px);
     width: 75%;
     position: sticky;
-    top: 0px;
+    top: 70px;
     float: right;
 }
 
@@ -70,7 +70,23 @@ html, body {
     margin-right: calc(100%-500px);
     width: 75%;
     position: sticky;
-    top: 0px;
+    top: 70px;
+    float: right;
+}
+
+#s1_4_viz{
+    margin-right: calc(100%-500px);
+    width: 75%;
+    position: sticky;
+    top: 70px;
+    float: right;
+}
+
+#s1_5_viz{
+    margin-right: calc(100%-500px);
+    width: 75%;
+    position: sticky;
+    top: 70px;
     float: right;
 }
 
