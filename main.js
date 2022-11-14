@@ -4,11 +4,12 @@ var viz_ids = [
   '#viz_1_1',
   '#viz_1_2',
   '#viz_1_3', 
-  '#viz_1_3'
+  '#viz_1_3',
+  '#viz_1_4'
 ]
 
 var viz_fns = [
-  viz11, viz12, viz13, viz14
+  viz11, viz12, viz13a, viz13b, viz14
 ]
 
 d3.graphScroll()
@@ -37,20 +38,22 @@ function delay(milliseconds){
 
 var irises = {}
 
-/*
+
 Promise.all([
   d3.csv('iris.csv', function (row) {
-    var node = {
+    /*var node = {
         id: +row['Id'], sepalLength: +row['SepalLengthCm'],
         sepalWidth: +row['SepalWidthCm'],petalLength: +row['PetalLengthCm'],
         petalWidth: +row['PetalWidthCm'],species: +row['Species'],
     };
     irises[node-id] = node;
 
-    return node;
+    return node;*/
+    irises[+row['Id']] = {sepalLength: +row['SepalLengthCm'],
+    sepalWidth: +row['SepalWidthCm'],petalLength: +row['PetalLengthCm'],
+    petalWidth: +row['PetalWidthCm'],species: row['Species']}
   }), 
 ])
-*/
 
 /* Visualizations: */
 
@@ -230,7 +233,7 @@ function viz12(){
   });
 }
 
-function viz13(){
+function viz13a(){
   var svg = d3.select("#viz_1_3")
   .append('svg')
   .attr('width', width)
@@ -297,7 +300,7 @@ function viz13(){
   .attr('opacity','1')
 }
 
-async function viz14(){
+async function viz13b(){
   var svg = d3.select("#viz_1_3")
   .select('svg')
 
@@ -322,7 +325,7 @@ async function viz14(){
     .text('versicolor').attr('transform','translate(285,225)').attr('opacity','0')
     .transition().duration(1000).attr('opacity','1')
 
-  await delay(500);
+  await delay(1500);
 
   // Setosa:
   svg.append('line').attr('class','sepal')
@@ -378,4 +381,14 @@ async function viz14(){
     .text('virginica').attr('transform','translate(470,225)').attr('opacity','0')
     .transition().duration(1000).attr('opacity','1')
 
+  await delay(2000);
+
+  /*
+  for (var iris in irises){
+    console.log(irises[iris])
+  }*/
+}
+
+function viz14(){
+  d3.csv('iris.csv', display);
 }

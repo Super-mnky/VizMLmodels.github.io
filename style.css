@@ -74,6 +74,15 @@ html, body {
     float: right;
 }
 
+#s1_4_viz{
+    margin-right: calc(100%-500px);
+    width: 75%;
+    position: sticky;
+    top: 0px;
+    float: right;
+}
+
+
 circle:hover {
     fill: red;
 }
@@ -85,6 +94,7 @@ circle:hover {
 line {    
     transition: 0.5s;
 }
+
 .button-container-div2 {
     text-align: center;
 }
