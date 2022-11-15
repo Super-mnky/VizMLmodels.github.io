@@ -74,6 +74,14 @@ html, body {
     float: right;
 }
 
+#s1_5_viz{
+    margin-right: calc(100%-500px);
+    width: 75%;
+    position: sticky;
+    top: 0px;
+    float: right;
+}
+
 #s1_4_viz{
     margin-right: calc(100%-500px);
     width: 75%;

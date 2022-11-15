@@ -125,43 +125,62 @@ function bubbleChart() {
      * rawData is expected to be an array of data objects as provided by
      * a d3 loading function like d3.csv.
      */
+    svg = d3.select("#viz_1_5")
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
     var chart = function chart(selector, rawData) {
       // convert raw data into nodes data
       nodes = createNodes(rawData);
-  
+
+      d3.csv('iris.csv').then(function(dataset) {
+        var g = svg.selectAll(".bubble")
+        .data(dataset)
+        .enter()
+        .append('circle')
+        .classed('bubble', true)
+        .attr('r', 0)
+        .attr('fill', function (d) { return fillColor(d.Species); })
+        .attr('stroke', function (d) { return d3.rgb(fillColor(d.Species)).darker(); })
+        .attr('stroke-width', 2)
+        .attr('cx',function (d){ return Math.random() * 600 + 20;})
+        .attr('cy',function (d){ return Math.random() * 600 + 20;})
+        .transition()
+        .duration(500)
+        .attr('r', 3);
+      })
+
       // Create a SVG element inside the provided selector
       // with desired size.
-      svg = d3.select(selector)
-        .append('svg')
-        .attr('width', width)
-        .attr('height', height);
   
       // Bind nodes data to what will become DOM elements to represent them.
-      bubbles = svg.selectAll('.bubble')
-        .data(nodes, function (d) { return d.id; });
-  
+      
+      bubbles = svg.selectAll('circle.bubble');
+      console.log(bubbles)
+
       // Create new circle elements each with class `bubble`.
       // There will be one circle.bubble for each object in the nodes array.
       // Initially, their radius (r attribute) will be 0.
       // @v4 Selections are immutable, so lets capture the
       //  enter selection to apply our transtition to below.
-      var bubblesE = bubbles.enter().append('circle')
+      
+      
+      /*var bubblesE = bubbles.enter().append('circle')
         .classed('bubble', true)
         .attr('r', 0)
         .attr('fill', function (d) { return fillColor(d.group); })
         .attr('stroke', function (d) { return d3.rgb(fillColor(d.group)).darker(); })
-        .attr('stroke-width', 2)
-        .on('mouseover', showDetail)
-        .on('mouseout', hideDetail);
+        .attr('stroke-width', 2)*/
   
       // @v4 Merge the original empty selection and the enter selection
-      bubbles = bubbles.merge(bubblesE);
+      // bubbles = bubbles.merge(bubblesE);
   
       // Fancy transition to make bubbles appear, ending with the
       // correct radius
-      bubbles.transition()
+      svg.selectAll('circle').transition()
         .duration(2000)
-        .attr('r', function (d) { return d.radius; });
+        .attr('r', 3);
   
       // Set the simulation's nodes to our newly created nodes array.
       // @v4 Once we set the nodes, the simulation will start running automatically!
@@ -316,7 +335,7 @@ function bubbleChart() {
    * Calls bubble chart function to display inside #vis div.
    */
   function display(data) {  
-    myBubbleChart('#viz_1_4', data);
+    myBubbleChart('#viz_1_5', data);
   }
   
   /*
@@ -361,4 +380,3 @@ function bubbleChart() {
   }
   
   // Load the data.
-  d3.csv('iris.csv', display);
