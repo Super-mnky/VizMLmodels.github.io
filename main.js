@@ -1,7 +1,6 @@
 // Scrolling Mechanism:
 var current_viz = 0
 var viz_ids = [
-  '#viz_1_5',
   '#viz_1_1',
   '#viz_1_2',
   '#viz_1_3', 
@@ -11,7 +10,7 @@ var viz_ids = [
 ]
 
 var viz_fns = [
-  viz16, viz11, viz12, viz13a, viz13b, viz15, viz16
+  viz11, viz12, viz13a, viz13b, viz15, viz16
 ]
 
 d3.graphScroll()
