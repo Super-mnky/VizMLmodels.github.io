@@ -540,5 +540,11 @@ function pieCharts(pieArea, radius, count, pieData){
 }
 
 function viz16(){
-  d3.csv('iris.csv', display);
+  // Load the data.
+  d3.csv('iris.csv').then((data) =>
+    display(null, data)
+  );
+
+  // setup the buttons.
+  setupButtons();
 }
