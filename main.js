@@ -13,6 +13,10 @@ var viz_fns = [
   viz11, viz12, viz13a, viz13b, viz15, viz16
 ]
 
+var viz_loaded = [
+  false, false, false, false, false, false
+]
+
 d3.graphScroll()
     .graph(d3.selectAll('#graph'))
     .container(d3.select('#main'))
@@ -26,7 +30,10 @@ function updateViz(i) {
   d3.select(viz_ids[current_viz]).style('display', 'none')
   d3.select(viz_ids[i]).style('display','block')
   current_viz = i
-  viz_fns[i]();
+  if (!viz_loaded[i]){
+    viz_fns[i]();
+    viz_loaded[i] = true;
+  }
 }
 
 function delay(milliseconds){
