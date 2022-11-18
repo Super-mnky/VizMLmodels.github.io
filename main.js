@@ -1,20 +1,33 @@
 // Scrolling Mechanism:
 var current_viz = 0
 var viz_ids = [
-  '#viz_1_1',
-  '#viz_1_2',
-  '#viz_1_3', 
-  '#viz_1_3',
-  '#viz_1_4',
-  '#viz_1_5',
+  '#sec1',
+  '#sec2_1', //2_1_1
+  '#sec2_1', //2_1_2
+  '#sec2_2', //2_2_1
+  '#sec3',
+  '#sec4_1', //sec4_1_1
+  '#sec4_2', //sec4_2_1
+  '#sec5_1', //sec5_1_1
+  '#sec6',
+  '#sec7',
+  '#sec8',
 ]
 
 var viz_fns = [
-  viz11, viz12, viz13a, viz13b, viz15, viz16
+  sec1, 
+  sec2_1_1, sec2_1_2, sec2_2_1,
+  sec3, 
+  sec4_1_1, sec4_2_1,
+  sec5_1_1,
+  sec6, 
+  sec7, 
+  sec8
 ]
 
 var viz_loaded = [
-  false, false, false, false, false, false
+  false, false, false, false, false, 
+  false, false, false, false, false,
 ]
 
 d3.graphScroll()
@@ -46,7 +59,6 @@ function delay(milliseconds){
 
 var irises = {}
 
-
 Promise.all([
   d3.csv('iris.csv', function (row) {
     /*var node = {
@@ -71,184 +83,18 @@ var height = 640
 var heightMargin = 60
 
 // Display for viz 1.1
-function viz11(){
-
-  var lengthScale = d3.scaleLinear()
-  .domain([4,8]).range([heightMargin, height-heightMargin]);
-
-  var widthScale = d3.scaleLinear()
-  .domain([1.8,4.5]).range([height-heightMargin, heightMargin]);
-
-  function scaleLength(SepalLengthCm) {
-    return lengthScale(SepalLengthCm);
-  }
-
-  function scaleWidth(SepalWidthCm) {
-    return widthScale(SepalWidthCm);
-  }
-
-  d3.csv('iris.csv').then(function(dataset) {
-    //console.table(dataset)
-    var svg = d3.select('#viz_1_1').append('svg')
-    .attr('width', width)
-    .attr('height', height)
-
-    var g = svg.selectAll("g")
-    .data(dataset)
-    .enter()
-    .append("g")
-    .attr("transform", function(d) {
-    return ("translate(" + scaleLength(d.SepalLengthCm) + "," + scaleWidth(d.SepalWidthCm) + ")")
-    })
-
-    svg.append('g').attr('class', 'x axis')
-    .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")
-    .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}));
-
-    svg.append('g').attr('class', 'y axis')
-    .attr("transform", "translate("+(widthMargin+heightMargin)+",0)")
-    .call(d3.axisLeft(widthScale));
-
-    svg.append('text')
-      .attr('class', 'label')
-      .attr('transform','translate('+((width-widthMargin)/2 - 20)+','+(height-(heightMargin/3))+')')
-      .text('Sepal Length');
-
-    svg.append('text')
-      .attr('class', 'label')
-      .attr('transform','translate('+widthMargin+','+(height - heightMargin)/2+') rotate(90)')
-      .text('Sepal Width');
-
-    d3.selectAll('#b2')
-    .on('click', function(d){
-        // Remove the currently selected classname from that element
-          var circles = svg.selectAll("g")
-          .data(dataset)
-          .enter()
-          g.append("circle")
-          .attr("r", 3.5)
-          .attr('fill', function(d) {
-            if (d.Species == 'Iris-virginica') {
-              return 'orange';
-            } else {
-            if (d.Species == 'Iris-versicolor') {
-              return 'red';
-            } else {
-            if (d.Species == 'Iris-setosa') {
-              return 'blue';
-            }}}})});
-
-    d3.selectAll('#b1')
-    .on('click', function(){
-        // Remove the currently selected classname from that element
-      var circles = svg.selectAll("g")
-          .data(dataset)
-          .enter()
-          g.append("circle")
-          .attr("r", 3.5)
-          .attr('fill','black')
-
-
-    });
-  });
+function sec1(){
 }
 
-function viz12(){
-
-  var lengthScale = d3.scaleLinear()
-  .domain([4,8]).range([heightMargin, height-heightMargin]);
-
-  var widthScale = d3.scaleLinear()
-  .domain([1.8,4.5]).range([height-heightMargin, heightMargin]);
-
-  function scaleLength(SepalLengthCm) {
-    return lengthScale(SepalLengthCm);
-  }
-
-  function scaleWidth(SepalWidthCm) {
-    return widthScale(SepalWidthCm);
-  }
-
-  d3.csv('iris.csv').then(function(dataset) {
-    //console.table(dataset)
-    var svg = d3.select('#viz_1_2').append('svg')
-    .attr('width', width)
-    .attr('height', height)
-
-
-    var g = svg.selectAll("g")
-    .data(dataset)
-    .enter()
-    .append("g")
-    .attr("transform", function(d) {
-    return ("translate(" + scaleLength(d.SepalLengthCm) + "," + 325 + ")")  //magic number to bring down dots
-    //return ("translate(" + scaleLength(d.SepalLengthCm) + "," + scaleWidth(d.SepalWidthCm) + ")")
-    })
-
-    var circles = svg.selectAll("g")
-          .data(dataset)
-          .enter()
-          g.append("circle")
-          .attr("r", 3.5)
-          .attr('fill', function(d) {
-            if (d.Species == 'Iris-virginica') {
-              return 'orange';
-            } else {
-            if (d.Species == 'Iris-versicolor') {
-              return 'red';
-            } else {
-            if (d.Species == 'Iris-setosa') {
-              return 'blue';
-            }}}})
-
-    svg.append('g').attr('class', 'x axis')
-    .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")
-    .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}));
-
-    svg.append('text')
-      .attr('class', 'label')
-      .attr('id', 'sepal_length_label')
-      .attr('transform','translate('+((width-widthMargin)/2 - 20)+','+(height-(heightMargin/3))+')')
-      .text('Click Me');
-
-
-
-    d3.selectAll('#sepal_length_label')
-    .on('click', function(d){
-        // Remove the currently selected classname from that element
-      console.log("Clicked the animation button")
-
-      svg.selectAll("g")
-          .data(dataset)
-          .enter()
-      svg.selectAll("circle")
-          .transition()
-          .duration(750)
-          .attr("transform", function(d) {
-            if (d.Species == 'Iris-virginica') {
-              return ("translate(" + 0 + "," + 75 + ")");
-            } else {
-            if (d.Species == 'Iris-versicolor') {
-              return ("translate(" + 0 + "," + 0 + ")");
-            } else {
-            if (d.Species == 'Iris-setosa') {
-              return ("translate(" + 0 + "," + -75 + ")");
-            }}}
-          })
-    });
-
-
-  });
-}
-
-function viz13a(){
-  var svg = d3.select("#viz_1_3")
+//from here: @Kaitlyn Yang: Can you put them in a seperate .js file? I tried but it seems not working well
+function sec2_1_1(){
+  var svg = d3.select("#sec2_1")
   .append('svg')
   .attr('width', width)
   .attr('height', height)  
 
   var defs = svg.append('defs')
-  
+
   defs.append('marker').attr('id','startarrow').attr('orient','auto').attr('markerHeight', '4')
       .attr('refY', '2').attr('refX', '0').attr('markerWidth','4').attr('markerUnits','strokeWidth')
       .append('polygon').attr('fill','white').attr('points', '4 0, 4 4, 0 2')
@@ -308,8 +154,9 @@ function viz13a(){
   .attr('opacity','1')
 }
 
-async function viz13b(){
-  var svg = d3.select("#viz_1_3")
+
+async function sec2_1_2(){
+  var svg = d3.select("#sec2_1")
   .select('svg')
 
   const transitionPath = d3.transition().ease(d3.easeSin).duration(1000);
@@ -390,167 +237,35 @@ async function viz13b(){
     .transition().duration(1000).attr('opacity','1')
 
 }
+//untill here: @Kaitlyn Yang: Can you put them in a seperate .js file? I tried but it seems not working well
 
-function viz15(){
-  var svg = d3.select('#viz_1_4').append('svg')
-  .attr('width', width)
-  .attr('height', height)
-
-  var radius = 30;
-  var count = [1,2,3,4,5];
-  var pieData = {a:20,b:80}
-  var dots = svg.selectAll('g').data(count)
-  var pieArea = svg.append('g')
-
-  pieCharts(pieArea, radius, count, pieData)
-}
-
-function pieCharts(pieArea, radius, count, pieData){
-
-  // set the color scale
-  var color = d3.scaleOrdinal()
-    .domain(pieData)
-    .range(["#00FFE0", "#1E8B8B", "#323D52"])
-
-  var pieGroup = pieArea.selectAll('g')
-    .data(count)
-    .enter()
-    .append('g')
-    .attr('transform', function(d, i) {return 'translate('+(((width-widthMargin)/3)-2*radius*i)+','+((height-heightMargin)/8)+')'})
-    .attr('class', 'pies')
-
-  var pie = d3.pie()
-    .value(function(d) {return d.value; })
-  var data_ready = pie(d3.entries(pieData))
-  
-  var pies = pieGroup.selectAll('.pie')
-    .data(data_ready)
-    .enter()
-    .append('g')
-    .attr('class', 'arc')
-    .append('path')
-    .attr('d', d3.arc()
-      .innerRadius(0)
-      .outerRadius(radius)
-    )
-    .attr('fill', function(d){ return(color(d.data.key)) })
-    .attr("stroke", '#323D52')
-    .style("stroke-width", "0px")
-    .style("opacity", 1)
-    .attr('transform','translate('+(((width/2-widthMargin))-2*radius)+','+((height-heightMargin)/5)+')')
-  
-  var attribute = "fold"
-    var text_fold = pieGroup.append("text")
-    .text(function(d, i){return attribute + (5-i)})
-    .attr('class', 'axis-txt')
-    .attr('transform','translate('+(((width/2-widthMargin))-2.7*radius)+','+(((height-heightMargin)/5)-2*radius)+')')
-
-  var dataLines = pieGroup.append("line")
-    .attr("stroke", '#323D52')
-    .style("stroke-width", function(d, i){return (i == 3) ? 3:1})
-    .style("stroke-dasharray", ("3, 3"))
-    .attr("x1", 0)
-    .attr("y1", radius)
-    .attr("x2", function(d, i){return posi(d, i, radius)})
-    .attr("y2", 145)
-    .attr('transform','translate('+(((width/2-widthMargin))-2*radius)+','+(((height-heightMargin)/5))+')')
-   
-  var acc = radius*4
-  var accuracyLine = pieArea.append("line")
-    .attr("stroke", '#323D52')
-    .style("stroke-width", 3)
-    .style("stroke-dasharray", ("3, 3"))
-    .attr("x1", 0)
-    .attr("y1", radius)
-    .attr("x2", acc)
-    .attr("y2", 145)
-    .attr('transform','translate('+(((width/2-widthMargin))+radius)+','+((height-heightMargin)/1.6)+')')
-     
-  function posi(d, i, radius){
-      var x;
-      if(i == 0){x = -radius*(i+4)}
-      else if(i == 1){x = -radius*(i+1)}
-      else if(i == 2){x = 0}
-      else if(i == 3){x = radius*(i-1)}
-      else if(i == 4){x = radius*(i)}
-      return x
-    }
-
-  var outerRect = pieArea.append("rect")
-    .attr("style", "fill:white")
-    .attr("stroke", '#323D52')
-    .style("stroke-width", "2px")
-    .attr("x", 100)
-    .attr("y", 100)
-    .attr("rx", radius)	
-    .attr("ry", radius)								
-    .attr("width", radius*10)
-    .attr("height", radius*2)
-    .attr('transform','translate('+(((width-widthMargin)/2)-7.2*radius)+','+((height/2.2-heightMargin))+')')
-
-  var innnerRect = pieArea.append("rect")
-    .attr("style", "fill:#323D52")
-    .attr("stroke", '#323D52')
-    .style("stroke-width", "2px")
-    .attr("x", 100)
-    .attr("y", 100)
-    .attr("rx", radius)	
-    .attr("ry", radius)								
-    .attr("width", radius*8)
-    .attr("height", radius*2)
-    .attr('transform','translate('+(((width-widthMargin)/2)-7.2*radius)+','+((height/2.2-heightMargin))+')')
-
-    var lengthScale_acc = d3.scaleLinear()
-    .domain([0,1]).range([heightMargin*4.6, height-heightMargin]);
-
-    pieArea.append('g').attr('class', 'x axis')
-    .attr("transform", "translate("+widthMargin*(-3)+","+(height/1.12-heightMargin)+")")
-    .call(d3.axisBottom(lengthScale_acc).tickFormat(function(d){return d;}));
-
-    var accAxis = pieArea.append('circle')
-    .attr("style", "fill:#323D52")
-    .attr("stroke", '#323D52')
-    .attr("cx", 0)	
-    .attr("cy", 0)	
-    .attr("r", 5)
-    .attr("transform", "translate("+(((width/2+132)))+","+(height/1.12-heightMargin)+")")
-
-    var yAxisTxt = ["Data", "Model", "Accuracy"]
-    var text_fold1 = pieArea.append("text")
-    .text(yAxisTxt[0])
-    .attr('class', 'axis-txt')
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr('transform','translate('+(((width/6-widthMargin))+radius)+','+((height-heightMargin)/2.9)+')rotate(270)');
-   
-    var text_fold2 = pieArea.append("text")
-    .text(yAxisTxt[1])
-    .attr('class', 'axis-txt')
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr('transform','translate('+(((width/6-widthMargin))+radius)+','+((height-heightMargin)/1.51)+')rotate(270)');
-   
-    var text_fold3 = pieArea.append("text")
-    .text(yAxisTxt[2])
-    .attr('class', 'axis-txt')
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr('transform','translate('+(((width/6-widthMargin))+radius)+','+((height-heightMargin)/1.07)+')rotate(270)');
-   
-    var text_title = pieArea.append("text")
-    .text("K-fold validation")
-    .attr('class', 'title-txt')
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr('transform','translate('+(((width/7-widthMargin))+radius)+','+((height/4.3-heightMargin))+')');
-}
-
-function viz16(){
-  // Load the data.
-  d3.csv('iris.csv').then((data) =>
-    display(null, data)
-  );
-
+function sec2_2_1(){
+  d3.csv('iris.csv').then((data) => display_sec2_2_1(null, data));
   // setup the buttons.
   setupButtons();
+}
+
+function sec3(){
+}
+
+function sec4_1_1(){
+  d3.csv('iris.csv').then((data) => display_sec4_1_1(null, data) );
+}
+
+function sec4_2_1(){
+  d3.csv('iris.csv').then((data) => display_sec4_2_1(null, data) );
+}
+
+
+function sec5_1_1(){
+  d3.csv('iris.csv').then((data) => display_sec5_1_1(null, data));
+}
+
+function sec6(){
+}
+
+function sec7(){
+}
+
+function sec8(){
 }

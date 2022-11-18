@@ -50,7 +50,7 @@ html, body {
   It breaks it. Why? beats me.
 */
 
-#s1_1_viz{
+#_1_intro, #_2_dataprep, #_3_classifier, #_4_comparison, #_5_kfold, #_6_parameter, #_7_modelselect, #_8_featureselect{
     margin-right: calc(100%-500px);
     width: 75%;
     position: sticky;
@@ -58,38 +58,13 @@ html, body {
     float: right;
 }
 
-#s1_3_viz{
-    margin-right: calc(100%-500px);
-    width: 75%;
-    position: sticky;
-    top: 0px;
-    float: right;
+.visView{
+    margin: 0 auto; 
+    height: 640px; 
+    width: 680px; 
+    border: 1px solid blue; 
+    display: none;
 }
-
-#s1_2_viz{
-    margin-right: calc(100%-500px);
-    width: 75%;
-    position: sticky;
-    top: 0px;
-    float: right;
-}
-
-#s1_5_viz{
-    margin-right: calc(100%-500px);
-    width: 75%;
-    position: sticky;
-    top: 0px;
-    float: right;
-}
-
-#s1_4_viz{
-    margin-right: calc(100%-500px);
-    width: 75%;
-    position: sticky;
-    top: 0px;
-    float: right;
-}
-
 
 circle:hover {
     fill: red;

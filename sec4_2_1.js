@@ -1,5 +1,6 @@
+//_4_comparison
 
-function viz12(dataset){
+function sec4_2_1(){
 
     var lengthScale = d3.scaleLinear()
     .domain([4,8]).range([heightMargin, height-heightMargin]);
@@ -17,21 +18,40 @@ function viz12(dataset){
   
     d3.csv('iris.csv').then(function(dataset) {
       //console.table(dataset)
-      var svg = d3.select('#viz_1_2').append('svg')
+      var svg = d3.select('#sec4_2').append('svg')
       .attr('width', width)
       .attr('height', height)
-  
   
       var g = svg.selectAll("g")
       .data(dataset)
       .enter()
       .append("g")
       .attr("transform", function(d) {
-      return ("translate(" + scaleLength(d.SepalLengthCm) + "," + 325 + ")")  //magic number to bring down dots
-      //return ("translate(" + scaleLength(d.SepalLengthCm) + "," + scaleWidth(d.SepalWidthCm) + ")")
+      return ("translate(" + scaleLength(d.SepalLengthCm) + "," + scaleWidth(d.SepalWidthCm) + ")")
       })
   
-      var circles = svg.selectAll("g")
+      svg.append('g').attr('class', 'x axis')
+      .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")
+      .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}));
+  
+      svg.append('g').attr('class', 'y axis')
+      .attr("transform", "translate("+(widthMargin+heightMargin)+",0)")
+      .call(d3.axisLeft(widthScale));
+  
+      svg.append('text')
+        .attr('class', 'label')
+        .attr('transform','translate('+((width-widthMargin)/2 - 20)+','+(height-(heightMargin/3))+')')
+        .text('Sepal Length');
+  
+      svg.append('text')
+        .attr('class', 'label')
+        .attr('transform','translate('+widthMargin+','+(height - heightMargin)/2+') rotate(90)')
+        .text('Sepal Width');
+  
+      d3.selectAll('#b2')
+      .on('click', function(d){
+          // Remove the currently selected classname from that element
+            var circles = svg.selectAll("g")
             .data(dataset)
             .enter()
             g.append("circle")
@@ -45,45 +65,27 @@ function viz12(dataset){
               } else {
               if (d.Species == 'Iris-setosa') {
                 return 'blue';
-              }}}})
+              }}}})});
   
-      svg.append('g').attr('class', 'x axis')
-      .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")
-      .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}));
-  
-      svg.append('text')
-        .attr('class', 'label')
-        .attr('id', 'sepal_length_label')
-        .attr('transform','translate('+((width-widthMargin)/2 - 20)+','+(height-(heightMargin/3))+')')
-        .text('Click Me');
-  
-  
-  
-      d3.selectAll('#sepal_length_label')
-      .on('click', function(d){
+      d3.selectAll('#b1')
+      .on('click', function(){
           // Remove the currently selected classname from that element
-        console.log("Clicked the animation button")
-  
-        svg.selectAll("g")
+        var circles = svg.selectAll("g")
             .data(dataset)
             .enter()
-        svg.selectAll("circle")
-            .transition()
-            .duration(750)
-            .attr("transform", function(d) {
-              if (d.Species == 'Iris-virginica') {
-                return ("translate(" + 0 + "," + 75 + ")");
-              } else {
-              if (d.Species == 'Iris-versicolor') {
-                return ("translate(" + 0 + "," + 0 + ")");
-              } else {
-              if (d.Species == 'Iris-setosa') {
-                return ("translate(" + 0 + "," + -75 + ")");
-              }}}
-            })
+            g.append("circle")
+            .attr("r", 3.5)
+            .attr('fill','black')
       });
-  
-  
     });
   }
+
+  //display chart
+var myChart421 = sec4_2_1();
+
+function display_sec4_2_1(error, data) {
+    if (error) {
+      console.log(error);
+    }
+}
   

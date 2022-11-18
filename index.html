@@ -10,32 +10,14 @@
 
 <body>
         <div id="main">
-
                 <!-- Add a section block for every visualization we want -->
-                <div id="s1_1_viz">
-                        <div class="viz" id="viz_1_1"
-                                style="margin: 0 auto; height: 640px; width: 680px; border: 1px solid green; display: none;">
-                                <div class="button-container-div">
-                                        <button class="button_s1" id="b1">Show Iris Observations</button>
-                                        <button class="button_s1" id="b2">Show Observations By Color</button>
-                                </div>
+                <div id="_1_intro">
+                        <div class="viz visView" id="sec1"></div>
+                </div>
+                <div id="_2_dataprep">
+                        <div class="viz visView" id="sec2_1">
                         </div>
-                </div>
-                <div id="s1_2_viz">
-                        <div class="viz" id="viz_1_2"
-                                style="margin: 0 auto; height: 640px; width: 680px; border: 1px solid red; display: none;"></div>
-                </div>
-                <div id="s1_3_viz">
-                        <div class="viz" id="viz_1_3"
-                                style="margin: 0 auto; height: 640px; width: 680px; border: 1px solid blue; display: none;"></div>
-                </div>
-                <div id="s1_4_viz">
-                        <div class="viz" id="viz_1_4"
-                                style="margin: 0 auto; height: 640px; width: 680px; border: 1px solid yellow; display: none;"></div>
-                </div>
-                <div id="s1_5_viz">
-                        <div class="viz" id="viz_1_5"
-                                style="margin: 0 auto; height: 640px; width: 680px; border: 1px solid red; display: none;">
+                        <div class="viz visView" id="sec2_2">
                                 <div id="toolbar">
                                         <button id="all" class="button active">All</button>
                                         <button id="year" class="button">By Species</button>
@@ -43,84 +25,91 @@
                                 </div>
                         </div>
                 </div>
-
+                <div id="_3_classifier">
+                        <div class="viz visView" id="sec3"></div>
+                </div>
+                <div id="_4_comparison">
+                        <div class="viz visView" id="sec4_1">
+                        </div>
+                        <div class="viz visView" id="sec4_2">
+                                <div class="button-container-div">
+                                        <button class="button_s1" id="b1">Show Iris Observations</button>
+                                        <button class="button_s1" id="b2">Show Observations By Color</button>
+                                </div>
+                        </div>
+                </div>
+                <div id="_5_kfold">
+                        <div class="viz visView" id="sec5_1"></div>
+                </div>
+                <div id="_6_parameter">
+                        <div class="viz visView" id="sec6"></div>
+                </div>
+                <div id="_7_modelselect">
+                        <div class="viz visView" id="sec7"></div>
+                </div>
+                <div id="_8_featureselect">
+                        <div class="viz visView" id="sec8"></div>
+                </div>
 
                 <!-- Add a section block for every text we want -->
                 <div id="sections">
-                        <div class="section-text" id="s1_1_text">
-                                What is model comparison?
-                                How is the systemic process evaluated?
-                                What metrics do we need to consider?
-
-                                Machine Learning systems work by using data to generate a model from the features
-                                composing each
-                                observation. The hypothesis is that a given model can generalize from data that we do
-                                have, to perform
-                                well on data that we don't have or hasn't been screne before. This typically involves
-                                looking at many
-                                models at first then working to understand how they are performing.
+                        <div class="section-text" id="sec1_text">
+                                sec1_text _1_intro
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
-                        <div class="section-text" id="s1_2_text">
-                                The primary objective of a model is to maximize the performance of the model on the
-                                given task. The
-                                aforementioned performance metrics gives information about how the model will perform
-                                when the system is
-                                deployed in the real world. These will have to be compared and assessed to ensure the
-                                business
-                                requirement ment is met.
+                        <div class="section-text" id="sec2_1_1_text">
+                                sec2_1_1_text _2_dataprep
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
-                        <div class="section-text" id="s1_3_text">
-                                Statistical analysis of the models performance help inform decisions on which models are
-                                appropriate for
-                                the given task. Comparing how all of the test cases perform, helps ensure the business
-                                requirement is
-                                met whne it is ultimately deployed.
+                        <div class="section-text" id="sec2_1_2_text">
+                                sec2_1_2_text _2_dataprep
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
-                        <div class="section-text" id="s1_3_1_text">
-                                The primary objective of a model is to maximize the performance of the model on the
-                                given task. The
-                                aforementioned performance metrics gives information about how the model will perform
-                                when the system is
-                                deployed in the real world. These will have to be compared and assessed to ensure the
-                                business
-                                requirement ment is met.
+                        <div class="section-text" id="sec2_2_1_text">
+                                sec2_2_text _2_dataprep
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
-                        <div class="section-text" id="s1_4_text">
-                                The primary objective of a model is to maximize the performance of the model on the
-                                given task. The
-                                aforementioned performance metrics gives information about how the model will perform
-                                when the system is
-                                deployed in the real world. These will have to be compared and assessed to ensure the
-                                business
-                                requirement ment is met.
-                                Statistical analysis of the models performance help inform decisions on which models are
-                                appropriate for
-                                the given task. Comparing how all of the test cases perform, helps ensure the business
-                                requirement is
-                                met whne it is ultimately deployed.
+                        <div class="section-text" id="sec3_text">
+                                sec3_text _3_classifier
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
-                        <div class="section-text" id="s1_5_text">
-                                Statistical analysis of the models performance help inform decisions on which models are
-                                appropriate for
-                                the given task. Comparing how all of the test cases perform, helps ensure the business
-                                requirement is
-                                met whne it is ultimately deployed.
+                        <div class="section-text" id="sec4_1_1_text">
+                                sec4_1_1_text _4_comparison
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <p class="block"></p>
+                        </div>
+                        <div class="section-text" id="sec4_2_1_text">
+                                sec4_2_1_text _4_comparison
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <p class="block"></p>
+                        </div>
+                        <div class="section-text" id="sec5_text">
+                                sec5_text _5_kfold
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <p class="block"></p>
+                        </div>
+                        <div class="section-text" id="sec6_text">
+                                sec6_text _6_parameter
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <p class="block"></p>
+                        </div>
+                        <div class="section-text" id="sec7_text">
+                                sec7_text _7_modelselect
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <p class="block"></p>
+                        </div>
+                        <div class="section-text" id="sec8_text">
+                                sec8_text _8_featureselect
+                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                 </div>
         </div>
-        <!--
-    <div id="main">
-        <svg width="720" height="400" style="border: 1px solid #777;">
-        </svg>
-    </div>
-    -->
-
 </body>
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -135,6 +124,13 @@
 <script src="graph-scroll.js"></script>
 <script src="main.js"></script>
 <script src="tooltip.js"></script>
-<script src="bubble.js"></script>
 
+<script src="sec2_1_1.js"></script>
+<script src="sec2_1_2.js"></script>
+<script src="sec2_2_1.js"></script>
+
+<script src="sec4_1_1.js"></script>
+<script src="sec4_2_1.js"></script>
+
+<script src="sec5_1_1.js"></script>
 </html>
