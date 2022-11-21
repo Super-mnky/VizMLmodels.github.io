@@ -9,7 +9,7 @@ var viz_ids = [
   '#sec4_1', //sec4_1_1
   '#sec4_2', //sec4_2_1
   '#sec5_1', //sec5_1_1
-  '#sec6',
+  '#sec6_1', //sec6_1_1
   '#sec7',
   '#sec8',
 ]
@@ -20,7 +20,7 @@ var viz_fns = [
   sec3, 
   sec4_1_1, sec4_2_1,
   sec5_1_1,
-  sec6, 
+  sec6_1_1,
   sec7, 
   sec8
 ]
@@ -274,21 +274,31 @@ function sec5_1_1(){
   var pieArea = svg.append('g')
 
   var pieX = width/3;
-  var pieY = height/4.5;
-  var padding = 40;
+  var pieY = height/4;
+  var padding = 0;
   var acc = 0.3;
+  var accX_base = (pieX/2)+(radius*4)
 
-  //time
-  var globalduration = 2000
-  var localduration = 500
-  var localduration_h = 250
+  var margin_s = 5;
 
   // set the color scale
   var mainColor = {"green": '#1E8B8B', 'lightgreen':"#00FFE0", 'darkblue':"#323D52", 'red':'red' }
   var color = d3.scaleOrdinal()
     .domain(pieData)
     .range(["#00FFE0", "#1E8B8B", "#323D52"])
-  
+
+  //time
+  var duration_2500 = 2000    
+  var duration_2000 = 2000
+  var duration_500 = 500
+  var duration_250 = 250
+
+  // transition
+  const transition_2500 = d3.transition().ease(d3.easeSin).duration(duration_2500);
+  const transition_2000 = d3.transition().ease(d3.easeSin).duration(duration_2000);
+  const transition_500 = d3.transition().ease(d3.easeSin).duration(duration_500);
+  const transition_250 = d3.transition().ease(d3.easeSin).duration(duration_250);
+
   // pieArea position 
   pieArea
   .attr('transform', function(d, i) {return 'translate('+pieX+','+(pieY+padding)+')'})
@@ -301,7 +311,6 @@ function sec5_1_1(){
     .attr('transform', function(d, i) {return 'translate('+(((2*i*radius)))+','+0+')'})
     .attr('class', 'pies')
 
-  const transition_global = d3.transition().ease(d3.easeSin).duration(globalduration);
   // pie charts   
   var pie = d3.pie()
     .value(function(d) {return d.value; })
@@ -322,7 +331,7 @@ function sec5_1_1(){
     .style("stroke-width", "0px")
     .style("opacity", 1)
     .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
-    .transition(transition_global)
+    .transition(transition_2000)
     // .delay(function(d, i){return i*1000})
     .attr('transform','translate('+(0)+','+(0)+')rotate(90)')
 
@@ -330,44 +339,37 @@ function sec5_1_1(){
   var attribute = "fold"
     var text_fold = pieGroup.append("text")
     .text(function(d, i){return attribute + (5-i)})
-    .attr('class', 'axis-txt')
-    .attr('transform','translate('+(-radius/1.8)+','+(-radius*2)+')')
+    .attr('class', 'axis-txt text-sm')
+    .attr('transform','translate('+(-radius/1.8)+','+(-radius*1.5)+')')
 
   // 4 datalines 
-  const transition = d3.transition().ease(d3.easeSin).duration(localduration);
   var dataLines = pieGroup.append("line")
     .attr("stroke", '#323D52')
     .style("stroke-dasharray", ("3, 3"))
     .style("stroke-width", 1)
-    .attr("x1", 0)
-    .attr("y1", radius)
-    .attr("x2", function(d, i){return posi(d, i, radius)})
-    .attr("y2", pieY-radius)
+    .attr("x1", 0).attr("y1", radius)
+    .attr("x2", function(d, i){return posi(d, i, radius)}).attr("y2", pieY-radius)
     dataLines
     .attr("stroke-dashoffset", 400)
     .attr("stroke-dasharray", 4)
-    .transition(transition)
-    .delay(function(d, i){return i*localduration})
+    .transition(transition_500)
+    .delay(function(d, i){return i*duration_500})
     .style("stroke-width", function(d, i){return (i == i) ? 2:1})
     .attr("stroke", mainColor["green"])
     .attr("stroke-dashoffset", 0)
  
    
   // acc line  
-  const transition_half = d3.transition().ease(d3.easeSin).duration(localduration_h);
-  var accuracyLine = pieArea.append("line")
+  var accLine = pieArea.append("line")
     .attr("stroke", '#323D52')
     .style("stroke-width", 0)
-    .attr("x1", radius*2)
-    .attr("y1", pieY-radius)
-    .attr("x2", (pieX/2+(radius*4)))
-    .attr("y2", pieY-radius)
-    .attr("y2", pieY*2+acc)
-    accuracyLine
+    .attr("x1", radius*2).attr("y1", pieY-radius)
+    .attr("x2", accX_base).attr("y2", pieY*2+acc)
+    accLine
     .attr("stroke-dashoffset", 400)
     .attr("stroke-dasharray", 4)
-    .transition(transition_half)
-    .delay(function(d, i){return globalduration})
+    .transition(transition_250)
+    .delay(function(d, i){return duration_2000})
     .style("stroke-width", 2)
     .attr("stroke", mainColor['red'])
     .attr("stroke-dashoffset", 0)
@@ -381,33 +383,25 @@ function sec5_1_1(){
       else if(i == 4){x = -radius*(i)}
       return x
     }
-
   // model-rect
   var outerRect = pieArea.append("rect")
     .attr("style", "fill:white")
     .attr("stroke", '#323D52')
     .style("stroke-width", "2px")
-    .attr("x", -radius)
-    .attr("y", -radius)
-    .attr("rx", radius)	
-    .attr("ry", radius)								
-    .attr("width", radius*10)
-    .attr("height", radius*2)
+    .attr("x", -radius).attr("y", -radius)
+    .attr("rx", radius).attr("ry", radius)										
+    .attr("width", radius*10).attr("height", radius*2)
     .attr('transform','translate('+0+','+pieY+')')
 
-  const transition_Rect = d3.transition().ease(d3.easeSin).duration(globalduration+500);
   var innnerRect = pieArea.append("rect")
     .attr("style", "fill:#323D52")
     .attr("stroke", '#323D52')
     .style("stroke-width", "2px")
-    .attr("x", -radius)
-    .attr("y", -radius)
-    .attr("rx", radius)	
-    .attr("ry", radius)								
-    .attr("width", radius*2)
-    .attr("height", radius*2)
+    .attr("x", -radius).attr("y", -radius)
+    .attr("rx", radius).attr("ry", radius)								
+    .attr("width", radius*2).attr("height", radius*2)
     .attr('transform','translate('+0+','+pieY+')')
-    .transition(transition_Rect)
+    .transition(transition_2500)
     .attr("width", radius*10)
 
   // acc x axis  
@@ -420,48 +414,114 @@ function sec5_1_1(){
 
   // acc dot on x axis   
   var accAxis = pieArea.append('circle')
-    .attr("style", "fill:#323D52")
-    .attr("stroke", '#323D52')
-    .attr("cx", 0)
-    .attr("cy", 0)
-    .attr("r", 0)
+    .attr("fill", mainColor['red'])
+    // .attr("stroke", '#323D52')
+    .attr("cx", 0).attr("cy", 0).attr("r", 0)
     .attr('transform','translate('+(pieX/2+(radius*4)+acc)+','+pieY*2+')')
-    .transition(transition)
-    .delay(function(d, i){return globalduration+500})
+    .transition(transition_500)
+    .delay(function(d, i){return duration_2500})
     .attr("r", 5)
 
   // text-labels-left   
-  var yAxisTxt = ["Data", "Model", "Accuracy"]
+  var yAxisTxts = ["Data", "Model", "Accuracy"]
+  var accValues = ["96% : LR"]
   var text_fold1 = pieArea.append("text")
-    .text(yAxisTxt[0])
-    .attr('class', 'axis-txt')
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr('transform','translate('+(-pieX/2)+','+((pieY/3)-radius)+')rotate(270)')
+    .text(yAxisTxts[0])
+    .attr('class', 'axis-txt text-sm')
+    .attr("x", 0).attr("y", 0)	
+    .attr('transform','translate('+(-pieX/2)+','+((-pieY/40)) +')rotate(270)')
 
   var text_fold2 = pieArea.append("text")
-    .text(yAxisTxt[1])
-    .attr('class', 'axis-txt')
-    .attr("x", 0)
-    .attr("y", 0)
+    .text(yAxisTxts[1])
+    .attr('class', 'axis-txt text-sm')
+    .attr("x", 0).attr("y", 0)	
     .attr('transform','translate('+(-pieX/2)+','+((pieY*1.35)-radius)+')rotate(270)')
 
   var text_fold3 = pieArea.append("text")
-    .text(yAxisTxt[2])
-    .attr('class', 'axis-txt')
-    .attr("x", 0)
-    .attr("y", 0)
+    .text(yAxisTxts[2])
+    .attr('class', 'axis-txt text-sm')
+    .attr("x", 0).attr("y", 0)	
     .attr('transform','translate('+(-pieX/2)+','+((pieY*2.5)-radius)+')rotate(270)')
+
+  var text_fold1_rect = pieArea.append("rect")
+    .attr("fill", "none")
+    .attr("stroke", '#323D52')
+    .style("stroke-dasharray", "2px")
+    .attr("x", 0).attr("y", 0)						
+    .attr("width", radius*3.5)
+    .attr("height", radius)
+    .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY/5.2))+')rotate(270)')
+
+  var text_fold2_rect = pieArea.append("rect")
+    .attr("fill", "none")
+    .attr("stroke", '#323D52')
+    .style("stroke-dasharray", "2px")
+    .attr("x", 0).attr("y", 0)						
+    .attr("width", radius*2.5)
+    .attr("height", radius)
+    .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY/0.785))+')rotate(270)')
+
+  var text_fold3_rect = pieArea.append("rect")
+    .attr("fill", "none")
+    .attr("stroke", '#323D52')
+    .style("stroke-dasharray", "2px")
+    .attr("x", 0).attr("y", 0)						
+    .attr("width", radius*3)
+    .attr("height", radius)
+    .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY*2.41))+')rotate(270)')
 
   var text_title = pieArea.append("text")
     .text("K-fold validation")
-    .attr('class', 'title-txt')
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr('transform','translate('+((-pieX/2)-10)+','+(-pieY/1.3)+')')}
+    .attr('class', 'title-txt text-md')
+    .attr("x", 0).attr("y", 0)
+    .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
 
+  // acc line & text
+  var accLine_result = pieArea.append("line")
+    .attr("stroke", '#323D52')
+    .style("stroke-width", 0)
+    .attr("x1", accX_base+acc).attr("y1", pieY*2)
+    .attr("x2", accX_base+acc).attr("y2", ((pieY*2)+(radius*2))-margin_s)
+    accLine_result
+    .attr("stroke-dashoffset", 400)
+    .attr("stroke-dasharray", 4)
+    .transition(transition_250)
+    .delay(function(d, i){return duration_2000})
+    .style("stroke-width", 1)
+    .attr("stroke", mainColor['red'])
+    .attr("stroke-dashoffset", 0)
+     
+  var text_acc = pieArea.append("text")
+    .text(accValues[0])
+    .attr('class', 'acc-txt text-sm')
+    .attr("x", 0).attr("y", 0)
+    .attr("opacity", 0)
+    .attr('transform','translate('+ (accX_base+acc-margin_s)+','+((pieY*2)+(radius*2))+')rotate(-270)')
+    .transition(transition_500)
+    .delay(function(d, i){return duration_2500})
+    .attr("opacity", 1)
+  
+//legend
+  var legend = pieArea.append("g")
+  .attr("x", 0).attr("y", 0)
+  .attr('transform','translate('+((pieX/2)-radius/1.3)+','+(-pieY/2)+')')
+  
+  var legned_rect1 = legend.append("rect")
+  .attr("x", 0).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["green"])
+  var legned_rect2 = legend.append("rect")
+  .attr("x", 45).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["lightgreen"])
+  var legend_text1 = legend.append("text")
+  .text("Data").attr('class', 'acc-txt text-sm text-bold').attr("x", -34).attr("y", 10)
+  var legend_text2 = legend.append("text")
+  .text("80%").attr('class', 'acc-txt text-sm').attr("x", 15).attr("y", 10)
+  var legend_text3 = legend.append("text")
+  .text("20%").attr('class', 'acc-txt text-sm').attr("x", 60).attr("y", 10)
 
-function sec6(){
+}//end of func
+
+function sec6_1_1(){
+ d3.csv('iris.csv').then((data) => display_sec6_1_1(null, data));
+
 }
 
 function sec7(){
