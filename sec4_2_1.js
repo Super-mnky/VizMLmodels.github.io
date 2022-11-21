@@ -49,6 +49,7 @@ function sec4_2_1(){
         .text('Sepal Width');
 
       var circles = svg.selectAll("g")
+            console.log('showing dots')
             g.append("circle")
             .transition()
                 .delay(function(d,i) {return i * 20;})
