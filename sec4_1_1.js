@@ -19,6 +19,7 @@ function sec4_1_1(){
 
   d3.csv('iris.csv').then(function(dataset) {
     //console.table(dataset)
+    console.log(dataset.length)
 
     var svg = d3.select('#sec4_1').append('svg')
     .attr('width', width)
@@ -32,39 +33,38 @@ function sec4_1_1(){
       .attr('class', 'label')
       .attr('id', 'sepal_length_label')
       .attr('transform','translate('+((width-widthMargin)/2 - 20)+','+(height-(heightMargin/3))+')')
-      .text('Length');
+      .text('Petal Length');
+
+    svg.append('text')
+        .attr('class', 'label')
+        .attr('transform','translate('+widthMargin+','+(height - heightMargin - 250)+') rotate(0)')
+        .text('Vericolor');
+
+    svg.append('text')
+        .attr('class', 'label')
+        .attr('transform','translate('+widthMargin+','+(height - heightMargin - 180)+') rotate(0)')
+        .text('Virginica');
+
+    svg.append('text')
+        .attr('class', 'label')
+        .attr('transform','translate('+widthMargin+','+(height - heightMargin - 325)+') rotate(0)')
+        .text('Setosa');
 
     var g = svg.selectAll("g")
     .data(dataset)
     .enter()
     .append("g")
     .attr("transform", function(d) {
-            return ("translate(" + scaleLength(d.SepalLengthCm) + "," + 325 + ")")  //magic number to bring down dots
+        return ("translate(" + scaleLength(d.PetalLengthCm) + "," + 325 + ")")  //magic number to bring down dots
     })
 
     svg.selectAll("g")
-      .data(dataset)
-      .enter()
-      g.append("circle")
-      .attr("r", 4.5)
-      .attr('class','circle-a')
-      .style("opacity", 0.7)
-      .attr('fill', function(d) {
-        if (d.Species == 'Iris-virginica') {
-          return 'orange';
-        } else {
-        if (d.Species == 'Iris-versicolor') {
-          return 'red';
-        } else {
-        if (d.Species == 'Iris-setosa') {
-          return 'blue';
-        }}}})
-
-    svg.selectAll("g")
-      g.append("circle")
-      .attr('class','circle-b')
-      .attr("r", 2.5)
-      .style("opacity", 1)
+        .data(dataset)
+        .enter()
+        g.append("circle")
+        .attr("r", 4.5)
+        .attr('class','circle-a')
+        .style("opacity", 0.7)
 
 
     svg.selectAll("circle")
@@ -81,38 +81,19 @@ function sec4_1_1(){
           return ("translate(" + 0 + "," + -75 + ")");
         }}}
       })
-
-  svg.selectAll(".circle-a")
-      .transition()
-      .delay(7000)
-      .duration(1500)
-      .attr("transform", function(d) {
-        if (d.Species == 'Iris-virginica') {
-          return ("translate(" + 0 + "," + 65 + ")");
-        } else {
-        if (d.Species == 'Iris-versicolor') {
-          return ("translate(" + 0 + "," + 10 + ")");
-        } else {
-        if (d.Species == 'Iris-setosa') {
-          return ("translate(" + 0 + "," + -65 + ")");
-        }}}
-      })
-
-  svg.selectAll(".circle-b")
-      .transition()
-      .delay(7000)
-      .duration(1500)
-      .attr("transform", function(d) {
-        if (d.Species == 'Iris-virginica') {
-          return ("translate(" + 0 + "," + 85 + ")");
-        } else {
-        if (d.Species == 'Iris-versicolor') {
-          return ("translate(" + 0 + "," + -10 + ")");
-        } else {
-        if (d.Species == 'Iris-setosa') {
-          return ("translate(" + 0 + "," + -85 + ")");
-        }}}
-      })
+      .attr('fill', function(d) {
+            if (d.Species == 'Iris-virginica') {
+             console.log('Virginica detected')
+              return 'orange';
+            } else {
+            if (d.Species == 'Iris-versicolor') {
+             console.log('Vericolor detected')
+              return 'red';
+            } else {
+            if (d.Species == 'Iris-setosa') {
+             console.log('Setosa detected')
+              return 'blue';
+            }}}})
   });
 }
 
