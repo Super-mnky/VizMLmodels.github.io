@@ -47,16 +47,14 @@ function sec4_2_1(){
         .attr('class', 'label')
         .attr('transform','translate('+widthMargin+','+(height - heightMargin)/2+') rotate(90)')
         .text('Sepal Width');
-  
-      d3.selectAll('#b2')
-      .on('click', function(d){
-          // Remove the currently selected classname from that element
-            var circles = svg.selectAll("g")
-            .data(dataset)
-            .enter()
+
+      var circles = svg.selectAll("g")
             g.append("circle")
-            .attr("r", 3.5)
-            .attr('fill', function(d) {
+            .transition()
+                .delay(function(d,i) {return i * 20;})
+                .duration(750)
+                .attr("r", 3.5)
+                .attr('fill', function(d) {
               if (d.Species == 'Iris-virginica') {
                 return 'orange';
               } else {
@@ -65,16 +63,7 @@ function sec4_2_1(){
               } else {
               if (d.Species == 'Iris-setosa') {
                 return 'blue';
-              }}}})});
-
-      var circles = svg.selectAll("g")
-            console.log("loading dots")
-            g.append("circle")
-            .transition()
-                .delay(function(d,i) {return i * 20;})
-                .duration(750)
-                .attr("r", 3.5)
-                .attr('fill','black')
+              }}}})
 
     });
   }
