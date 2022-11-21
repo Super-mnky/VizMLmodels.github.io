@@ -250,6 +250,7 @@ function sec3(){
 
 function sec4_1_1(){
   d3.csv('iris.csv').then((data) => display_sec4_1_1(null, data) );
+  console.log('showing 4 1 1')
 }
 
 function sec4_2_1(){

@@ -80,11 +80,13 @@ function sec4_2_1(){
   }
 
   //display chart
-var myChart421 = sec4_2_1();
+//var myChart421 = sec4_2_1(); @@JJ4 removed to load with scrolly telly
 
 function display_sec4_2_1(error, data) {
+    sec4_2_1()
     if (error) {
       console.log(error);
+
     }
 }
   
