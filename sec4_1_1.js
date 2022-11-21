@@ -70,7 +70,7 @@ function sec4_1_1(){
           .enter()
       svg.selectAll("circle")
           .transition()
-          .duration(750)
+          .duration(752)
           .attr("transform", function(d) {
             if (d.Species == 'Iris-virginica') {
               return ("translate(" + 0 + "," + 75 + ")");
