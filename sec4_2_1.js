@@ -66,17 +66,16 @@ function sec4_2_1(){
               if (d.Species == 'Iris-setosa') {
                 return 'blue';
               }}}})});
-  
-      d3.selectAll('#b1')
-      .on('click', function(){
-          // Remove the currently selected classname from that element
-        var circles = svg.selectAll("g")
-            .data(dataset)
-            .enter()
+
+      var circles = svg.selectAll("g")
+            console.log("loading dots")
             g.append("circle")
-            .attr("r", 3.5)
-            .attr('fill','black')
-      });
+            .transition()
+                .delay(function(d,i) {return i * 20;})
+                .duration(750)
+                .attr("r", 3.5)
+                .attr('fill','black')
+
     });
   }
 
