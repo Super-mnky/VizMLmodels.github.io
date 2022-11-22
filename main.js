@@ -49,6 +49,12 @@ function updateViz(i) {
   }
 }
 
+function delay(milliseconds){
+  return new Promise(resolve => {
+      setTimeout(resolve, milliseconds);
+  });
+}
+
 // Getting the data via promise so you can work through irises as well to get the data
 
 var irises = {}
@@ -61,7 +67,6 @@ Promise.all([
         petalWidth: +row['PetalWidthCm'],species: +row['Species'],
     };
     irises[node-id] = node;
-
     return node;*/
     irises[+row['Id']] = {sepalLength: +row['SepalLengthCm'],
     sepalWidth: +row['SepalWidthCm'],petalLength: +row['PetalLengthCm'],
@@ -70,12 +75,15 @@ Promise.all([
 ])
 
 /* Visualizations: */
+
+var width = 680
+var widthMargin = 20
+var height = 640
+var heightMargin = 60
+
 // Display for viz 1.1
 function sec1(){
 }
-
-//from here: @Kaitlyn Yang: Can you put them in a seperate .js file? I tried but it seems not working well
-//untill here: @Kaitlyn Yang: Can you put them in a seperate .js file? I tried but it seems not working well
 
 function sec2_2_1(){
   d3.csv('iris.csv').then((data) => display_sec2_2_1(null, data));
@@ -86,6 +94,7 @@ function sec2_2_1(){
 function sec3(){
 }
 
+/*
 function sec4_1_1(){
   d3.csv('iris.csv').then((data) => display_sec4_1_1(null, data) );
   console.log('showing 4 1 1')
@@ -94,7 +103,7 @@ function sec4_1_1(){
 function sec4_2_1(){
   d3.csv('iris.csv').then((data) => display_sec4_2_1(null, data) );
 }
-
+*/
 
 // function sec5_1_1(){
 //   d3.csv('iris.csv').then((data) => display_sec5_1_1(null, data));
@@ -102,7 +111,9 @@ function sec4_2_1(){
 
 // _5_kfold
 function sec5_1_1(){
-  var svg = d3.select('#sec5_1').select('svg')
+  var svg = d3.select('#sec5_1').append('svg')
+  .attr('width', width)
+  .attr('height', height)
 
   var radius = 30;
   var count = [1,2,3,4,5];
