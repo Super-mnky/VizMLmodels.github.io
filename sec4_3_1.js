@@ -113,7 +113,7 @@ function sec4_3_1() {
         })
 
     })
-    setupButtons();
+    setupButtonsKNN();
 }
 
 function updateKNN(knnVal) {
@@ -132,17 +132,17 @@ function updateKNN(knnVal) {
     })
 }
 
-function setupButtons() {
+function setupButtonsKNN() {
     d3.select('#toolbar-knn')
-        .selectAll('.button')
+        .selectAll('.button-knn')
         .on('click', function () {
             // Remove active class from all buttons
-            d3.selectAll('.button').classed('active', false);
+            d3.selectAll('.button-knn').classed('knn-active', false);
             // Find the button just clicked
             var button = d3.select(this);
 
             // Set it as the active button
-            button.classed('active', true);
+            button.classed('knn-active', true);
 
             // Get the id of the button
             var buttonId = button.attr('id');
