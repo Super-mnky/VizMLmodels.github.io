@@ -27,7 +27,7 @@ var viz_fns = [
 
 var viz_loaded = [
   false, false, false, false, false, 
-  false, false, false, false, false,
+  false, false, false, false, false, false
 ]
 
 d3.graphScroll()
@@ -102,9 +102,7 @@ function sec4_2_1(){
 
 // _5_kfold
 function sec5_1_1(){
-  var svg = d3.select('#sec5_1').append('svg')
-  .attr('width', width)
-  .attr('height', height)
+  var svg = d3.select('#sec5_1').select('svg')
 
   var radius = 30;
   var count = [1,2,3,4,5];
