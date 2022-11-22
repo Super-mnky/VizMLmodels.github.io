@@ -43,6 +43,20 @@ html, body {
 	opacity: 1;
 }
 
+.text-sm{
+    font-size: 0.8em;
+}
+
+.text-md{
+    font-size: 1.5em;
+}
+.text-bold{
+    font-weight: 800;
+}
+
+
+/*btn*/
+
 /* 
   Visualizations:
   This is kind of janky but you have to create a new one of these for each visualization 
@@ -60,6 +74,7 @@ html, body {
 
 .visView{
     margin: 0 auto; 
+    /* padding-top: 50px; */
     height: 640px; 
     width: 680px; 
     border: 1px solid blue; 
