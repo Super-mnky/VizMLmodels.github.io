@@ -18,14 +18,16 @@ function sec6_1_1(){
   
     var margin_s = 5;
   
-    // set the color scale
+    //color
     var mainColor = {"darkgreen": '#379237', 'lightgreen':"#00FFE0", 'darkblue':"#323D52", 'red':'#C70039', 'darkred':'#900C3F', 'lightred':"#FF5733", 'yellow':"#FFC300"}
+
+    // set the color scale
     var color = d3.scaleOrdinal()
       .domain(pieData)
       .range([mainColor['yellow'], mainColor['lightred']])
   
     //time
-    var duration_2500 = 2000    
+    var duration_2500 = 2500    
     var duration_2000 = 2000
     var duration_500 = 500
     var duration_250 = 250
@@ -54,7 +56,7 @@ function sec6_1_1(){
     var data_ready = pie(d3.entries(pieData))
     
     var pies = pieGroup.selectAll('.pie')
-      .data(data_ready)
+    .data(data_ready)
       .enter()
       .append('g')
       .attr('class', 'arc')
@@ -64,52 +66,75 @@ function sec6_1_1(){
         .outerRadius(radius)
       )
       .attr('fill', function(d){ return(color(d.data.key)) })
-      .attr("stroke", '#323D52')
-      .style("stroke-width", "0px")
       .style("opacity", 1)
-      .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
-      .transition(transition_2000)
-      // .delay(function(d, i){return i*1000})
-      .attr('transform','translate('+(0)+','+(0)+')rotate(90)')
-  
+      // .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
+      // .transition(transition_2000)
+      // .attr('transform','translate('+(0)+','+(0)+')rotate(90)')
+
+    var pies_layer = pieGroup.append('circle')
+      .attr("class", "pieCircle")
+      .attr("fill", 'white')
+      // .attr("opacity", 0)
+      .attr("stroke", mainColor['darkblue'])
+      .style("stroke-dasharray", ("3, 3"))
+      .attr("stroke-width", 1)
+      .attr("cx", 0).attr("cy", 0)
+      .attr("r", radius)
+      // pies_layer
+      // .transition(transition_500)
+      // .delay(function(d, i){return i*duration_500})
+      // .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
+      
+    // var pies_layer = pieGroup.append('circle')
+    //   .attr("class", "pieCircle")
+    //   .attr("fill", 'none')
+    //   // .attr("opacity", 0)
+    //   .attr("stroke", 'lightgreen')
+    //   .attr("stroke-width", 4)
+    //   .attr("cx", 0).attr("cy", 0)
+    //   .attr("r", radius)
+    //   pies_layer
+    //   .transition(transition_500)
+    //   .delay(function(d, i){return i*duration_500})
+    //   .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
+    
     // text-fold
     var attribute = "fold"
       var text_fold = pieGroup.append("text")
-      .text(function(d, i){return attribute + (5-i)})
+      .text(function(d, i){return attribute + (i+1)})
       .attr('class', 'axis-txt text-sm')
       .attr('transform','translate('+(-radius/1.8)+','+(-radius*1.5)+')')
   
     // 4 datalines 
     var dataLines = pieGroup.append("line")
-      .attr("stroke", '#323D52')
+      .attr("stroke", mainColor['darkblue'])
       .style("stroke-dasharray", ("3, 3"))
       .style("stroke-width", 1)
       .attr("x1", 0).attr("y1", radius)
       .attr("x2", function(d, i){return posi(d, i, radius)}).attr("y2", pieY-radius)
-      dataLines
-      .attr("stroke-dashoffset", 400)
-      .attr("stroke-dasharray", 4)
-      .transition(transition_500)
-      .delay(function(d, i){return i*duration_500})
-      .style("stroke-width", function(d, i){return (i == i) ? 2:1})
-      .attr("stroke", mainColor["lightred"])
-      .attr("stroke-dashoffset", 0)
+      // dataLines
+      // .attr("stroke-dashoffset", 400)
+      // .attr("stroke-dasharray", 4)
+      // .transition(transition_500)
+      // .delay(function(d, i){return i*duration_500})
+      // .style("stroke-width", function(d, i){return (i == i) ? 2:1})
+      // .attr("stroke", mainColor["lightred"])
+      // .attr("stroke-dashoffset", 0)
    
-     
     // acc line  
     var accLine = pieArea.append("line")
       .attr("stroke", '#323D52')
       .style("stroke-width", 0)
       .attr("x1", radius*2).attr("y1", pieY-radius)
       .attr("x2", accX_base).attr("y2", pieY*2+acc)
-      accLine
-      .attr("stroke-dashoffset", 400)
-      .attr("stroke-dasharray", 4)
-      .transition(transition_250)
-      .delay(function(d, i){return duration_2000})
-      .style("stroke-width", 2)
-      .attr("stroke", mainColor['darkgreen'])
-      .attr("stroke-dashoffset", 0)
+      // accLine
+      // .attr("stroke-dashoffset", 400)
+      // .attr("stroke-dasharray", 4)
+      // .transition(transition_250)
+      // .delay(function(d, i){return duration_2000})
+      // .style("stroke-width", 2)
+      // .attr("stroke", mainColor['darkgreen'])
+      // .attr("stroke-dashoffset", 0)
        
     function posi(d, i, radius){
         var x;
@@ -120,6 +145,7 @@ function sec6_1_1(){
         else if(i == 4){x = -radius*(i)}
         return x
       }
+
     // model-rect
     var outerRect = pieArea.append("rect")
       .attr("style", "fill:white")
@@ -138,8 +164,9 @@ function sec6_1_1(){
       .attr("rx", radius).attr("ry", radius)								
       .attr("width", radius*2).attr("height", radius*2)
       .attr('transform','translate('+0+','+pieY+')')
-      .transition(transition_2500)
-      .attr("width", radius*10)
+      // innnerRect
+      // .transition(transition_2500)
+      // .attr("width", radius*10)
   
     // acc x axis  
     var lengthScale_acc = d3.scaleLinear()
@@ -155,9 +182,6 @@ function sec6_1_1(){
       // .attr("stroke", '#323D52')
       .attr("cx", 0).attr("cy", 0).attr("r", 0)
       .attr('transform','translate('+(pieX/2+(radius*4)+acc)+','+pieY*2+')')
-      .transition(transition_500)
-      .delay(function(d, i){return duration_2500})
-      .attr("r", 5)
   
     // text-labels-left   
     var yAxisTxts = ["Data", "Model", "Accuracy"]
@@ -180,7 +204,7 @@ function sec6_1_1(){
       .attr("x", 0).attr("y", 0)	
       .attr('transform','translate('+(-pieX/2)+','+((pieY*2.5)-radius)+')rotate(270)')
 
-    //text outline-rect
+    // text outline-rect
     var text_fold1_rect = pieArea.append("rect")
       .attr("fill", "none")
       .attr("stroke", '#323D52')
@@ -216,29 +240,27 @@ function sec6_1_1(){
   
     // acc line & text
     var accLine_result = pieArea.append("line")
-      .attr("stroke", '#323D52')
+      .attr("stroke", mainColor['darkgreen'])
       .style("stroke-width", 0)
       .attr("x1", accX_base+acc).attr("y1", pieY*2)
       .attr("x2", accX_base+acc).attr("y2", ((pieY*2)+(radius*2))-margin_s)
-      accLine_result
-      .attr("stroke-dashoffset", 400)
-      .attr("stroke-dasharray", 4)
-      .transition(transition_250)
-      .delay(function(d, i){return duration_2000})
-      .style("stroke-width", 1)
-      .attr("stroke", mainColor['darkgreen'])
-      .attr("stroke-dashoffset", 0)
+      // accLine_result
+      // .transition(transition_500)
+      // .delay(function(d, i){return duration_2500})
+      // .attr("opacity", 1)
        
     var text_acc = pieArea.append("text")
       .text(accValues[0])
       .attr('class', 'acc-txt text-sm')
       .attr("x", 0).attr("y", 0)
       .attr("opacity", 0)
+      .attr("stroke-dasharray", "2px")
       .attr('transform','translate('+ (accX_base+acc-margin_s)+','+((pieY*2)+(radius*2))+')rotate(-270)')
-      .transition(transition_500)
-      .delay(function(d, i){return duration_2500})
-      .attr("opacity", 1)
-    
+      // text_acc
+      // .transition(transition_500)
+      // .delay(function(d, i){return duration_2500})
+      // .attr("opacity", 1)
+
   //legend
     var legend = pieArea.append("g")
     .attr("x", 0).attr("y", 0)
@@ -258,37 +280,194 @@ function sec6_1_1(){
   //checkboxs
     var data = ["fold1", "fold2", "fold3", "fold4", "fold5"]
     var numOfFold = 0;
-    d3.select("#apply_fold").on("click", function() {
-        var checked = [];
-        var boxes = d3.selectAll("input.myCheckbox:checked");
-        boxes.each(function() {
-            var cb = d3.select(this);
-                if(cb.property("checked")){
-                    checked.push(cb.property("value"));
-                }
-        });
-        numOfFold = checked.length
-        console.log(checked)
-        console.log(numOfFold)
-        updateNumber()
-    });
+    // d3.select("#apply_fold").on("click", function() {
+    //     var checked = [];
+    //     var boxes = d3.selectAll("input.myCheckbox:checked");
+    //     boxes.each(function() {
+    //         var cb = d3.select(this);
+    //             if(cb.property("checked")){
+    //                 checked.push(cb.property("value"));
+    //             }
+    //     });
+    //     numOfFold = checked.length
+    //     console.log(checked)
+    //     console.log(numOfFold)
+    //     updateNumber()
+    //     updatePie()
+    // });
     
+    // var text_fold = pieArea.append("text")
+    // .text(numOfFold+"_folds")
+    // .attr('class', 'title-txt text-md')
+    // .attr("x", 0).attr("y", 0)
+    // .attr('transform','translate('+((pieX*1.3))+','+(0)+')')
+
+    // var text_des = pieArea.append("text")
+    // .text("Applied to the model")
+    // .attr('class', 'title-txt text-sm')
+    // .attr("x", 0).attr("y", 0)
+    // .attr('transform','translate('+((pieX*1.3))+','+(20)+')')
+
+  //dropdown
+  // d3.select("#selected-dropdown").text(numOfFold+"_folds");
     var text_fold = pieArea.append("text")
-    .text(numOfFold+"_folds")
-    .attr('class', 'title-txt text-md')
-    .attr("x", 0).attr("y", 0)
-    .attr('transform','translate('+((pieX*1.3))+','+(0)+')')
+      .text(numOfFold+"_folds")
+      .attr('class', 'title-txt text-md')
+      .attr("x", 0).attr("y", 0)
+      .attr('transform','translate('+((pieX*1.3))+','+(0)+')')
 
     var text_des = pieArea.append("text")
-    .text("are selected to apply")
-    .attr('class', 'title-txt text-sm')
-    .attr("x", 0).attr("y", 0)
-    .attr('transform','translate('+((pieX*1.3))+','+(20)+')')
+      .text("Applied to the model")
+      .attr('class', 'title-txt text-sm')
+      .attr("x", 0).attr("y", 0)
+      .attr('transform','translate('+((pieX*1.3))+','+(20)+')')
 
+    d3.select("select")
+      .on("change",function(d){
+        var selected = d3.select("#fold_dropdown").node().value;
+        console.log( selected );
+        numOfFold = selected;
+        updateNumber()
+        updatePie()
+        updateLine()
+        reset()
+    })
+
+    d3.select("#fold_apply").on("click", function() {
+      updateAll()
+    }) 
+  
     function updateNumber(){
         text_fold.text(numOfFold+"_folds")
     }
 
+    function updatePie(){
+      pies_layer
+      .style("fill", function(d, i){return i < numOfFold ? "none" : "white"})
+      
+      innnerRect
+      .attr("width", radius*2).attr("height", radius*2)
+    }
+
+    function updateLine(){
+      dataLines
+      .attr("stroke-dashoffset", 0)
+      .attr("stroke-dasharray", 4)
+      .attr("stroke", mainColor['darkblue'])
+      .style("stroke-width", 1)
+    }
+
+    function reset(){
+      pies_layer
+      .style("stroke-width", function(d, i){return (i < numOfFold) ? 0 : 1})
+     
+      accLine
+      .attr("opacity", 0)
+      .attr("stroke-dashoffset", 400)
+      .attr("stroke-dasharray", 1)
+     
+      accAxis
+      .attr("r", 0)
+
+      accLine_result
+      .attr("opacity", 0)
+      .style("stroke-width", 0)
+      .attr("stroke-dasharray", "2px")
+      
+      text_acc
+      .attr("opacity", 0)
+    }
+
+    function updateAll(){
+      dataLines
+      .attr("stroke-dashoffset", function(d, i){return (i < numOfFold) ? 400 : 0})
+      // .attr("stroke-dashoffset", 0)
+      .attr("stroke-dasharray", 4)
+      .attr("stroke", mainColor['darkblue'])
+      .style("stroke-width", 1)
+      .transition(transition_500)
+      .delay(function(d, i){return i*duration_500})
+      .style("stroke-width", function(d, i){return (i < numOfFold) ? 2:1})
+      .attr("stroke", function(d, i){return (i < numOfFold) ? mainColor["lightred"] : mainColor['darkblue']})
+      .attr("stroke-dashoffset", function(d, i){return (i < numOfFold) ? 4 : 0})
+    
+      innnerRect
+      .transition(transition_2500)
+      .delay(function(d, i){return duration_2000})
+      .attr("width", radius*10)
+
+      accLine
+      .attr("stroke-dashoffset", 400)
+      .attr("stroke-dasharray", 4)
+      .transition(transition_250)
+      .delay(function(d, i){return duration_2000})
+      .attr("opacity", 1)
+      .style("stroke-width", 2)
+      .attr("stroke", mainColor['darkgreen'])
+      .attr("stroke-dashoffset", 0)
+
+      accAxis
+      .transition(transition_500)
+      .delay(function(d, i){return duration_2500})
+      .attr("r", 5)
+
+      accLine_result
+      .transition(transition_500)
+      .delay(function(d, i){return duration_2500})
+      .attr("opacity", 1)
+      .style("stroke-width", 1)
+      .attr("stroke-dasharray", "2px")
+      
+      text_acc
+      .transition(transition_500)
+      .delay(function(d, i){return duration_2500})
+      .attr("opacity", 1)
+    }
+
+
+    // var pies = pieGroup.selectAll('.pie')
+    // .data(data_ready)
+    //   .enter()
+    //   .append('g')
+    //   .attr('class', 'arc')
+    //   .append('path')
+    //   .attr('d', d3.arc()
+    //     .innerRadius(0)
+    //     .outerRadius(radius)
+    //   )
+    //   .attr('fill', function(d){ return(color(d.data.key)) })
+    //   .style("opacity", 0)
+    //   // .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
+    //   // .transition(transition_2000)
+    //   // .attr('transform','translate('+(0)+','+(0)+')rotate(90)')
+
+    // var pies_layer = pieGroup.append('circle')
+    //   .attr("class", "pieCircle")
+    //   .attr("fill", 'none')
+    //   // .attr("opacity", 0)
+    //   .attr("stroke", mainColor['darkblue'])
+    //   .style("stroke-dasharray", ("3, 3"))
+    //   .attr("stroke-width", 1)
+    //   .attr("cx", 0).attr("cy", 0)
+    //   .attr("r", radius)
+    //   // pies_layer
+    //   // .transition(transition_500)
+    //   // .delay(function(d, i){return i*duration_500})
+    //   // .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
+      
+    // // var pies_layer = pieGroup.append('circle')
+    // //   .attr("class", "pieCircle")
+    // //   .attr("fill", 'none')
+    // //   // .attr("opacity", 0)
+    // //   .attr("stroke", 'lightgreen')
+    // //   .attr("stroke-width", 4)
+    // //   .attr("cx", 0).attr("cy", 0)
+    // //   .attr("r", radius)
+    // //   pies_layer
+    // //   .transition(transition_500)
+    // //   .delay(function(d, i){return i*duration_500})
+    // //   .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
+    
   }//end of func
 
 
