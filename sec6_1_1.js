@@ -233,7 +233,7 @@ function sec6_1_1(){
       .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY*2.41))+')rotate(270)')
   
     var text_title = pieArea.append("text")
-      .text("Parameter tuning")
+      .text("Parameter Tuning")
       .attr('class', 'title-txt text-md')
       .attr("x", 0).attr("y", 0)
       .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
@@ -310,21 +310,21 @@ function sec6_1_1(){
 
   //dropdown
   // d3.select("#selected-dropdown").text(numOfFold+"_folds");
-    var text_fold = pieArea.append("text")
-      .text(numOfFold+"_folds")
-      .attr('class', 'title-txt text-md')
-      .attr("x", 0).attr("y", 0)
-      .attr('transform','translate('+((pieX*1.3))+','+(0)+')')
+    // var text_fold = pieArea.append("text")
+    //   .text(numOfFold+"_folds")
+    //   .attr('class', 'title-txt text-md')
+    //   .attr("x", 0).attr("y", 0)
+    //   .attr('transform','translate('+((pieX*1.3))+','+(0)+')')
 
-    var text_des = pieArea.append("text")
-      .text("Applied to the model")
-      .attr('class', 'title-txt text-sm')
-      .attr("x", 0).attr("y", 0)
-      .attr('transform','translate('+((pieX*1.3))+','+(20)+')')
+    // var text_des = pieArea.append("text")
+    //   .text("Select Num. of folds")
+    //   .attr('class', 'title-txt text-sm')
+    //   .attr("x", 0).attr("y", 0)
+    //   .attr('transform','translate('+((pieX*1.3))+','+(-45)+')')
 
-    d3.select("select")
+    d3.select("#fold_dropdown")
       .on("change",function(d){
-        var selected = d3.select("#fold_dropdown").node().value;
+        var selected = d3.select(this).property("value")
         console.log( selected );
         numOfFold = selected;
         updateNumber()

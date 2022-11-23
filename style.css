@@ -17,7 +17,6 @@ html, body {
     margin: 20px;
     position: relative;
 }
-  
 
 /* Text */
 
@@ -25,6 +24,9 @@ html, body {
    width: 25%;
 }
 
+.text-posi{
+margin-left: 75%;
+}
 .section-text{
     height: 100%;
     margin: 0px 0px 500px;
@@ -54,9 +56,40 @@ html, body {
     font-weight: 800;
 }
 
-
 /*btn*/
+.controler{
+    position: absolute;
+    left: 550px;
+    top: 125px;
+}
 
+.botton1 {
+    background-color: #323D52;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+#fold_dropdown, #fold_apply, #k_dropdown, #k_apply{
+    width: 100px;
+}
+
+.margin_ssm{
+    margin-top: 2px;
+}
+.margin_sm{
+    margin-top: 5px;
+}
+.margin_md{
+    margin-top: 10px;
+}
+.margin_lg{
+    margin-top: 20px;
+}
 /* 
   Visualizations:
   This is kind of janky but you have to create a new one of these for each visualization 
@@ -69,15 +102,15 @@ html, body {
     width: 75%;
     position: sticky;
     top: 0px;
-    float: right;
+    float: left;
 }
 
 .visView{
-    margin: 0 auto; 
-    /* padding-top: 50px; */
+    /* margin: 0 auto;  */
+    padding-top: 50px;
     height: 640px; 
     width: 680px; 
-    border: 1px solid blue; 
+    /* border: 1px solid blue;  */
     display: none;
 }
 

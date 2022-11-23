@@ -11,7 +11,7 @@ var viz_ids = [
   '#sec4_3', //sec4_3_1
   '#sec5_1', //sec5_1_1
   '#sec6_1', //sec6_1_1
-  '#sec7',
+  '#sec7_1', //sec7_1_1
   '#sec8',
 ]
 
@@ -23,7 +23,7 @@ var viz_fns = [
   sec4_3_1,
   sec5_1_1,
   sec6_1_1,
-  sec7, 
+  sec7_1_1, 
   sec8
 ]
 
@@ -103,7 +103,8 @@ function sec3(){
 function sec6_1_1(){
  d3.csv('iris.csv').then((data) => display_sec6_1_1(null, data));
 }
-function sec7(){
+function sec7_1_1(){
+  d3.csv('iris.csv').then((data) => display_sec7_1_1(null, data));
 }
 function sec8(){
 }
