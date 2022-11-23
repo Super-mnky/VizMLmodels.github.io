@@ -94,7 +94,7 @@ function sec4_3_1() {
             var hexbin = d3.hexbin()
                 .x(d => d.x)
                 .y(d => d.y)
-                .radius(r * width / (height - 1))
+                .radius((r * width / (height - 1))-0.45)
                 .extent([[widthMargin, heightMargin], [width - widthMargin, height - heightMargin]])
 
             bins = hexbin(dataset)
