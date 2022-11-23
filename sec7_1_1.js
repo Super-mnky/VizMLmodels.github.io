@@ -303,8 +303,6 @@ function sec7_1_1(){
       .delay(function(d, i){return i*duration_500})
       .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
   
-    //   innnerRect
-    //   .attr("width", radius*2).attr("height", radius*2)
     }
 
     function updateLine(){
@@ -323,6 +321,9 @@ function sec7_1_1(){
       pies_layer
       .attr("stroke", function(d, i){return i == i ? mainColor['lightgreen'] : mainColor['darkblue']})
      
+      innnerRect
+      .attr("width", radius*2).attr("height", radius*2)
+
       accLine
       .attr("opacity", 0)
       .attr("stroke-dashoffset", 400)
