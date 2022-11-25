@@ -87,7 +87,12 @@ var heightMargin = 60
 // Display for viz 1.1
 function sec1(){
 }
-function sec2_2_1(){
+
+async function sec2_2_1(){
+  // Transition code:
+  sec2_1_2_transition();
+  await delay(1000);
+
   d3.csv('iris.csv').then((data) => display_sec2_2_1(null, data));
   // setup the buttons.
   setupButtons();

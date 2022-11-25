@@ -4,8 +4,6 @@ var lengthScale = d3.scaleLinear()
 var widthScale = d3.scaleLinear()
     .domain([1.8, 4.5]).range([height - heightMargin, heightMargin]);
 
-const transitionPath = d3.transition().ease(d3.easeSin).duration(1000);
-
 function color(d) {
     if (d == 'Iris-virginica') {
         return 'orange';

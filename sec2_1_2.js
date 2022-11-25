@@ -1,16 +1,7 @@
-function delay(milliseconds){
-    return new Promise(resolve => {
-        setTimeout(resolve, milliseconds);
-    });
-  }
-  
-
 async function sec2_1_2(){
     var svg = d3.select("#sec2_1")
     .select('svg')
-  
-    const transitionPath = d3.transition().ease(d3.easeSin).duration(1000);
-    
+      
     svg.select('image').attr('opacity',1).transition(transitionPath).attr('opacity', 0)
     svg.select('defs').selectAll('marker').selectAll('polygon').transition(transitionPath).attr('fill','black')
     svg.selectAll('line.sepal').transition(transitionPath).attr('stroke','black')

@@ -4,7 +4,6 @@ function sec3_1_1() {
 
     var dataX = 160
     var modelX = 450;
-    const transitionPath = d3.transition().ease(d3.easeSin).duration(1000);
 
     svg.append('line').attr('id', 'data-line')
         .attr('stroke', 'black').attr('stroke-width', '1')

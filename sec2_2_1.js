@@ -1,3 +1,102 @@
+async function sec2_1_2_transition(){
+  var svg = d3.select("#sec2_2")
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height);
+    
+  // versicolor: 
+  svg.append('ellipse').attr('fill','none')
+      .attr('cx','320').attr('cy','310')
+      .attr('stroke','black').attr('stroke-dasharray','4')
+      .attr('rx','50').attr('ry','70')
+      .transition().duration(2000)
+      .attr('stroke','red').attr('stroke-dasharray','0').attr('fill','red')
+      .attr('rx','15.19864990302443').attr('ry','15.19864990302443')
+
+  svg.append('text').attr('class','label').attr('fill','black')
+    .text('versicolor').attr('transform','translate(285,225)').attr('opacity','1')
+    .transition().duration(2000)
+    .attr('opacity','0')
+
+  svg.append('line').attr('class','sepal')
+    .attr('stroke', 'black').attr('stroke-width', '2')
+    .attr('x1', '325').attr('x2', '325')
+    .attr('y1','360').attr('y2', '260')
+    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+    .transition().duration(2000)
+    .attr('y1', '300').attr('y2','300').attr('stroke','red')
+
+  svg.append('line').attr('class','sepal')
+    .attr('stroke', 'white').attr('stroke-width', '2')
+    .attr('x1', '355').attr('x2', '285')
+    .attr('y1','290').attr('y2', '290')
+    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+    .transition().duration(2000)
+    .attr('x1', '320').attr('x2','320').attr('stroke','red')
+
+  // Setosa:
+  svg.append('line').attr('class','sepal')
+    .attr('stroke', 'black').attr('stroke-width', '2')
+    .attr('x1', '160').attr('x2', '160')
+    .attr('y1','350').attr('y2', '270')
+    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+    .transition().duration(2000)
+    .attr('y1', '310').attr('y2','310').attr('stroke','blue')
+
+  svg.append('line').attr('class','sepal')
+    .attr('stroke', 'black').attr('stroke-width', '2')
+    .attr('x1', '200').attr('x2', '120')
+    .attr('y1','310').attr('y2', '310')
+    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+    .transition().duration(2000)
+    .attr('x1', '160').attr('x2','160').attr('stroke','blue')
+
+  svg.append('ellipse').attr('fill','none').attr('rx','50').attr('ry','50').attr('cx','160').attr('cy','310')
+    .attr('stroke','black').attr('stroke-dasharray','4')
+    .transition().duration(2000)
+    .attr('fill','blue').attr('stroke','blue').attr('stroke-dasharray','0')
+    .attr('rx','10').attr('ry','10')
+
+    
+  svg.append('text').attr('class','label').attr('fill','black')
+    .text('setosa').attr('transform','translate(135,225)').attr('opacity','1')
+    .transition().duration(1000).attr('opacity','0')
+
+  // Virginica:
+  svg.append('line').attr('class','sepal')
+    .attr('stroke', 'black').attr('stroke-width', '2')
+    .attr('x1', '500').attr('x2', '500')
+    .attr('y1','365').attr('y2', '255')
+    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+    .transition().duration(2000)
+    .attr('y1', '320').attr('y2','320').attr('stroke','orange')
+
+  svg.append('line').attr('class','sepal')
+    .attr('stroke', 'black').attr('stroke-width', '2')
+    .attr('x1', '540').attr('x2', '460')
+    .attr('y1','310').attr('y2', '310')
+    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+    .transition().duration(2000)
+    .attr('x1', '500').attr('x2','500').attr('stroke','orange')
+
+    svg.append('ellipse').attr('fill','none')
+    .attr('stroke','black').attr('stroke-dasharray','4')
+    .attr('rx','50').attr('ry','70').attr('cx','500').attr('cy','310')
+    .transition().duration(2000)
+    .attr('fill','orange').attr('stroke','orange').attr('stroke-dasharray','0')
+    .attr('rx','21.54264057180123').attr('ry','21.54264057180123')
+      
+  svg.append('text').attr('class','label').attr('fill','black')
+    .text('virginica').attr('transform','translate(470,225)').attr('opacity','1')
+    .transition().duration(1000).attr('opacity','0')
+
+  await delay(2000);
+
+  svg.selectAll("ellipse").transition().duration(500).attr('opacity','0')
+  svg.selectAll("line").transition().duration(500).attr('opacity','0')
+
+}
+
 /* bubbleChart creation function. Returns a function that will
  * instantiate a new bubble chart given a DOM element to display
  * it in and a dataset to visualize.
@@ -155,15 +254,15 @@ function bubbleChart() {
 
     // Create a SVG element inside the provided selector
     // with desired size.
-    svg = d3.select(selector)
-      .append('svg')
+    svg = d3.select(selector).select('svg')
+    /*  .append('svg')
       .attr('width', width)
-      .attr('height', height);
+      .attr('height', height);*/
 
     // Bind nodes data to what will become DOM elements to represent them.
     bubbles = svg.selectAll('.bubble')
       .data(nodes, function (d) { return d.id; });
-
+    
     // Create new circle elements each with class `bubble`.
     // There will be one circle.bubble for each object in the nodes array.
     // Initially, their radius (r attribute) will be 0.
