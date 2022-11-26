@@ -39,8 +39,10 @@ var svg = d3.select('#sec4_3').append('svg')
 .attr('width', width)
 .attr('height', height)
 
-function sec4_3_1() {
-
+function sec4_3_1(loaded) {
+    if (loaded){
+        return;
+    }
     /*
     var hexbin = d3
     .hexbin()
@@ -105,9 +107,12 @@ function sec4_3_1() {
                 .join("path")
                 .attr('class','hexagon')
                 .attr("d", hexbin.hexagon())
-                .attr("fill-opacity", 0.5)
+                .attr("fill-opacity", 0)
                 .attr("transform", d => `translate(${d.x},${d.y})`)
                 .attr('fill', function (d) { return color(d.knn1); })
+                .transition().duration(1500)
+                .attr("fill-opacity", 0.5)
+
         })
 
     })

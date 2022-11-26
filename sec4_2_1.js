@@ -1,6 +1,16 @@
 //_4_comparison
 
-function sec4_2_1(){
+function sec4_2_1(loaded){
+
+  var svg;
+  if (loaded){
+      svg = d3.select("#sec4_2").select("svg")
+  } else {
+    svg = d3.select('#sec4_2').append('svg')
+    .attr('width', width)
+    .attr('height', height)
+  }
+  
 
   var lengthScale = d3.scaleLinear()
   .domain([4,8]).range([heightMargin, height-heightMargin]);
@@ -18,9 +28,6 @@ function sec4_2_1(){
 
   d3.csv('iris.csv').then(function(dataset) {
     //console.table(dataset)
-    var svg = d3.select('#sec4_2').append('svg')
-    .attr('width', width)
-    .attr('height', height)
 
     var g = svg.selectAll("g")
     .data(dataset)

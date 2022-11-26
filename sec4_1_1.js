@@ -1,15 +1,20 @@
-function sec_3_1_1_transition(){
-  
+function sec_3_1_1_transition(loaded){
+  var svg;
+  if (loaded){
+      svg = d3.select("#sec4_1").select("svg")
+  } else {
+      svg = d3.select('#sec4_1').append('svg')
+      .attr('width', width)
+      .attr('height', height)
+  }
 
-  var svg = d3.select('#sec4_1').append('svg')
-  .attr('width', width)
-  .attr('height', height)
 }
+
 
 //_4_comparison
 
-function sec4_1_1(){
-  sec_3_1_1_transition();
+function sec4_1_1(loaded){
+  sec_3_1_1_transition(loaded);
   
   var lengthScale = d3.scaleLinear()
   .domain([0.0,8]).range([heightMargin, height-heightMargin]);

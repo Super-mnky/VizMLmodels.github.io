@@ -27,10 +27,12 @@ var viz_fns = [
   sec8
 ]
 
+
 var viz_loaded = [
   false, false, false, false, false, false,
   false, false, false, false, false, false
 ]
+
 
 d3.graphScroll()
     .graph(d3.selectAll('#graph'))
@@ -45,10 +47,16 @@ function updateViz(i) {
   d3.select(viz_ids[current_viz]).style('display', 'none')
   d3.select(viz_ids[i]).style('display','block')
   current_viz = i
+
+  viz_fns[i](viz_loaded[i])
+  viz_loaded[i] = true;
+
+  /*
   if (!viz_loaded[i]){
     viz_fns[i]();
     viz_loaded[i] = true;
   }
+  */
 }
 
 function delay(milliseconds){
@@ -97,8 +105,10 @@ async function sec2_2_1(){
   // setup the buttons.
   setupButtons();
 }
+
 function sec3(){
 }
+
 // function sec4_1_1(){
 // }
 // function sec4_2_1(){

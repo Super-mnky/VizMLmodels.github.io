@@ -1,8 +1,13 @@
-async function sec2_1_2_transition(){
-  var svg = d3.select("#sec2_2")
-  .append('svg')
-  .attr('width', width)
-  .attr('height', height);
+async function sec2_1_2_transition(loaded){
+  var svg;
+  if (loaded){
+    svg = d3.select("#sec2_2").select("svg")
+  } else {
+    svg = d3.select("#sec2_2")
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
+  }
     
   // versicolor: 
   svg.append('ellipse').attr('fill','none')

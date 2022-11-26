@@ -1,9 +1,15 @@
-function sec3_1_1() {
-    var svg = d3.select("#sec3").append("svg")
-        .attr('width', width).attr('height', height)
+function sec3_1_1(loaded) {
+    var svg;
+    if (loaded){
+        svg = d3.select("#sec3").select("svg")
+    } else {
+        svg = d3.select("#sec3").append("svg")
+            .attr('width', width).attr('height', height)
+    }
 
     var dataX = 160
     var modelX = 450;
+    var transitionPath = d3.transition().ease(d3.easeSin).duration(2000);
 
     svg.append('line').attr('id', 'data-line')
         .attr('stroke', 'black').attr('stroke-width', '1')

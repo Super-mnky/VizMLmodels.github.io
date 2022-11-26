@@ -107,7 +107,7 @@ margin-left: 75%;
 
 .visView{
     /* margin: 0 auto;  */
-    padding-top: 50px;
+    padding-top: 0px;
     height: 640px; 
     width: 680px; 
     /* border: 1px solid blue;  */
@@ -119,6 +119,8 @@ circle:hover {
 }
 
 .button-container-div {
+    margin-top: 10px;
+    height: 20px;
     text-align: center;
 }
 
