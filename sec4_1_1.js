@@ -1,7 +1,16 @@
+function sec_3_1_1_transition(){
+  
+
+  var svg = d3.select('#sec4_1').append('svg')
+  .attr('width', width)
+  .attr('height', height)
+}
+
 //_4_comparison
 
 function sec4_1_1(){
-
+  sec_3_1_1_transition();
+  
   var lengthScale = d3.scaleLinear()
   .domain([0.0,8]).range([heightMargin, height-heightMargin]);
 
@@ -21,9 +30,7 @@ function sec4_1_1(){
     //console.table(dataset)
     console.log(dataset.length)
 
-    var svg = d3.select('#sec4_1').append('svg')
-    .attr('width', width)
-    .attr('height', height)
+    var svg = d3.select('#sec4_1').select('svg')
 
     svg.append('g').attr('class', 'x axis')
     .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")

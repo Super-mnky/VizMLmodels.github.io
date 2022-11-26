@@ -15,11 +15,11 @@ async function sec2_1_2_transition(){
 
   svg.append('text').attr('class','label').attr('fill','black')
     .text('versicolor').attr('transform','translate(285,225)').attr('opacity','1')
-    .transition().duration(2000)
+    .transition().duration(1000)
     .attr('opacity','0')
 
   svg.append('line').attr('class','sepal')
-    .attr('stroke', 'black').attr('stroke-width', '2')
+    .attr('stroke', 'red').attr('stroke-width', '2')
     .attr('x1', '325').attr('x2', '325')
     .attr('y1','360').attr('y2', '260')
     .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
@@ -27,7 +27,7 @@ async function sec2_1_2_transition(){
     .attr('y1', '300').attr('y2','300').attr('stroke','red')
 
   svg.append('line').attr('class','sepal')
-    .attr('stroke', 'white').attr('stroke-width', '2')
+    .attr('stroke', 'red').attr('stroke-width', '2')
     .attr('x1', '355').attr('x2', '285')
     .attr('y1','290').attr('y2', '290')
     .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
@@ -56,7 +56,6 @@ async function sec2_1_2_transition(){
     .transition().duration(2000)
     .attr('fill','blue').attr('stroke','blue').attr('stroke-dasharray','0')
     .attr('rx','10').attr('ry','10')
-
     
   svg.append('text').attr('class','label').attr('fill','black')
     .text('setosa').attr('transform','translate(135,225)').attr('opacity','1')
@@ -90,10 +89,10 @@ async function sec2_1_2_transition(){
     .text('virginica').attr('transform','translate(470,225)').attr('opacity','1')
     .transition().duration(1000).attr('opacity','0')
 
-  await delay(2000);
+  await delay(1500);
 
-  svg.selectAll("ellipse").transition().duration(500).attr('opacity','0')
-  svg.selectAll("line").transition().duration(500).attr('opacity','0')
+  svg.selectAll("ellipse").transition().duration(250).attr('opacity','0')
+  svg.selectAll("line").transition().duration(250).attr('opacity','0')
 
 }
 
@@ -137,9 +136,9 @@ function bubbleChart() {
   };
 
   var trainTitleX = {
-    'Train': 160,
-    'Test': width / 2,
-    'Validation': width - 160
+    'Train 60%': 160,
+    'Test 20%': width / 2,
+    'Validation 20%': width - 160
   };
 
   // @v4 strength to apply to the position forces
@@ -407,7 +406,7 @@ function bubbleChart() {
     years.enter().append('text')
       .attr('class', 'train')
       .attr('x', function (d) { return trainTitleX[d]; })
-      .attr('y', 40)
+      .attr('y', 100)
       .attr('text-anchor', 'middle')
       .text(function (d) { return d; });
   }
@@ -427,7 +426,7 @@ function bubbleChart() {
     years.enter().append('text')
       .attr('class', 'year')
       .attr('x', function (d) { return yearsTitleX[d]; })
-      .attr('y', 40)
+      .attr('y', 100)
       .attr('text-anchor', 'middle')
       .text(function (d) { return d; });
   }
