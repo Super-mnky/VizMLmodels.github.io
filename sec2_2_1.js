@@ -154,8 +154,8 @@ function bubbleChart() {
 
   var trainTitleX = {
     'Train 60%': 160,
-    'Test 20%': width / 2,
-    'Validation 20%': width - 160
+    'Validation 20%': width / 2,
+    'Test 20%': width - 160
   };
 
   // @v4 strength to apply to the position forces
