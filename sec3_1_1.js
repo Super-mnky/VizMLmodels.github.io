@@ -1,110 +1,172 @@
-var dataX = 160
-var modelX = 450;
+var dividen = 5
+var modelX = (w_width/dividen);
+var dataX = -w_width/dividen
+var chartY1 = -150
+var chartY2 = 150
+var yDist = (chartY1-chartY2)
 
+//comoare model-data
 function sec3_1_1(loaded) {
     var svg;
-    if (loaded) {
+    if (loaded){
         svg = d3.select("#sec3").select("svg")
+        svg.selectAll("circle").attr("fill","black")
+        svg.select("#line2").remove()
+        svg.selectAll("line").attr("stroke","black").attr("stroke-width","1")
+        return ;    
     } else {
         svg = d3.select("#sec3").append("svg")
-            .attr('width', width).attr('height', height)
+        .attr('width', w_width).attr('height', w_height)
     }
-
+        
+    visContainer = svg.append('g').attr("class", "iris")
+        .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
     var transitionPath = d3.transition().ease(d3.easeSin).duration(2000);
 
-    svg.append('line').attr('id', 'data-line').attr("class", "viz-3-elms")
-        .attr('stroke', 'black').attr('stroke-width', '1')
+    visContainer.append('line').attr('id', 'data-line')
+        .attr('stroke', 'black').attr('stroke-width', '2')
         .attr('x1', dataX).attr('x2', dataX)
-        .attr('y1', '140').attr('y2', '140')
-        .transition(transitionPath)
-        .attr('y2', '480')
+        .attr('y1', chartY1).attr('y2', chartY1)
+        // .transition(transitionPath)
+        .attr('y2', chartY2)
 
-    svg.append('line').attr('id', 'model-line').attr("class", "viz-3-elms")
-        .attr('stroke', 'black').attr('stroke-width', '1')
+    visContainer.append('line').attr('id', 'model-line')
+        .attr('stroke', 'black').attr('stroke-width', '2')
         .attr('x1', modelX).attr('x2', modelX)
-        .attr('y1', '140').attr('y2', '140')
-        .transition(transitionPath)
-        .attr('y2', '480')
+        .attr('y1', chartY1).attr('y2', chartY1)
+        // .transition(transitionPath)
+        .attr('y2', chartY2)
 
     var lines = ['bin-to-lr', 'bin-to-ln', 'mc-to-lr', 'mc-to-knn', 'rgsn-to-ln']
     var y1s = [180, 180, 325, 325, 420]
     var y2s = [180, 325, 180, 240, 325]
 
     for (i = 0; i < lines.length; i++) {
-        svg.append('line').attr('id', lines[i]).attr("class", "viz-3-elms")
+        visContainer.append('line').attr('id', lines[i])
             .attr('stroke', 'black').attr('stroke-width', '1')
             .attr('x1', dataX).attr('x2', dataX)
-            .attr('y1', y1s[i]).attr('y2', y1s[i])
-            .transition(transitionPath)
-            .attr('y2', y2s[i])
+            .attr('y1', yDist+y1s[i]).attr('y2', yDist+y1s[i])
+            .transition(transition_800)
+            .attr('y2', yDist+y2s[i])
             .attr('x2', modelX)
     }
 
-    var points = ['bin-circle', 'mc-circle', 'rgsn-circle', 'lr-circle', 'knn-circle', 'ln-circle', 'unamed-1', 'unamed-2']
-    var cxs = [dataX, dataX, dataX, modelX, modelX, modelX, modelX, modelX]
-    var cys = [180, 325, 420, 180, 240, 325, 380, 450]
+    var points = ['unamed-1', 'bin-circle', 'mc-circle', 'rgsn-circle', 'unamed-1', 'unamed-1', 'lr-circle', 'knn-circle', 'ln-circle', 'unamed-1', 'unamed-2']
+    var cxs = [dataX, dataX, dataX, dataX, dataX, modelX, modelX, modelX, modelX, modelX, modelX]
+    var cys = [150, 180, 325, 420, 450, 150, 180, 240, 325, 380, 450]
 
     for (i = 0; i < points.length; i++) {
-        svg.append('circle').attr('id', points[i]).attr("class", "viz-3-elms")
-            .attr('r', '0').attr('cx', cxs[i]).attr('cy', cys[i])
+        visContainer.append('circle').attr('id', points[i])
+            .attr('r', '5').attr('cx', cxs[i]).attr('cy', yDist+cys[i])
             .transition(transitionPath).attr('r', '5')
     }
 
-    var texts = ['Data', 'Models', 'Binary', 'Multi-Classes', 'Regression', 'Logistic Regression',
+    var texts = ['Binary', 'Multi-Classes', 'Regression', 'Logistic Regression',
         'KNN', 'Linear Regression']
-    var transforms = ['(140,120)', '(420,120)', '(100,185)', '(50,330)', '(65,425)', '(470,185)',
-        '(470,245)', '(470,330)']
-
+    var dX = 130;
+    var mX = 20;
+    var tcxs = [dataX-dX+55, dataX-dX, dataX-dX+20, modelX+mX, modelX+mX, modelX+mX, modelX+mX]
+    var tcys = [180, 325, 420, 180, 240, 325, 380]
+   
     for (i = 0; i < texts.length; i++) {
-        svg.append('text').attr('class', 'label').attr("class", "viz-3-elms")
-            .attr('fill', 'black').attr('opacity', '0')
-            .attr('transform', 'translate' + transforms[i])
-            .text(texts[i])
-            .transition(transitionPath)
-            .attr('opacity', '1')
+        visContainer.append('text').attr('class', 'label')
+        .attr('fill','black').attr('opacity','0')
+        // .attr('transform','translate'+transforms[i])
+        .attr('transform', 'translate('+ tcxs[i] +','+ (yDist+tcys[i]+5) +')')
+        .text(texts[i])
+        .transition(transition_800)
+        .attr('opacity','1')
+    }
+
+    var labels = ['Data types', 'Models']
+    // var transforms = ['(140,120)', '(420,120)']
+    var lcxs = [dataX, modelX]
+    var lcys = [chartY1, chartY1]
+
+    for (i = 0; i < labels.length; i++) {
+        visContainer.append('text').attr('class', 'label')
+        .attr('fill','black').attr('opacity','0')
+        // .attr('transform','translate'+transforms[i])
+        .attr('transform', 'translate('+ (lcxs[i]-5) +','+ (lcys[i]-20) +')')
+        .text(labels[i])
+        .transition(transition_800)
+        .attr('opacity','1')
+
     }
 }
 
-function sec3_2_1(loaded) {
+function sec3_2_1(loaded){
     svg = d3.select("#sec3").select("svg")
 
-    svg.append("line").attr("id","line2")
+    svg.selectAll("circle").attr("fill","black")
+    svg.selectAll("line").attr("stroke","black").attr("stroke-width","1")
+
+    svg.select("g.iris").append("line").attr("id","line2")
     .attr('stroke', 'black').attr('stroke-width', '1')
     .attr('x1', dataX).attr('x2', modelX)
-    .attr('y1', 180).attr('y2', 325)
+    .attr('y1', yDist+180).attr('y2', yDist+325)
 
-    svg.selectAll("circle").attr("fill", "black")
-    svg.selectAll("line").attr("stroke", "black").attr("stroke-width", "1")
-
-    svg.select("#bin-circle").transition().duration(500).attr("fill", "red")
-    svg.select("#bin-to-lr").transition().duration(500).attr("stroke-width", "3").attr("stroke", "red")
-    svg.select("#line2").transition().duration(500).attr("stroke-width", "3").attr("stroke", "red")
-    svg.select("#lr-circle").transition().duration(500).attr("fill", "red")
-    svg.select("#ln-circle").transition().duration(500).attr("fill", "red")
+    svg.select("#bin-circle").attr("fill","red")
+    svg.select("#bin-to-lr").attr("stroke","red").attr("stroke-width","3")
+    svg.select("#line2").attr("stroke","red").attr("stroke-width","3")
+    svg.select("#lr-circle").attr("fill","red")
+    svg.select("#ln-circle").attr("fill","red")
 }
 
-function sec3_2_2(loaded) {
+function sec3_2_2(loaded){
     svg = d3.select("#sec3").select("svg")
 
     svg.select("#line2").remove()
-    svg.selectAll("circle").attr("fill", "black")
-    svg.selectAll("line").attr("stroke", "black").attr("stroke-width", "1")
+    svg.selectAll("circle").attr("fill","black")
+    svg.selectAll("line").attr("stroke","black").attr("stroke-width","1")
 
-    svg.select("#mc-circle").transition().duration(500).attr("fill", "red")
-    svg.select("#mc-to-lr").transition().duration(500).attr("stroke-width", "3").attr("stroke", "red")
-    svg.select("#mc-to-knn").transition().duration(500).attr("stroke-width", "3").attr("stroke", "red")
-    svg.select("#lr-circle").transition().duration(500).attr("fill", "red")
-    svg.select("#knn-circle").transition().duration(500).attr("fill", "red")
+    svg.select("#mc-circle").attr("fill","red")
+    svg.select("#mc-to-lr").attr("stroke","red").attr("stroke-width","3")
+    svg.select("#mc-to-knn").attr("stroke","red").attr("stroke-width","3")
+    svg.select("#lr-circle").attr("fill","red")
+    svg.select("#knn-circle").attr("fill","red")
 }
 
-function sec3_2_3(loaded) {
-    sec3_1_1(false)
+function sec3_2_3(loaded){
+    var svg;
+    if (!loaded){
+        sec3_1_1()   
+    }
     svg = d3.select("#sec3").select("svg")
 
-    svg.selectAll("circle").attr("fill", "black")
-    svg.selectAll("line").attr("stroke", "black").attr("stroke-width", "1")
+    svg.selectAll("circle").attr("fill","black")
+    svg.selectAll("line").attr("stroke","black").attr("stroke-width","1")
 
-    svg.select("#rgsn-circle").transition().duration(500).attr("fill", "red")
-    svg.select("#rgsn-to-ln").transition().duration(500).attr("stroke-width", "3").attr("stroke", "red")
-    svg.select("#ln-circle").transition().duration(500).attr("fill", "red")
+    svg.select("#rgsn-circle").attr("fill","red")
+    svg.select("#rgsn-to-ln").attr("stroke","red").attr("stroke-width","3")
+    svg.select("#ln-circle").attr("fill","red")
 }
+    /*
+    <text class="label" fill="black" opacity="1" transform="translate(140,120)">Data</text>
+    <text class="label" fill="black" opacity="1" transform="translate(420,120)">Models</text>
+    <text class="label" fill="black" opacity="1" transform="translate(100,185)">Binary</text>
+    <text class="label" fill="black" opacity="1" transform="translate(50,305)">Multi-Classes</text>
+    <text class="label" fill="black" opacity="1" transform="translate(65,425)">Regression</text>
+    <text class="label" fill="black" opacity="1" transform="translate(470,185)">Logistic Regression</text>
+    <text class="label" fill="black" opacity="1" transform="translate(470,245)">KNN</text>
+    <text class="label" fill="black" opacity="1" transform="translate(470,305)">Linear Regression</text>
+    
+    <line stroke="black" x1="160" x2="160" y1="140" y2="480" stroke-width="1" id="data-line"></line>
+    <line stroke="black" y1="140" y2="480" stroke-width="1" x2="450" x1="450" id="model-line"></line>
+    
+    <line stroke="black" x1="160" stroke-width="1" x2="450" y2="180" y1="180" id="bin-to-lr"></line>
+    <line stroke="black" x1="160" stroke-width="1" x2="450" y1="180" id="bin-to-ln" y2="300"></line>
+    <line stroke="black" x1="160" stroke-width="1" x2="450" id="mc-to-lr" y1="300" y2="180"></line>
+    <line stroke="black" x1="160" stroke-width="1" x2="450" y1="300" id="mc-to-knn" y2="240"></line>
+    <line stroke="black" x1="160" stroke-width="1" x2="450" y1="420" id="rgsn-to-ln" y2="300"></line>
+    
+    <circle r="5" cx="160" cy="180" id="bin-circle"></circle>
+    <circle r="5" cx="160" cy="300" id="mc-circle"></circle>
+    <circle r="5" cx="160" cy="420" id="rgsn-circle"></circle>
+    <circle r="5" cx="450" cy="180" id="lr-circle"></circle>
+    <circle r="5" cx="450" cy="240" id="knn-circle"></circle>
+    <circle r="5" cx="450" cy="300" id="ln-circle"></circle>
+    <circle r="5" cx="450" cy="360"></circle>
+    <circle r="5" cy="420" cx="450"></circle>
+    
+    */

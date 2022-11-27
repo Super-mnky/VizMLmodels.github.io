@@ -1,104 +1,116 @@
-async function sec2_1_2_transition(loaded){
+//bubble
+async function sec2_2_1_transition(loaded){
   var svg;
   if (loaded){
     svg = d3.select("#sec2_2").select("svg")
   } else {
     svg = d3.select("#sec2_2")
     .append('svg')
-    .attr('width', width)
-    .attr('height', height);
+    .attr('width', w_width)
+    .attr('height', w_height);
+    visContainer = svg.append('g').attr("class", "iris")
+    .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
   }
+
+  var radius = 400;
+  var size = 5.1 
+  var size1 = 3.3
     
   // versicolor: 
-  svg.append('ellipse').attr('fill','white')
-      .attr('cx','320').attr('cy','310')
-      .attr('stroke','black').attr('stroke-dasharray','4')
-      .attr('rx','50').attr('ry','70')
-      .transition().duration(2000)
+  visContainer.append('ellipse')
+      .attr('fill','none').attr('rx','70').attr('ry','58').attr('cx','250').attr('cy','0')
+      .attr('stroke', mainColor['yellow']).attr('stroke-dasharray','4')
+      .attr('stroke-width','1')
+      .transition().duration(duration_500)
       .attr('stroke','red').attr('stroke-dasharray','0').attr('fill','red')
-      .attr('rx','15.19864990302443').attr('ry','15.19864990302443')
+      .attr('rx','0').attr('ry','0')
+      .attr('cx',0).attr('cy',0)
 
-  svg.append('text').attr('class','label').attr('fill','black')
-    .text('versicolor').attr('transform','translate(285,225)').attr('opacity','1')
-    .transition().duration(1000)
-    .attr('opacity','0')
+  // visContainer.append('text').attr('class','label').attr('fill','black')
+  //   .text('versicolor').attr('transform','translate(285,225)').attr('opacity','1')
+  //   .transition().duration(1000)
+  //   .attr('opacity','0')
 
-  svg.append('line').attr('class','sepal')
-    .attr('stroke', 'black').attr('stroke-width', '0')
-    .attr('x1', '325').attr('x2', '325')
-    .attr('y1','360').attr('y2', '260')
-    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
-    .transition().duration(2000)
-    .attr('y1', '300').attr('y2','300').attr('stroke','red')
+  // visContainer.append('line').attr('class','sepal')
+  //   .attr('stroke', 'black').attr('stroke-width', '0')
+  //   .attr('x1', '325').attr('x2', '325')
+  //   .attr('y1','360').attr('y2', '260')
+  //   .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+  //   .transition().duration(2000)
+  //   .attr('y1', '300').attr('y2','300').attr('stroke','red')
 
-  svg.append('line').attr('class','sepal')
-    .attr('stroke', 'black').attr('stroke-width', '0')
-    .attr('x1', '355').attr('x2', '285')
-    .attr('y1','290').attr('y2', '290')
-    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
-    .transition().duration(2000)
-    .attr('x1', '320').attr('x2','320').attr('stroke','red')
+  // visContainer.append('line').attr('class','sepal')
+  //   .attr('stroke', 'black').attr('stroke-width', '0')
+  //   .attr('x1', '355').attr('x2', '285')
+  //   .attr('y1','290').attr('y2', '290')
+  //   .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+  //   .transition().duration(2000)
+  //   .attr('x1', '320').attr('x2','320').attr('stroke','red')
 
-  // Setosa:
-  svg.append('line').attr('class','sepal')
-    .attr('stroke', 'black').attr('stroke-width', '2')
-    .attr('x1', '160').attr('x2', '160')
-    .attr('y1','350').attr('y2', '270')
-    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
-    .transition().duration(2000)
-    .attr('y1', '310').attr('y2','310').attr('stroke','blue')
+  // // Setosa:
+  // visContainer.append('line').attr('class','sepal')
+  //   .attr('stroke', 'black').attr('stroke-width', '2')
+  //   .attr('x1', '160').attr('x2', '160')
+  //   .attr('y1','350').attr('y2', '270')
+  //   .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+  //   .transition().duration(2000)
+  //   .attr('y1', '310').attr('y2','310').attr('stroke','blue')
 
-  svg.append('line').attr('class','sepal')
-    .attr('stroke', 'black').attr('stroke-width', '2')
-    .attr('x1', '200').attr('x2', '120')
-    .attr('y1','310').attr('y2', '310')
-    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
-    .transition().duration(2000)
-    .attr('x1', '160').attr('x2','160').attr('stroke','blue')
+  // visContainer.append('line').attr('class','sepal')
+  //   .attr('stroke', 'black').attr('stroke-width', '2')
+  //   .attr('x1', '200').attr('x2', '120')
+  //   .attr('y1','310').attr('y2', '310')
+  //   .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+  //   .transition().duration(2000)
+  //   .attr('x1', '160').attr('x2','160').attr('stroke','blue')
 
-  svg.append('ellipse').attr('fill','white').attr('rx','50').attr('ry','50').attr('cx','160').attr('cy','310')
-    .attr('stroke','black').attr('stroke-dasharray','4')
-    .transition().duration(2000)
+  visContainer.append('ellipse')
+    .attr('fill','none').attr('rx','50').attr('ry','70').attr('cx','-250').attr('cy','0')
+    .attr('stroke',mainColor['yellow']).attr('stroke-dasharray','4')
+    .attr('stroke-width','1')
+    .transition().duration(duration_500)
     .attr('fill','blue').attr('stroke','blue').attr('stroke-dasharray','0')
-    .attr('rx','10').attr('ry','10')
+    .attr('rx','0').attr('ry','0')
+    .attr('cx',0).attr('cy',0)
     
-  svg.append('text').attr('class','label').attr('fill','black')
-    .text('setosa').attr('transform','translate(135,225)').attr('opacity','1')
-    .transition().duration(1000).attr('opacity','0')
+  //   visContainer.append('text').attr('class','label').attr('fill','black')
+  //   .text('setosa').attr('transform','translate(135,225)').attr('opacity','1')
+  //   .transition().duration(1000).attr('opacity','0')
 
-  // Virginica:
-  svg.append('line').attr('class','sepal')
-    .attr('stroke', 'black').attr('stroke-width', '2')
-    .attr('x1', '500').attr('x2', '500')
-    .attr('y1','365').attr('y2', '255')
-    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
-    .transition().duration(2000)
-    .attr('y1', '320').attr('y2','320').attr('stroke','orange')
+  // // Virginica:
+  // visContainer.append('line').attr('class','sepal')
+  //   .attr('stroke', 'black').attr('stroke-width', '2')
+  //   .attr('x1', '500').attr('x2', '500')
+  //   .attr('y1','365').attr('y2', '255')
+  //   .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+  //   .transition().duration(2000)
+  //   .attr('y1', '320').attr('y2','320').attr('stroke','orange')
 
-  svg.append('line').attr('class','sepal')
-    .attr('stroke', 'black').attr('stroke-width', '2')
-    .attr('x1', '540').attr('x2', '460')
-    .attr('y1','310').attr('y2', '310')
-    .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
-    .transition().duration(2000)
-    .attr('x1', '500').attr('x2','500').attr('stroke','orange')
+  //   visContainer.append('line').attr('class','sepal')
+  //   .attr('stroke', 'black').attr('stroke-width', '2')
+  //   .attr('x1', '540').attr('x2', '460')
+  //   .attr('y1','310').attr('y2', '310')
+  //   .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
+  //   .transition().duration(2000)
+  //   .attr('x1', '500').attr('x2','500').attr('stroke','orange')
 
-    svg.append('ellipse').attr('fill','white')
+    visContainer.append('ellipse').attr('fill','white')
+    .attr('fill', mainColor['yellow'])
+    .attr('rx',radius*0.2).attr('ry', radius*0.2).attr('cx',0).attr('cy',0)
     .attr('stroke','black').attr('stroke-dasharray','4')
-    .attr('rx','50').attr('ry','70').attr('cx','500').attr('cy','310')
-    .transition().duration(2000)
+    .transition().duration(duration_500)
     .attr('fill','orange').attr('stroke','orange').attr('stroke-dasharray','0')
-    .attr('rx','21.54264057180123').attr('ry','21.54264057180123')
+    .attr('rx','0').attr('ry','0')
+    .attr('cx',0).attr('cy',0)
       
-  svg.append('text').attr('class','label').attr('fill','black')
-    .text('virginica').attr('transform','translate(470,225)').attr('opacity','1')
-    .transition().duration(1000).attr('opacity','0')
+  //   visContainer.append('text').attr('class','label').attr('fill','black')
+  //   .text('virginica').attr('transform','translate(470,225)').attr('opacity','1')
+  //   .transition().duration(1000).attr('opacity','0')
 
-  await delay(1500);
+  // await delay(1500);
 
-  svg.selectAll("ellipse").transition().duration(250).attr('opacity','0')
-  svg.selectAll("line").transition().duration(250).attr('opacity','0')
-
+    // visContainer.selectAll("ellipse").transition().duration(250).attr('opacity','0')
+    // visContainer.selectAll("line").transition().duration(250).attr('opacity','0')
 }
 
 /* bubbleChart creation function. Returns a function that will
@@ -111,8 +123,8 @@ async function sec2_1_2_transition(loaded){
  */
 function bubbleChart() {
   // Constants for sizing
-  var width = 680;
-  var height = 640;
+  var width = w_width;
+  var height = w_height;
 
   // tooltip for mouseover functionality
   var tooltip = floatingTooltip('gates_tooltip', 240);
@@ -153,7 +165,9 @@ function bubbleChart() {
   var svg = null;
   var bubbles = null;
   var nodes = [];
+  var container;
 
+ 
   // Charge function that is called for each node.
   // As part of the ManyBody force.
   // This is what creates the repulsion between nodes.
@@ -287,8 +301,8 @@ function bubbleChart() {
     // Fancy transition to make bubbles appear, ending with the
     // correct radius
     bubbles.transition()
-      .duration(2000)
-      .attr('r', function (d) { return d.radius; });
+      .duration(duration_500)
+      .attr('r', function (d) { return d.radius; })
 
     // Set the simulation's nodes to our newly created nodes array.
     // @v4 Once we set the nodes, the simulation will start running automatically!
@@ -308,7 +322,7 @@ function bubbleChart() {
   function ticked() {
     bubbles
       .attr('cx', function (d) { return d.x; })
-      .attr('cy', function (d) { return d.y; });
+      .attr('cy', function (d) { return d.y-80; })
   }
 
   /*

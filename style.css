@@ -14,18 +14,17 @@ html, body {
 }
 
 #main {
-    margin: 20px;
+    margin: 0px;
     position: relative;
 }
 
 /* Text */
-
 #sections{
-   width: 25%;
+    width: 25%;
 }
 
 .text-posi{
-margin-left: 75%;
+    margin-left: 75%;
 }
 
 .section-text{
@@ -53,8 +52,18 @@ margin-left: 75%;
 .text-md{
     font-size: 1.5em;
 }
+.text-mlg{
+    font-size: 3.2em;
+}
 .text-bold{
     font-weight: 800;
+}
+.text-thin{
+    font-weight: 200;;
+}
+
+.intro_title, svg{
+    font-family: 'Comfortaa', cursive;
 }
 
 /*btn*/
@@ -64,6 +73,11 @@ margin-left: 75%;
     top: 125px;
 }
 
+.controler_checkbox{
+    position: absolute;
+    left: 520px;
+    top: 115px;
+}
 .botton1 {
     background-color: #323D52;
     border: none;
@@ -136,11 +150,11 @@ circle:hover {
 }
 */
 
-.button-container-div {
+/* .button-container-div {
     margin-top: 10px;
     height: 20px;
     text-align: center;
-}
+} */
 
 line {    
     transition: 0.5s;

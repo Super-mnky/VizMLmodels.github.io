@@ -3,7 +3,7 @@ var current_viz = 0
 var viz_ids = [
   '#sec1',
   '#sec2_1', //2_1_1
-  '#sec2_1_2', //2_1_2
+  '#sec2_1_1', //2_1_2
   '#sec2_2', //2_2_1
   '#sec3', 
   '#sec3',
@@ -12,27 +12,30 @@ var viz_ids = [
   '#sec4_1', //sec4_1_1
   '#sec4_2', //sec4_2_1
   '#sec4_3', //sec4_3_1
+  '#sec4_6', //sec4_6_1
   '#sec5_1', //sec5_1_1
   '#sec6_1', //sec6_1_1
   '#sec7_1', //sec7_1_1
-  '#sec8',
+  '#sec8_1', //sec8_1_1
 ]
 
 var viz_fns = [
   sec1_1, 
-  sec2_1_1, sec2_1_2, sec2_2_1,
+  sec2_1_1, sec2_1_1_1, sec2_2_1,
   sec3_1_1, sec3_2_1, sec3_2_2, sec3_2_3, 
   sec4_1_1, sec4_2_1,
   sec4_3_1,
+  sec4_6_1,
   sec5_1_1,
   sec6_1_1,
   sec7_1_1, 
-  sec8
+  sec8_1_1,
 ]
 
 
 var viz_loaded = [
-  false, false, false, false, false, false, false, false, false,
+  false, false, false, false, false, 
+  true, true, true, true, false, 
   false, false, false, false, false, false
 ]
 
@@ -52,9 +55,10 @@ function updateViz(i) {
 
   if (viz_loaded[i] && (viz_ids[i] != viz_ids[current_viz])) {
     d3.select(viz_ids[i]).selectAll("svg").remove()
+    viz_loaded[i] = false;
   } 
 
-  viz_fns[i](false)
+  viz_fns[i](viz_loaded[i])
   viz_loaded[i] = true;
   current_viz = i
 
@@ -105,7 +109,7 @@ function sec1(){
 
 async function sec2_2_1(){
   // Transition code:
-  sec2_1_2_transition();
+  sec2_2_1_transition();
   await delay(500);
 
   d3.csv('iris.csv').then((data) => display_sec2_2_1(null, data));
