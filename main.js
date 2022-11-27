@@ -5,6 +5,9 @@ var viz_ids = [
   '#sec2_1', //2_1_1
   '#sec2_1_2', //2_1_2
   '#sec2_2', //2_2_1
+  '#sec3', 
+  '#sec3',
+  '#sec3',
   '#sec3',
   '#sec4_1', //sec4_1_1
   '#sec4_2', //sec4_2_1
@@ -18,7 +21,7 @@ var viz_ids = [
 var viz_fns = [
   sec1_1, 
   sec2_1_1, sec2_1_2, sec2_2_1,
-  sec3_1_1, 
+  sec3_1_1, sec3_2_1, sec3_2_2, sec3_2_3, 
   sec4_1_1, sec4_2_1,
   sec4_3_1,
   sec5_1_1,
@@ -29,7 +32,7 @@ var viz_fns = [
 
 
 var viz_loaded = [
-  false, false, false, false, false, false,
+  false, false, false, false, false, false, false, false, false,
   false, false, false, false, false, false
 ]
 
@@ -46,14 +49,14 @@ d3.graphScroll()
 function updateViz(i) {
   d3.select(viz_ids[current_viz]).style('display', 'none')
   d3.select(viz_ids[i]).style('display','block')
-  current_viz = i
 
-  if (viz_loaded[i]) {
+  if (viz_loaded[i] && (viz_ids[i] != viz_ids[current_viz])) {
     d3.select(viz_ids[i]).selectAll("svg").remove()
   } 
 
   viz_fns[i](false)
   viz_loaded[i] = true;
+  current_viz = i
 
   /*
   if (!viz_loaded[i]){
