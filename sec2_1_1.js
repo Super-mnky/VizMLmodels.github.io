@@ -1,4 +1,4 @@
-function sec2_1_1(loaded) {
+function sec11_to_sec211_transition(loaded){
   var svg;
   if (loaded) {
     svg = d3.select("#sec2_1").select("svg")
@@ -8,6 +8,35 @@ function sec2_1_1(loaded) {
       .attr('width', width)
       .attr('height', height)
   }
+
+  svg.append("text").attr("class","intro-heading")
+  .attr("transform","translate(100,315)")
+  .text("Visualizing ML Model Selection").attr("opacity","1")
+  .transition().duration(1000).attr("opacity","0")
+
+  svg.append("text").attr("class","intro-subheading")
+  .attr("transform","translate(100,350)")
+  .text("Created by. Jerry Jones, Hyemi Song, and Kaitlyn Yang").attr("opacity","1")
+  .transition().duration(1000).attr("opacity","0")
+
+  var bigCircle = svg.append('circle').attr('fill', 'none')
+  .attr('r', '300').attr('cx', '340').attr('cy', '290')
+  .attr('stroke', 'black').attr('stroke-dasharray', '4')
+  .transition().duration(1000).attr('r','250')
+  
+  var smallCircle = svg.append('circle').attr('fill', 'none')
+  .attr('r', '150').attr('cx', '600').attr('cy', '450')
+  .attr('stroke', 'black').attr('stroke-dasharray', '8')
+  .transition().duration(1000).attr('r','900')
+
+  smallCircle.remove();
+}
+
+async function sec2_1_1(loaded) {
+  sec11_to_sec211_transition(loaded);
+
+  await delay(750);
+  var svg = d3.select("#sec2_1").select("svg")
 
   var defs = svg.append('defs')
 
@@ -24,6 +53,8 @@ function sec2_1_1(loaded) {
     .attr('height', '50%')
     .attr('width', '50%')
     .attr('transform', 'translate(170,120)')
+    .attr('opacity',0)
+    .transition().duration(500).attr('opacity','1')
 
   const transitionPath = d3.transition().ease(d3.easeSin).duration(1000);
   var sepallaxis = svg.append('line').attr('class', 'sepal')

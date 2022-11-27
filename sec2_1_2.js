@@ -45,7 +45,7 @@ async function sec2_1_2(loaded) {
 
   svg.selectAll('line')
 
-  svg.append('ellipse').attr('fill', 'none').attr('rx', '400').attr('ry', '400').attr('cx', '320').attr('cy', '310')
+  svg.append('ellipse').attr('fill', 'none').attr('rx', '300').attr('ry', '300').attr('cx', '320').attr('cy', '310')
     .attr('stroke', 'black').attr('stroke-dasharray', '4')
     .transition().duration(1000).attr('rx', '50').attr('ry', '70')
 

@@ -111,7 +111,7 @@ async function sec4_1_1(loaded) {
 
   sec_3_1_1_transition(loaded);
 
-  await delay(2000);
+  await delay(1600);
 
   var lengthScale = d3.scaleLinear()
     .domain([0.0, 8]).range([heightMargin, height - heightMargin]);

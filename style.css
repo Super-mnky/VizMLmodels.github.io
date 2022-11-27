@@ -27,6 +27,7 @@ html, body {
 .text-posi{
 margin-left: 75%;
 }
+
 .section-text{
     height: 100%;
     margin: 0px 0px 500px;
@@ -96,8 +97,15 @@ margin-left: 75%;
   Why not just use a class? You may be asking.
   It breaks it. Why? beats me.
 */
+#_1_intro{
+    margin-right: calc(100%-50px);
+    width: 95%;
+    position: sticky;
+    top: 0px;
+    float: left;
+}
 
-#_1_intro, #_2_dataprep, #_3_classifier, #_4_comparison, #_5_kfold, #_6_parameter, #_7_modelselect, #_8_featureselect{
+#_2_dataprep, #_3_classifier, #_4_comparison, #_5_kfold, #_6_parameter, #_7_modelselect, #_8_featureselect{
     margin-right: calc(100%-500px);
     width: 75%;
     position: sticky;
@@ -112,6 +120,14 @@ margin-left: 75%;
     width: 680px; 
     /* border: 1px solid blue;  */
     display: none;
+}
+
+.intro-heading {
+    font: bold 60px sans-serif;
+}
+
+.intro-subheading {
+    font: 30px sans-serif;
 }
 
 /*
