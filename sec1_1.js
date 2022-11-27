@@ -82,4 +82,5 @@ function sec1_1(loaded){
     // .attr('r', '50').attr('cx', '600').attr('cy', '450')
     // .attr('stroke', 'black').attr('stroke-dasharray', '8')
     // .transition().duration(1000).attr('stroke-dasharray', '4').attr('r','150')
+
 }

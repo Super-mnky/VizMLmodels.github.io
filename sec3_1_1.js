@@ -58,6 +58,7 @@ function sec3_1_1(loaded) {
 
     for (i = 0; i < texts.length; i++) {
         visContainer.append('text').attr('class', 'label')
+
         .attr('fill','black').attr('opacity','0')
         .attr('transform','translate'+transforms[i])
         .text(texts[i])
