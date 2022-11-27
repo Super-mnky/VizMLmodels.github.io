@@ -48,7 +48,11 @@ function updateViz(i) {
   d3.select(viz_ids[i]).style('display','block')
   current_viz = i
 
-  viz_fns[i](viz_loaded[i])
+  if (viz_loaded[i]) {
+    d3.select(viz_ids[i]).selectAll("svg").remove()
+  } 
+
+  viz_fns[i](false)
   viz_loaded[i] = true;
 
   /*
