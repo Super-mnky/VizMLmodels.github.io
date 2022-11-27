@@ -36,10 +36,6 @@ var iris_data = []
 var r = 8;
 var tooltip = floatingTooltip('gates_tooltip', 240);
 
-var svg = d3.select('#sec4_3').append('svg')
-    .attr('width', width)
-    .attr('height', height)
-
 function sec4_3_1(loaded) {
     /*
      * Function called on mouseover to display the
@@ -69,8 +65,13 @@ function sec4_3_1(loaded) {
         tooltip.hideTooltip();
     }
 
+    var svg;
     if (loaded) {
-        return;
+        svg = d3.select("#sec4_3").select("svg");
+    } else {
+        svg = d3.select('#sec4_3').append('svg')
+        .attr('width', width)
+        .attr('height', height)
     }
     /*
     var hexbin = d3
@@ -151,6 +152,7 @@ function sec4_3_1(loaded) {
 }
 
 function updateKNN(knnVal) {
+    var svg = d3.select("#sec4_3").select("svg")
     d3.csv('knn-predictions.csv').then(function (dataset) {
         var hexbin = d3.hexbin()
             .x(d => d.x)

@@ -3,7 +3,7 @@ var current_viz = 0
 var viz_ids = [
   '#sec1',
   '#sec2_1', //2_1_1
-  '#sec2_1', //2_1_2
+  '#sec2_1_2', //2_1_2
   '#sec2_2', //2_2_1
   '#sec3',
   '#sec4_1', //sec4_1_1
