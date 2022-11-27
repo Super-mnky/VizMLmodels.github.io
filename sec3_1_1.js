@@ -6,7 +6,7 @@ function sec3_1_1(loaded) {
         svg = d3.select("#sec3").append("svg")
             .attr('width', w_width).attr('height', w_height)
         visContainer = svg.append('g').attr("class", "iris")
-            .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.5) +')'})    
+            .attr('transform', function(d, i) {return 'translate('+ (0) +','+(0) +')'})    
     }
 
     var dataX = 160

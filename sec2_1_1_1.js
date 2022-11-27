@@ -1,10 +1,10 @@
-async function sec2_1_2(loaded) {
+async function sec2_1_1_1(loaded) {
   var svg;
   if (loaded) {
-    svg = d3.select("#sec2_1_2")
+    svg = d3.select("#sec2_1_1")
       .select('svg')
   } else {
-  svg = d3.select("#sec2_1_2").append("svg")
+  svg = d3.select("#sec2_1_1").append("svg")
       .attr("width", w_width).attr("height", w_height)
   visContainer = svg.append('g').attr("class", "iris")
       .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.5) +')'})

@@ -73,6 +73,11 @@ html, body {
     top: 125px;
 }
 
+.controler_checkbox{
+    position: absolute;
+    left: 520px;
+    top: 115px;
+}
 .botton1 {
     background-color: #323D52;
     border: none;
@@ -127,7 +132,7 @@ html, body {
     padding-top: 0px;
     height: 640px; 
     width: 680px; 
-    border: 1px solid blue; 
+    /* border: 1px solid blue;  */
     display: none;
 }
 
@@ -145,11 +150,11 @@ circle:hover {
 }
 */
 
-.button-container-div {
+/* .button-container-div {
     margin-top: 10px;
     height: 20px;
     text-align: center;
-}
+} */
 
 line {    
     transition: 0.5s;

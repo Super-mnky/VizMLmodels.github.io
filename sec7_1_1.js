@@ -396,7 +396,7 @@ function sec7_1_1(loaded) {
 
 
 //display chart
-var myChart611 = sec7_1_1();
+// var myChart611 = sec7_1_1();
 
 function display_sec7_1_1(error, data) {
   if (error) {
