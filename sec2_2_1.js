@@ -10,7 +10,7 @@ async function sec2_1_2_transition(loaded){
   }
     
   // versicolor: 
-  svg.append('ellipse').attr('fill','none')
+  svg.append('ellipse').attr('fill','white')
       .attr('cx','320').attr('cy','310')
       .attr('stroke','black').attr('stroke-dasharray','4')
       .attr('rx','50').attr('ry','70')
@@ -24,7 +24,7 @@ async function sec2_1_2_transition(loaded){
     .attr('opacity','0')
 
   svg.append('line').attr('class','sepal')
-    .attr('stroke', 'red').attr('stroke-width', '2')
+    .attr('stroke', 'black').attr('stroke-width', '0')
     .attr('x1', '325').attr('x2', '325')
     .attr('y1','360').attr('y2', '260')
     .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
@@ -32,7 +32,7 @@ async function sec2_1_2_transition(loaded){
     .attr('y1', '300').attr('y2','300').attr('stroke','red')
 
   svg.append('line').attr('class','sepal')
-    .attr('stroke', 'red').attr('stroke-width', '2')
+    .attr('stroke', 'black').attr('stroke-width', '0')
     .attr('x1', '355').attr('x2', '285')
     .attr('y1','290').attr('y2', '290')
     .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
@@ -56,7 +56,7 @@ async function sec2_1_2_transition(loaded){
     .transition().duration(2000)
     .attr('x1', '160').attr('x2','160').attr('stroke','blue')
 
-  svg.append('ellipse').attr('fill','none').attr('rx','50').attr('ry','50').attr('cx','160').attr('cy','310')
+  svg.append('ellipse').attr('fill','white').attr('rx','50').attr('ry','50').attr('cx','160').attr('cy','310')
     .attr('stroke','black').attr('stroke-dasharray','4')
     .transition().duration(2000)
     .attr('fill','blue').attr('stroke','blue').attr('stroke-dasharray','0')
@@ -83,7 +83,7 @@ async function sec2_1_2_transition(loaded){
     .transition().duration(2000)
     .attr('x1', '500').attr('x2','500').attr('stroke','orange')
 
-    svg.append('ellipse').attr('fill','none')
+    svg.append('ellipse').attr('fill','white')
     .attr('stroke','black').attr('stroke-dasharray','4')
     .attr('rx','50').attr('ry','70').attr('cx','500').attr('cy','310')
     .transition().duration(2000)
