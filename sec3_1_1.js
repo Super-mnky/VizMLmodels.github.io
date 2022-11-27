@@ -27,7 +27,7 @@ function sec3_1_1(loaded) {
 
     var points = ['bin-circle', 'mc-circle', 'rgsn-circle', 'lr-circle', 'knn-circle', 'ln-circle', 'unamed-1', 'unamed-2']
     var cxs = [dataX, dataX, dataX, modelX, modelX, modelX, modelX, modelX]
-    var cys = [180, 300, 420, 180, 240, 300, 360, 450]
+    var cys = [180, 325, 420, 180, 240, 325, 380, 450]
 
     for (i = 0; i < points.length; i++) {
         svg.append('circle').attr('id', points[i])
@@ -36,8 +36,8 @@ function sec3_1_1(loaded) {
     }
 
     var lines = ['bin-to-lr', 'bin-to-ln', 'mc-to-lr', 'mc-to-knn', 'rgsn-to-ln']
-    var y1s = [180, 180, 300, 300, 420]
-    var y2s = [180, 300, 180, 240, 300]
+    var y1s = [180, 180, 325, 325, 420]
+    var y2s = [180, 325, 180, 240, 325]
 
     for (i = 0; i < lines.length; i++) {
         svg.append('line').attr('id', lines[i])
@@ -51,10 +51,10 @@ function sec3_1_1(loaded) {
 
     var texts = ['Data', 'Models', 'Binary', 'Multi-Classes', 'Regression', 'Logistic Regression',
         'KNN', 'Linear Regression']
-    var transforms = ['(140,120)', '(420,120)', '(100,185)', '(50,305)', '(65,425)', '(470,185)',
-        '(470,245)', '(470,305)']
+    var transforms = ['(140,120)', '(420,120)', '(100,185)', '(50,330)', '(65,425)', '(470,185)',
+        '(470,245)', '(470,330)']
 
-    for (i = 0; i < lines.length; i++) {
+    for (i = 0; i < texts.length; i++) {
         svg.append('text').attr('class', 'label')
         .attr('fill','black').attr('opacity','0')
         .attr('transform','translate'+transforms[i])

@@ -114,9 +114,11 @@ margin-left: 75%;
     display: none;
 }
 
+/*
 circle:hover {
     fill: red;
 }
+*/
 
 .button-container-div {
     margin-top: 10px;
