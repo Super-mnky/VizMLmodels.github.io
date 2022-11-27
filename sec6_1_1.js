@@ -1,9 +1,14 @@
 // _6_parameta
-function sec6_1_1(){
-    var svg = d3.select('#sec6_1').append('svg')
-    .attr('width', width)
-    .attr('height', height)
-  
+function sec6_1_1(loaded){
+    var svg;
+    if (loaded){
+      svg = d3.select('#sec6_1').select('svg')
+    } else {
+      svg = d3.select('#sec6_1').append('svg')
+      .attr('width', width)
+      .attr('height', height)  
+    }
+
     var radius = 30;
     var count = [1,2,3,4,5];
     var pieData = {a:20,b:80}

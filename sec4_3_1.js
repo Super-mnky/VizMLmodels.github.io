@@ -4,8 +4,6 @@ var lengthScale = d3.scaleLinear()
 var widthScale = d3.scaleLinear()
     .domain([1.8, 4.5]).range([height - heightMargin, heightMargin]);
 
-const transitionPath = d3.transition().ease(d3.easeSin).duration(1000);
-
 function color(d) {
     if (d == 'Iris-virginica') {
         return 'orange';
@@ -36,13 +34,45 @@ function distance(p1, p2) {
 var data = []
 var iris_data = []
 var r = 8;
+var tooltip = floatingTooltip('gates_tooltip', 240);
 
-var svg = d3.select('#sec4_3').append('svg')
-.attr('width', width)
-.attr('height', height)
+function sec4_3_1(loaded) {
+    /*
+     * Function called on mouseover to display the
+     * details of a bubble in the tooltip.
+     */
+    function showDetail(d) {
+        // change outline to indicate hover state.
+        d3.select(this).attr('stroke', 'black');
 
-function sec4_3_1() {
+        var content = '<span class="name">Sepal Length: </span><span class="value">' +
+            addCommas(d.SepalLengthCm) +
+            'cm</span><br/>' +
+            '<span class="name">Sepal Width: </span><span class="value">' +
+            addCommas(d.SepalWidthCm) +
+            'cm</span><br/>' +
+            '<span class="name">Species: </span><span class="value">' +
+            d.Species +
+            '</span>';
 
+        tooltip.showTooltip(content, d3.event);
+    }
+
+    /*
+     * Hides tooltip
+     */
+    function hideDetail(d) {
+        tooltip.hideTooltip();
+    }
+
+    var svg;
+    if (loaded) {
+        svg = d3.select("#sec4_3").select("svg");
+    } else {
+        svg = d3.select('#sec4_3').append('svg')
+        .attr('width', width)
+        .attr('height', height)
+    }
     /*
     var hexbin = d3
     .hexbin()
@@ -55,9 +85,34 @@ function sec4_3_1() {
 
     console.log(data)
     */
+
+    var layer1 = svg.append("g").attr("stroke", "#000").attr("stroke-opacity", 0)
+    var layer2 = svg.append("g")
+
+    d3.csv('knn-predictions.csv').then(function (dataset) {
+        var hexbin = d3.hexbin()
+            .x(d => d.x)
+            .y(d => d.y)
+            .radius((r * width / (height - 1)) - 0.45)
+            .extent([[widthMargin, heightMargin], [width - widthMargin, height - heightMargin]])
+
+        bins = hexbin(dataset)
+
+        layer1.selectAll("path")
+            .data(dataset)
+            .join("path")
+            .attr('class', 'hexagon')
+            .attr("d", hexbin.hexagon())
+            .attr("fill-opacity", 0)
+            .attr("transform", d => `translate(${d.x},${d.y})`)
+            .attr('fill', function (d) { return color(d.knn3); })
+            .transition().duration(1500)
+            .attr("fill-opacity", 0.5)
+    })
+
     d3.csv('iris.csv').then(function (dataset) {
         //console.table(dataset)
-        var g = svg.selectAll("g")
+        var g = layer2.selectAll("g")
             .data(dataset)
             .enter()
             .append("g")
@@ -84,39 +139,20 @@ function sec4_3_1() {
             .attr('transform', 'translate(' + widthMargin + ',' + (height - heightMargin) / 2 + ') rotate(90)')
             .text('Sepal Width');
 
-        var circles = svg.selectAll("g")
         console.log('showing dots')
         g.append("circle")
             .attr("r", 3.5)
+            .attr("stroke", 'black')
             .attr('fill', function (d) { return color(d.Species); })
-
-        d3.csv('knn-predictions.csv').then(function (dataset) {
-            var hexbin = d3.hexbin()
-                .x(d => d.x)
-                .y(d => d.y)
-                .radius((r * width / (height - 1))-0.45)
-                .extent([[widthMargin, heightMargin], [width - widthMargin, height - heightMargin]])
-
-            bins = hexbin(dataset)
-
-            svg.append("g")
-                .attr("stroke", "#000")
-                .attr("stroke-opacity", 0)
-                .selectAll("path")
-                .data(dataset)
-                .join("path")
-                .attr('class','hexagon')
-                .attr("d", hexbin.hexagon())
-                .attr("fill-opacity", 0.5)
-                .attr("transform", d => `translate(${d.x},${d.y})`)
-                .attr('fill', function (d) { return color(d.knn1); })
-        })
-
+            .on('mouseover', showDetail)
+            .on('mouseout', hideDetail)
     })
+
     setupButtonsKNN();
 }
 
 function updateKNN(knnVal) {
+    var svg = d3.select("#sec4_3").select("svg")
     d3.csv('knn-predictions.csv').then(function (dataset) {
         var hexbin = d3.hexbin()
             .x(d => d.x)
@@ -128,7 +164,7 @@ function updateKNN(knnVal) {
 
         svg.selectAll("path.hexagon")
             .transition(transitionPath)
-            .attr('fill', function (d) {console.log(d[knnVal]); return color(d[knnVal]); })
+            .attr('fill', function (d) { console.log(d[knnVal]); return color(d[knnVal]); })
     })
 }
 

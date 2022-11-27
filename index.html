@@ -4,7 +4,9 @@
 <head>
         <meta charset="UTF-8">
         <title>Main Page</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+                integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+                crossorigin="anonymous">
         <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -12,28 +14,33 @@
         <div id="main">
                 <!-- Add a section block for every visualization we want -->
                 <div id="_1_intro">
-                        <div class="viz visView" id="sec1"></div>
+                        <div class="viz visView" id="sec1">
+                        </div>
                 </div>
                 <div id="_2_dataprep">
                         <div class="viz visView" id="sec2_1">
+                                <div class="button-container-div"></div>
+                        </div>
+                        <div class="viz visView" id="sec2_1_2">
+                                <div class="button-container-div"></div>
                         </div>
                         <div class="viz visView" id="sec2_2">
-                                <div id="toolbar">
+                                <div class="button-container-div" id="toolbar">
                                         <button id="all" class="button active">All</button>
                                         <button id="year" class="button">By Species</button>
                                         <button id="train" class="button">Data Split</button>
                                 </div>
+                                <div id="sec2_2_label">Total: 150</div>
                         </div>
                 </div>
-                <div id="_3_classifier">
+             <div id="_3_classifier">
                         <div class="viz visView" id="sec3"></div>
                 </div>
                 <div id="_4_comparison">
                         <div class="viz visView" id="sec4_1">
                         </div>
                         <div class="viz visView" id="sec4_2">
-                                <div class="button-container-div">
-                                </div>
+                                <div class="button-container-div"></div>
                         </div>
                         <div class="viz visView" id="sec4_3">
                                 <div id="toolbar-knn">
@@ -42,6 +49,10 @@
                                         <button id="knn5" class="button-knn">KNN-5</button>
                                         <button id="knn10" class="button-knn">KNN-10</button>
                                         <button id="knn20" class="button-knn">KNN-20</button>
+                                </div>
+                        </div>
+                        <div class="viz visView" id="sec4_6">
+                                <div class="button-container-div">
                                 </div>
                         </div>
                 </div>
@@ -62,16 +73,9 @@
                                                 </select>
                                         </div>
                                         <div class="apply">
-                                                <button id="fold_apply" class="margin_md botton1">Apply</button>
+                                                <button id="fold_apply" class="margin_md button1">Apply</button>
                                         </div>
                                 </div>
-                                <!-- <input type="checkbox" class="myCheckbox" value="fold1"> fold1
-                                <input type="checkbox" class="myCheckbox" value="fold2"> fold2
-                                <input type="checkbox" class="myCheckbox" value="fold3"> fold3
-                                <input type="checkbox" class="myCheckbox" value="fold4"> fold4
-                                <input type="checkbox" class="myCheckbox" value="fold5"> fold5
-                                <button id="apply_fold" class="applyBTN">Apply</button>
-                                <div id="content"></div> -->
                         </div>
                 </div>
                 <div id="_7_modelselect">
@@ -87,77 +91,112 @@
                                                 </select>
                                         </div>
                                         <div class="apply">
-                                                <button id="k_apply" class="margin_md botton1">Apply</button>
+                                                <button id="k_apply" class="margin_md button1">Apply</button>
                                         </div>
                                 </div>
                         </div>
                 </div>
                 <div id="_8_featureselect">
-                        <div class="viz visView" id="sec8"></div>
+                        <div class="viz visView" id="sec8_1">
+                                <div class="controler_checkbox text-sm">
+                                        <input type="checkbox" class="age_box margin_lg" value="1" checked> feature1
+                                        <br>
+                                        <input type="checkbox" class="age_box margin_lg" value="2" checked> feature2
+                                        <br>
+                                        <input type="checkbox" class="age_box margin_lg" value="3" checked> feature3
+                                        <br>
+                                        <input type="checkbox" class="age_box margin_lg" value="4" checked> feature4
+                                        <br>
+                                        <div class="apply">
+                                                <button id="feature_apply" class="margin_md button1">Apply</button>
+                                        </div>
+                                </div>
+                               
+                        </div>
                 </div>
 
                 <!-- Add a section block for every text we want -->
-                <div id="sections", class="text-posi">
+                <div id="sections" , class="text-posi">
                         <div class="section-text" id="sec1_text">
-                                sec1_text _1_intro
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_1_1_text">
                                 sec2_1_1_text _2_dataprep
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_1_2_text">
                                 sec2_1_2_text _2_dataprep
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_2_1_text">
                                 sec2_2_text _2_dataprep
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_text">
                                 sec3_text _3_classifier
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_1_1_text">
                                 sec4_1_1_text _4_comparison
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_2_1_text">
                                 sec4_2_1_text _4_comparison
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_3_1_text">
                                 sec4_3_1_text _4_comparison
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec5_text">
                                 sec5_text _5_kfold
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec6_text">
                                 sec6_text _6_parameter
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec7_text">
                                 sec7_text _7_modelselect
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
                         </div>
-                        <div class="section-text" id="sec8_text">
+                        <!-- <div class="section-text" id="sec8_text">
                                 sec8_text _8_featureselect
-                                <br>Statistical analysis of the models performance help inform decisions on which models are appropriate for the given task. Comparing how all of the test cases perform, helps ensure the business requirement is met whne it is ultimately deployed.
+                                <br>Statistical analysis of the models performance help inform decisions on which models
+                                are appropriate for the given task. Comparing how all of the test cases perform, helps
+                                ensure the business requirement is met whne it is ultimately deployed.
                                 <p class="block"></p>
-                        </div>
+                        </div> -->
                 </div>
         </div>
 </body>
@@ -171,16 +210,42 @@
 
 <script>
         // constants
+        var w_width = window.innerWidth/1.37;
+        var w_height = window.innerHeight;
         var width = 680
-        var widthMargin = 20
         var height = 640
+        var widthMargin = 20
         var heightMargin = 60
+        var mainColor = {"darkgreen": '#379237', 'lightgreen':"#00FFE0", 'darkblue':"#323D52", 
+        'red':'#C70039', 'darkred':'#900C3F', 'lightred':"#FF5733", 'yellow':"#f0e247", 'violet':"#66308f"}
+        
+        //time
+        var duration_2500 = 2500    
+        var duration_2000 = 2000
+        var duration_1000 = 1000
+        var duration_800 = 800
+        var duration_500 = 500
+        var duration_250 = 250
+        
+        // transition
+        const transition_2500 = d3.transition().ease(d3.easeSin).duration(duration_2500);
+        const transition_2000 = d3.transition().ease(d3.easeSin).duration(duration_2000);
+        const transition_1000 = d3.transition().ease(d3.easeSin).duration(duration_1000);
+        const transition_800 = d3.transition().ease(d3.easeSin).duration(duration_800);
+        const transition_500 = d3.transition().ease(d3.easeSin).duration(duration_500);
+        const transition_250 = d3.transition().ease(d3.easeSin).duration(duration_250);
+
+        //vis container
+        var visContainer;
+        var visContainer1;
+        const transitionPath = d3.transition().ease(d3.easeSin).duration(1000);
 </script>
 <!--<script src="iris.csv"></script>-->
 <script src="rmse.js"></script>
 <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
 <script src="graph-scroll.js"></script>
 <script src="tooltip.js"></script>
+<script src="sec1_1.js"></script>
 
 <script src="sec2_1_1.js"></script>
 <script src="sec2_1_2.js"></script>
@@ -191,10 +256,12 @@
 <script src="sec4_1_1.js"></script>
 <script src="sec4_2_1.js"></script>
 <script src="sec4_3_1.js"></script>
+<script src="sec4_6_1.js"></script>
 
 <script src="sec5_1_1.js"></script>
 
 <script src="sec6_1_1.js"></script>
 <script src="sec7_1_1.js"></script>
 <script src="main.js"></script>
+
 </html>

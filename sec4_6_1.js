@@ -1,14 +1,17 @@
-// _5_kfold
+// _4_model comparison
 
-function sec5_1_1(loaded){
-  var svg;
-  if (loaded){
-    svg = d3.select('#sec5_1').select('svg')
-  } else {
-    svg = d3.select('#sec5_1').append('svg')
-    .attr('width', width)
-    .attr('height', height)
-  }
+function sec4_6_1(loaded){
+    var svg;
+    if (loaded){
+      svg = d3.select('#sec4_6').select('svg')
+    } else {
+      svg = d3.select('#sec4_6').append('svg')
+      .attr('width', width)
+      .attr('height', height)
+    }
+//   var svg = d3.select('#sec4_6').append('svg')
+//   .attr('width', w_width)
+//   .attr('height', w_height)
 
   var radius = 30;
   var count = [1,2,3,4,5];
@@ -59,30 +62,21 @@ function sec5_1_1(loaded){
     .value(function(d) {return d.value; })
   var data_ready = pie(d3.entries(pieData))
   
-  var pies = pieGroup.selectAll('.pie')
-    .data(data_ready)
-    .enter()
-    .append('g')
-    .attr('class', 'arc')
-    .append('path')
-    .attr('d', d3.arc()
-      .innerRadius(0)
-      .outerRadius(radius)
-    )
-    .attr('fill', function(d){ return(color(d.data.key)) })
-    .attr("stroke", '#323D52')
-    .style("stroke-width", "0px")
-    .style("opacity", 1)
-    .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
-    .transition(transition_2000)
-    .attr('transform','translate('+(0)+','+(0)+')rotate(90)')
+  var pies = pieGroup.append('circle')
+    .attr("class", "pieCircle")
+    .attr("fill", function(d, i){return i < 2 ? "none" : mainColor['lightgreen']})
+    .attr("cx", 0).attr("cy", 0)
+    .attr("r", radius)
 
   var pies_layer = pieGroup.append('circle')
     .attr("class", "pieCircle")
     .attr("fill", 'none')
     // .attr("opacity", 0)
-    .attr("stroke", 'lightgreen')
-    .attr("stroke-width", 4)
+    // .attr("stroke", 'lightgreen')
+    // .attr("stroke-width", 4)
+    .attr("stroke", mainColor['darkblue'])
+    .attr("stroke-width", function(d, i){return i < 2 ? "1px" : "4px"})
+    .style("stroke-dasharray", function(d, i){return i < 2 ? ("3, 3") : 0 })
     .attr("cx", 0).attr("cy", 0)
     .attr("r", radius)
     pies_layer
@@ -91,9 +85,9 @@ function sec5_1_1(loaded){
     .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
   
   // text-fold
-  var attribute = "fold"
+  var attribute = "20%"
     var text_fold = pieGroup.append("text")
-    .text(function(d, i){return attribute + (i+1)})
+    .text(function(d, i){return attribute})
     .attr('class', 'axis-txt text-sm')
     .attr('transform','translate('+(-radius/1.8)+','+(-radius*1.5)+')')
 
@@ -226,7 +220,7 @@ function sec5_1_1(loaded){
     .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY*2.41))+')rotate(270)')
 
   var text_title = pieArea.append("text")
-    .text("K-fold validation")
+    .text("Model comparison")
     .attr('class', 'title-txt text-md')
     .attr("x", 0).attr("y", 0)
     .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
@@ -257,28 +251,28 @@ function sec5_1_1(loaded){
     .attr("opacity", 1)
   
 //legend
-  var legend = pieArea.append("g")
-  .attr("x", 0).attr("y", 0)
-  .attr('transform','translate('+((pieX/2)-radius/1.3)+','+(-pieY/2)+')')
+//   var legend = pieArea.append("g")
+//   .attr("x", 0).attr("y", 0)
+//   .attr('transform','translate('+((pieX/2)-radius/1.3)+','+(-pieY/2)+')')
   
-  var legned_rect1 = legend.append("rect")
-  .attr("x", 0).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["green"])
-  var legned_rect2 = legend.append("rect")
-  .attr("x", 45).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["lightgreen"])
-  var legend_text1 = legend.append("text")
-  .text("Data").attr('class', 'acc-txt text-sm text-bold').attr("x", -34).attr("y", 10)
-  var legend_text2 = legend.append("text")
-  .text("80%").attr('class', 'acc-txt text-sm').attr("x", 15).attr("y", 10)
-  var legend_text3 = legend.append("text")
-  .text("20%").attr('class', 'acc-txt text-sm').attr("x", 60).attr("y", 10)
+//   var legned_rect1 = legend.append("rect")
+//   .attr("x", 0).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["green"])
+//   var legned_rect2 = legend.append("rect")
+//   .attr("x", 45).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["lightgreen"])
+//   var legend_text1 = legend.append("text")
+//   .text("Data").attr('class', 'acc-txt text-sm text-bold').attr("x", -34).attr("y", 10)
+//   var legend_text2 = legend.append("text")
+//   .text("80%").attr('class', 'acc-txt text-sm').attr("x", 15).attr("y", 10)
+//   var legend_text3 = legend.append("text")
+//   .text("20%").attr('class', 'acc-txt text-sm').attr("x", 60).attr("y", 10)
 
 }//end of func
 
 //display chart
 //var myChart411 = sec4_1_1(); @@JJ4 Commented out to roll with ST
 
-function display_sec5_1_1(error, data) {
-  sec5_1_1()
+function display_sec4_6_1(error, data) {
+  sec4_6_1()
   if (error) {
     console.log(error);
   }

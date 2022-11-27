@@ -14,19 +14,19 @@ html, body {
 }
 
 #main {
-    margin: 20px;
+    margin: 0px;
     position: relative;
 }
 
 /* Text */
-
 #sections{
-   width: 25%;
+    width: 25%;
 }
 
 .text-posi{
-margin-left: 75%;
+    margin-left: 75%;
 }
+
 .section-text{
     height: 100%;
     margin: 0px 0px 500px;
@@ -52,8 +52,18 @@ margin-left: 75%;
 .text-md{
     font-size: 1.5em;
 }
+.text-mlg{
+    font-size: 3.2em;
+}
 .text-bold{
     font-weight: 800;
+}
+.text-thin{
+    font-weight: 200;;
+}
+
+.intro_title, svg{
+    font-family: 'Comfortaa', cursive;
 }
 
 /*btn*/
@@ -96,8 +106,15 @@ margin-left: 75%;
   Why not just use a class? You may be asking.
   It breaks it. Why? beats me.
 */
+#_1_intro{
+    margin-right: calc(100%-50px);
+    width: 95%;
+    position: sticky;
+    top: 0px;
+    float: left;
+}
 
-#_1_intro, #_2_dataprep, #_3_classifier, #_4_comparison, #_5_kfold, #_6_parameter, #_7_modelselect, #_8_featureselect{
+#_2_dataprep, #_3_classifier, #_4_comparison, #_5_kfold, #_6_parameter, #_7_modelselect, #_8_featureselect{
     margin-right: calc(100%-500px);
     width: 75%;
     position: sticky;
@@ -107,18 +124,30 @@ margin-left: 75%;
 
 .visView{
     /* margin: 0 auto;  */
-    padding-top: 50px;
+    padding-top: 0px;
     height: 640px; 
     width: 680px; 
-    /* border: 1px solid blue;  */
+    border: 1px solid blue; 
     display: none;
 }
 
+.intro-heading {
+    font: bold 60px sans-serif;
+}
+
+.intro-subheading {
+    font: 30px sans-serif;
+}
+
+/*
 circle:hover {
     fill: red;
 }
+*/
 
 .button-container-div {
+    margin-top: 10px;
+    height: 20px;
     text-align: center;
 }
 

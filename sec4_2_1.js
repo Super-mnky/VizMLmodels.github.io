@@ -1,6 +1,16 @@
 //_4_comparison
 
-function sec4_2_1(){
+function sec4_2_1(loaded){
+
+  var svg;
+  if (loaded){
+      svg = d3.select("#sec4_2").select("svg")
+  } else {
+    svg = d3.select('#sec4_2').append('svg')
+    .attr('width', width)
+    .attr('height', height)
+  }
+  
 
   var lengthScale = d3.scaleLinear()
   .domain([4,8]).range([heightMargin, height-heightMargin]);
@@ -16,11 +26,34 @@ function sec4_2_1(){
     return widthScale(SepalWidthCm);
   }
 
+  var tooltip = floatingTooltip('gates_tooltip', 240);
+
+  function showDetail(d) {
+    // change outline to indicate hover state.
+    d3.select(this).attr('stroke', 'black');
+
+    var content = '<span class="name">Sepal Length: </span><span class="value">' +
+      addCommas(d.SepalLengthCm) +
+      'cm</span><br/>' +
+      '<span class="name">Sepal Width: </span><span class="value">' +
+      addCommas(d.SepalWidthCm) +
+      'cm</span><br/>' +
+      '<span class="name">Species: </span><span class="value">' +
+      d.Species +
+      '</span>';
+
+    tooltip.showTooltip(content, d3.event);
+  }
+
+  /*
+   * Hides tooltip
+   */
+  function hideDetail(d) {
+    tooltip.hideTooltip();
+  }
+
   d3.csv('iris.csv').then(function(dataset) {
     //console.table(dataset)
-    var svg = d3.select('#sec4_2').append('svg')
-    .attr('width', width)
-    .attr('height', height)
 
     var g = svg.selectAll("g")
     .data(dataset)
@@ -51,6 +84,8 @@ function sec4_2_1(){
     var circles = svg.selectAll("g")
           console.log('showing dots')
           g.append("circle")
+          .on('mouseover', showDetail)
+          .on('mouseout', hideDetail)    
           .transition()
               .delay(function(d,i) {return i * 20;})
               .duration(750)
