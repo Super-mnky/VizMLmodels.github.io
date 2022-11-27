@@ -1,3 +1,4 @@
+//center dot three
 async function sec2_1_1_1(loaded) {
   var svg;
   if (loaded) {
@@ -7,7 +8,7 @@ async function sec2_1_1_1(loaded) {
   svg = d3.select("#sec2_1_1").append("svg")
       .attr("width", w_width).attr("height", w_height)
   visContainer = svg.append('g').attr("class", "iris")
-      .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.5) +')'})
+      .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
   }
 
   var radius = 400;

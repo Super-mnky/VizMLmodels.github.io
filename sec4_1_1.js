@@ -6,42 +6,64 @@ async function sec_3_1_1_transition(loaded) {
     svg = d3.select("#sec4_1").select("svg")
   } else {
     svg = d3.select('#sec4_1').append('svg')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('width', w_width).attr('height', w_height)
+    visContainer = svg.append('g').attr("class", "visContainer")
+      .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
+
   }
 
-  var dataX = 160
-  var modelX = 450;
-  var transitionPath = d3.transition().ease(d3.easeSin).duration(1000);
+  // var dataX = 160
+  // var modelX = 450;
+  // var transitionPath = d3.transition().ease(d3.easeSin).duration(1000);
+  var dividen = 5
+  var modelX = (w_width/dividen);
+  var dataX = -w_width/dividen
+  var chartY1 = -150
+  var chartY2 = 150
+  var yDist = (chartY1-chartY2)
+  // var transitionPath = d3.transition().ease(d3.easeSin).duration(1000);
 
-  svg.append('line').attr('id', 'data-line').attr('class', 'transition')
-    .attr('stroke', 'black').attr('stroke-width', '1')
+
+  visContainer.append('line').attr('id', 'data-line').attr('class', 'transition')
+    // .attr('stroke', 'black').attr('stroke-width', '1')
+    // .attr('x1', dataX).attr('x2', dataX)
+    // .attr('y1', '140').attr('y2', '480')
+    // .transition(transitionPath)
+    // .attr('y1', '325').attr('y2', '325')
+    // .attr('x1', dataX).attr('x2', dataX)
+
+    .attr('stroke', 'black').attr('stroke-width', '2')
     .attr('x1', dataX).attr('x2', dataX)
-    .attr('y1', '140').attr('y2', '480')
-    .transition(transitionPath)
-    .attr('y1', '325').attr('y2', '325')
-    .attr('x1', dataX).attr('x2', dataX)
+    .attr('y1', chartY1).attr('y2', chartY2)
+    .transition(transition_800)
+    .attr('y1', 0).attr('y2', 0)
+    // .attr('x1', 0).attr('x2', 0)
 
+    // .attr('stroke', 'black').attr('stroke-width', '2')
+    // .attr('x1', dataX).attr('x2', dataX)
+    // .attr('y1', chartY1).attr('y2', chartY1)
+    // // .transition(transitionPath)
+    // .attr('y2', chartY2)
 
-  svg.append('line').attr('id', 'model-line').attr('class', 'transition')
-    .attr('stroke', 'black').attr('stroke-width', '1')
+    visContainer.append('line').attr('id', 'model-line').attr('class', 'transition')
+    .attr('stroke', 'black').attr('stroke-width', '2')
     .attr('x1', modelX).attr('x2', modelX)
-    .attr('y1', '140').attr('y2', '480')
+    .attr('y1', chartY1).attr('y2', chartY2)
     .transition(transitionPath)
-    .attr('y1', '325').attr('y2', '325')
+    .attr('y1', 0).attr('y2', 0)
     .attr('x1', modelX).attr('x2', modelX)
 
-  var points = ['bin-circle', 'rgsn-circle', 'lr-circle', 'knn-circle', 'ln-circle', 'unamed-1', 'unamed-2']
-  var cxs = [dataX, dataX, modelX, modelX, modelX, modelX, modelX]
-  var cys = [180, 420, 180, 240, 325, 380, 450]
+  // var points = ['bin-circle', 'rgsn-circle', 'lr-circle', 'knn-circle', 'ln-circle', 'unamed-1', 'unamed-2']
+  // var cxs = [dataX, dataX, modelX, modelX, modelX, modelX, modelX]
+  // var cys = [180, 420, 180, 240, 325, 380, 450]
 
-  var final = []
-  for (i = 0; i < points.length; i++) {
-    svg.append('circle').attr('id', points[i]).attr('class', 'transition')
-      .attr('r', '5').attr('cx', cxs[i]).attr('cy', cys[i])
-      .transition(transitionPath)
-      .attr('r', '0')
-  }
+  // var final = []
+  // for (i = 0; i < points.length; i++) {
+  //   visContainer.append('circle').attr('id', points[i]).attr('class', 'transition')
+  //     .attr('r', '5').attr('cx', cxs[i]).attr('cy', cys[i])
+  //     .transition(transitionPath)
+  //     .attr('r', '0')
+  // }
 
   var pivot = svg.append('circle').attr('r', '5').attr('cx', dataX).attr('cy', '325')
     .attr('class', 'transition').attr('class', 'transition2')
@@ -51,31 +73,17 @@ async function sec_3_1_1_transition(loaded) {
   var y2s = [180, 325, 180, 240, 325]
 
   for (i = 0; i < lines.length; i++) {
-    svg.append('line').attr('id', lines[i]).attr('class', 'transition').attr('class', 'transition2')
+    visContainer.append('line').attr('id', lines[i]).attr('class', 'transition').attr('class', 'transition2')
       .attr('stroke', 'black').attr('stroke-width', '1')
       .attr('x1', dataX).attr('x2', modelX)
-      .attr('y1', y1s[i]).attr('y2', y2s[i])
+      .attr('y1', yDist+y1s[i]).attr('y2', yDist+y2s[i])
       .transition(transitionPath)
-      .attr('y1', '325').attr('y2', '325')
+      .attr('y1', 0).attr('y2', 0)
       .attr('x1', dataX).attr('x2', modelX)
   }
 
-  var texts = ['Data', 'Models', 'Binary', 'Multi-Classes', 'Regression', 'Logistic Regression',
-    'KNN', 'Linear Regression']
-  var transforms = ['(140,120)', '(420,120)', '(100,185)', '(50,330)', '(65,425)', '(470,185)',
-    '(470,245)', '(470,330)']
-
-  for (i = 0; i < texts.length; i++) {
-    svg.append('text').attr('class', 'transition')
-      .attr('fill', 'black').attr('opacity', '1')
-      .attr('transform', 'translate' + transforms[i])
-      .text(texts[i])
-      .transition(transitionPath)
-      .attr('opacity', '0')
-  }
-
-  await delay(1000);
-  svg.selectAll('.transition2').transition().duration(500).attr('x2', '160');
+  await delay(500);
+  svg.selectAll('.transition2').transition().duration(500).attr('x2', dataX);
 
   await delay(750);
   console.log("transition over")
@@ -135,10 +143,17 @@ async function sec4_1_1(loaded) {
     console.log("at section 4_1_1")
     console.log(dataset.length)
 
+    // var width = w_width
+    // var height = w_height
+
     var svg = d3.select('#sec4_1').select('svg')
+    // .attr('transform', function(d, i) {return 'translate('+ (w_width/10) +','+(w_height/20) +')'})
+
+    // var visContainer = svg.append('g').attr("class", "visContainer")
+    // .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
 
     svg.append('g').attr('class', 'x axis')
-      .attr("transform", "translate(" + widthMargin + "," + (height - heightMargin) + ")")
+      .attr("transform", "translate(" + (widthMargin*3) + "," + (height- heightMargin) + ")")
       .attr('opacity', '0')
       .call(d3.axisBottom(lengthScale).tickFormat(function (d) { return d; }))
       .transition().duration(1000)

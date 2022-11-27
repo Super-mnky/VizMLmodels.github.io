@@ -105,7 +105,7 @@ function sec1(){
 
 async function sec2_2_1(){
   // Transition code:
-  sec2_1_2_transition();
+  sec2_2_1_transition();
   await delay(500);
 
   d3.csv('iris.csv').then((data) => display_sec2_2_1(null, data));

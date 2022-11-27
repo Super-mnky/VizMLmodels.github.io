@@ -7,8 +7,9 @@ function sec4_2_1(loaded){
       svg = d3.select("#sec4_2").select("svg")
   } else {
     svg = d3.select('#sec4_2').append('svg')
-    .attr('width', width)
-    .attr('height', height)
+      .attr('width', w_width).attr('height', w_height)
+    visContainer = svg.append('g').attr("class", "iris")
+      .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
   }
   
 

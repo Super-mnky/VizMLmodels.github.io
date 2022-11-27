@@ -1,4 +1,5 @@
-async function sec2_1_2_transition(loaded){
+//bubble
+async function sec2_2_1_transition(loaded){
   var svg;
   if (loaded){
     svg = d3.select("#sec2_2").select("svg")
@@ -8,7 +9,7 @@ async function sec2_1_2_transition(loaded){
     .attr('width', w_width)
     .attr('height', w_height);
     visContainer = svg.append('g').attr("class", "iris")
-    .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.5) +')'})
+    .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
   }
 
   var radius = 400;

@@ -1,3 +1,4 @@
+//comoare model-data
 function sec3_1_1(loaded) {
     var svg;
     if (loaded){
@@ -6,34 +7,38 @@ function sec3_1_1(loaded) {
         svg = d3.select("#sec3").append("svg")
             .attr('width', w_width).attr('height', w_height)
         visContainer = svg.append('g').attr("class", "iris")
-            .attr('transform', function(d, i) {return 'translate('+ (0) +','+(0) +')'})    
+            .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
     }
-
-    var dataX = 160
-    var modelX = 450;
+    
+    var dividen = 5
+    var modelX = (w_width/dividen);
+    var dataX = -w_width/dividen
+    var chartY1 = -150
+    var chartY2 = 150
+    var yDist = (chartY1-chartY2)
     var transitionPath = d3.transition().ease(d3.easeSin).duration(2000);
 
     visContainer.append('line').attr('id', 'data-line')
-        .attr('stroke', 'black').attr('stroke-width', '1')
+        .attr('stroke', 'black').attr('stroke-width', '2')
         .attr('x1', dataX).attr('x2', dataX)
-        .attr('y1', '140').attr('y2', '140')
-        .transition(transitionPath)
-        .attr('y2', '480')
+        .attr('y1', chartY1).attr('y2', chartY1)
+        // .transition(transitionPath)
+        .attr('y2', chartY2)
 
     visContainer.append('line').attr('id', 'model-line')
-        .attr('stroke', 'black').attr('stroke-width', '1')
+        .attr('stroke', 'black').attr('stroke-width', '2')
         .attr('x1', modelX).attr('x2', modelX)
-        .attr('y1', '140').attr('y2', '140')
-        .transition(transitionPath)
-        .attr('y2', '480')
+        .attr('y1', chartY1).attr('y2', chartY1)
+        // .transition(transitionPath)
+        .attr('y2', chartY2)
 
-    var points = ['bin-circle', 'mc-circle', 'rgsn-circle', 'lr-circle', 'knn-circle', 'ln-circle', 'unamed-1', 'unamed-2']
-    var cxs = [dataX, dataX, dataX, modelX, modelX, modelX, modelX, modelX]
-    var cys = [180, 325, 420, 180, 240, 325, 380, 450]
+    var points = ['unamed-1', 'bin-circle', 'mc-circle', 'rgsn-circle', 'unamed-1', 'unamed-1', 'lr-circle', 'knn-circle', 'ln-circle', 'unamed-1', 'unamed-2']
+    var cxs = [dataX, dataX, dataX, dataX, dataX, modelX, modelX, modelX, modelX, modelX, modelX]
+    var cys = [150, 180, 325, 420, 450, 150, 180, 240, 325, 380, 450]
 
     for (i = 0; i < points.length; i++) {
-        svg.append('circle').attr('id', points[i])
-            .attr('r', '0').attr('cx', cxs[i]).attr('cy', cys[i])
+        visContainer.append('circle').attr('id', points[i])
+            .attr('r', '5').attr('cx', cxs[i]).attr('cy', yDist+cys[i])
             .transition(transitionPath).attr('r', '5')
     }
 
@@ -45,25 +50,43 @@ function sec3_1_1(loaded) {
         visContainer.append('line').attr('id', lines[i])
             .attr('stroke', 'black').attr('stroke-width', '1')
             .attr('x1', dataX).attr('x2', dataX)
-            .attr('y1', y1s[i]).attr('y2', y1s[i])
-            .transition(transitionPath)
-            .attr('y2', y2s[i])
+            .attr('y1', yDist+y1s[i]).attr('y2', yDist+y1s[i])
+            .transition(transition_800)
+            .attr('y2', yDist+y2s[i])
             .attr('x2', modelX)
     }
 
-    var texts = ['Data', 'Models', 'Binary', 'Multi-Classes', 'Regression', 'Logistic Regression',
+    var texts = ['Binary', 'Multi-Classes', 'Regression', 'Logistic Regression',
         'KNN', 'Linear Regression']
-    var transforms = ['(140,120)', '(420,120)', '(100,185)', '(50,330)', '(65,425)', '(470,185)',
-        '(470,245)', '(470,330)']
-
+    var dX = 130;
+    var mX = 20;
+    var tcxs = [dataX-dX+55, dataX-dX, dataX-dX+20, modelX+mX, modelX+mX, modelX+mX, modelX+mX]
+    var tcys = [180, 325, 420, 180, 240, 325, 380]
+   
     for (i = 0; i < texts.length; i++) {
         visContainer.append('text').attr('class', 'label')
-
         .attr('fill','black').attr('opacity','0')
-        .attr('transform','translate'+transforms[i])
+        // .attr('transform','translate'+transforms[i])
+        .attr('transform', 'translate('+ tcxs[i] +','+ (yDist+tcys[i]+5) +')')
         .text(texts[i])
-        .transition(transitionPath)
+        .transition(transition_800)
         .attr('opacity','1')
+    }
+
+    var labels = ['Data types', 'Models']
+    // var transforms = ['(140,120)', '(420,120)']
+    var lcxs = [dataX, modelX]
+    var lcys = [chartY1, chartY1]
+
+    for (i = 0; i < labels.length; i++) {
+        visContainer.append('text').attr('class', 'label')
+        .attr('fill','black').attr('opacity','0')
+        // .attr('transform','translate'+transforms[i])
+        .attr('transform', 'translate('+ (lcxs[i]-5) +','+ (lcys[i]-20) +')')
+        .text(labels[i])
+        .transition(transition_800)
+        .attr('opacity','1')
+
     }
 
     /*
