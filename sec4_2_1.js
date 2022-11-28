@@ -23,6 +23,23 @@ function sec4_2_1(loaded){
     return lengthScale(SepalLengthCm);
   }
 
+  var lengthScalePetal = d3.scaleLinear()
+  .domain([0.0, 8]).range([heightMargin, height - heightMargin]);
+
+  function scaleLengthPetal(PetalLengthCm) {
+    return lengthScalePetal(PetalLengthCm);
+  }
+
+  function yaxisPetal(species){
+    if (species == "Iris-versicolor"){
+      return 325;
+    } else if (species == "Iris-virginica"){
+      return 410
+    } else {
+      return 250
+    }
+  }
+
   function scaleWidth(SepalWidthCm) {
     return widthScale(SepalWidthCm);
   }
@@ -60,38 +77,42 @@ function sec4_2_1(loaded){
     .data(dataset)
     .enter()
     .append("g")
-    .attr("transform", function(d) {
-    return ("translate(" + scaleLength(d.SepalLengthCm) + "," + scaleWidth(d.SepalWidthCm) + ")")
-    })
+    .attr("transform", function (d) {
+      return ("translate(" + scaleLengthPetal(d.PetalLengthCm) + "," + yaxisPetal(d.Species) + ")");
+    })    
+    .style("opacity", 0.7)
 
     svg.append('g').attr('class', 'x axis')
     .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")
-    .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}));
+    .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}))
 
     svg.append('g').attr('class', 'y axis')
     .attr("transform", "translate("+(widthMargin+heightMargin)+",0)")
-    .call(d3.axisLeft(widthScale));
+    .call(d3.axisLeft(widthScale))
+    .attr("opacity","0")
+    .transition().duration(1000)
+    .attr("opacity","1")
 
     svg.append('text')
       .attr('class', 'label')
       .attr('transform','translate('+((width-widthMargin)/2 - 20)+','+(height-(heightMargin/3))+')')
-      .text('Sepal Length');
+      .text('Sepal Length')
+      .attr("opacity","0")
+      .transition().duration(1000)
+      .attr("opacity","1")  
 
     svg.append('text')
       .attr('class', 'label')
       .attr('transform','translate('+widthMargin+','+(height - heightMargin)/2+') rotate(90)')
-      .text('Sepal Width');
+      .text('Sepal Width')
+      .attr("opacity","0")
+      .transition().duration(1000)
+      .attr("opacity","1")  
 
     var circles = svg.selectAll("g")
           console.log('showing dots')
           g.append("circle")
-          .on('mouseover', showDetail)
-          .on('mouseout', hideDetail)    
-          .transition()
-              .delay(function(d,i) {return i * 20;})
-              .duration(750)
-              .attr("r", 3.5)
-              .attr('fill', function(d) {
+          .attr('fill', function(d) {
             if (d.Species == 'Iris-virginica') {
               return 'orange';
             } else {
@@ -101,6 +122,19 @@ function sec4_2_1(loaded){
             if (d.Species == 'Iris-setosa') {
               return 'blue';
             }}}})
+          .on('mouseover', showDetail)
+          .on('mouseout', hideDetail)  
+          .attr("r", 3.5)  
+          .transition()
+              .delay(function(d,i) {return i * 20;})
+              .duration(750)
+              .attr("transform", function(d) {
+                return ("translate(" + (scaleLength(d.SepalLengthCm)-scaleLengthPetal(d.PetalLengthCm)) 
+                + "," + (scaleWidth(d.SepalWidthCm)-yaxisPetal(d.Species)) + ")")
+                })
+              .style("opacity", 1)
+
+            
 
   });
 }
