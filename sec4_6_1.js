@@ -1,14 +1,44 @@
 // _4_model comparison
 
-function sec4_6_1(loaded){
-    var svg;
-    if (loaded){
-      svg = d3.select('#sec4_6').select('svg')
-    } else {
-      svg = d3.select('#sec4_6').append('svg')
-      .attr('width', width)
-      .attr('height', height)
-    }
+function sec431_to_461(loaded){
+  var svg;
+  if (loaded){
+    svg = d3.select('#sec4_6').select('svg')
+  } else {
+    svg = d3.select('#sec4_6').append('svg')
+    .attr('width', width)
+    .attr('height', height)
+  }
+
+  d3.csv('iris.csv').then(function (dataset) {
+    //console.table(dataset)
+    var g = svg.selectAll("g")
+        .data(dataset)
+        .enter()
+        .append("g")
+        .attr("transform", function (d) {
+            iris_data.push({ x: scaleLength(d.SepalLengthCm), y: scaleWidth(d.SepalWidthCm), Species: d.Species })
+            return ("translate(" + scaleLength(d.SepalLengthCm) + "," + scaleWidth(d.SepalWidthCm) + ")")
+        })
+
+    g.append("circle")
+        .attr("r", 3.5)
+        .attr("stroke", 'black')
+        .attr('fill', function (d) { return color(d.Species); })
+        .transition().duration(1000)
+        .attr("r","30")
+        .attr("fill",mainColor['lightgreen'])
+        .attr("transform",function (d) { return "translate("+(345 - scaleLength(d.SepalLengthCm))+","+
+        (160 - scaleWidth(d.SepalWidthCm))+")"})
+})
+
+}
+
+async function sec4_6_1(loaded){
+  sec431_to_461(loaded);
+  svg = d3.select('#sec4_6').select('svg')
+
+  await delay(1200);
 //   var svg = d3.select('#sec4_6').append('svg')
 //   .attr('width', w_width)
 //   .attr('height', w_height)
@@ -56,7 +86,7 @@ function sec4_6_1(loaded){
     .append('g')
     .attr('transform', function(d, i) {return 'translate('+(((2*i*radius)))+','+0+')'})
     .attr('class', 'pies')
-
+    
   // pie charts   
   var pie = d3.pie()
     .value(function(d) {return d.value; })
@@ -66,6 +96,8 @@ function sec4_6_1(loaded){
     .attr("class", "pieCircle")
     .attr("fill", function(d, i){return i < 2 ? "none" : mainColor['lightgreen']})
     .attr("cx", 0).attr("cy", 0)
+    .attr("r","0")
+    .transition(transition_500)
     .attr("r", radius)
 
   var pies_layer = pieGroup.append('circle')
