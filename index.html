@@ -281,42 +281,80 @@
                                 Ideally we'd like every dot color and it's background to match, indicating a 100%
                                 accuracy.
 
-                                <br><br><br><br> Unfortunately you may spot some observations where there is a mismatch.
-                                Thankfully KNN with a k value of 3 isn't the only option! We can select other values,
-                                perhaps there are other values of K that will lead to more accurate predictions to be made.
+                                <br><br><br><br> KNN is a powerful model due to how the 'clustering' mechanism works.
+                                For each new observation the model will look at the 'K' nearest neighbors species
+                                and attributes to decide what is the most likely species of the observation. The model
+                                will then move to the next unknown observation, sequentially going through all until
+                                it has made a prediction on all new observations.
+
+                                <br><br><br><br> The model has been run initially with a K value of 3. Unfortunately it
+                                doesn't seem to have gotten everything correct. You may spot some observations where
+                                there is a mismatch. Thankfully KNN with a k value of 3 isn't the only option! We can
+                                select other values, perhaps there are other values of K that will lead to more accurate
+                                predictions to be made.
 
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_3_1_text">
                                 <!-- sec4_3_1_text _4_comparison -->
-                                <br>With those insights, we can now run our KNN model to see how it ultimately performs.
+                                <br>We can now examine how we will assess how the model will ultimately perform.
 
-                                <br><br><br><br> Let's test with a K value of 5 to see how accurate the model is. As
-                                we discussed, only 60% of our data will be used strictly for the training of our model,
-                                indicated by the filled circles. For each of the 90 observations, our model will select
-                                the
+                                <br><br><br><br> As we've discussed, our KNN model will use 60% of our dataset totalling
+                                90 observations to begin learning the associations needed to make accurate predictions,
+                                20% or 30 observations will be used to help validate the training, and 20% or 30
+                                observations will be used as a testing set.
+
+                                <br><br><br><br> As the model completes it's training, the model progress bar will
+                                fill. Once it is at 100% percent, the training is completed.
+
+                                <br><br><br><br> The accuracy will be displaced through the accuracy chart. What we hope
+                                to see is very high accuracy once we test our model against the testing set.
 
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec5_text">
-                                sec5_text _5_kfold
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec5_text _5_kfold -->
+                                <br>Lastly, we can finally examine how the validation step is done using KNN.
+
+                                <br><br><br><br> The validation step is used to help make use of all of our data. To the
+                                left we have selected a K value of 5. What this means is we'll split our entire dataset
+                                into 5 equal buckets. In our case each bucket will have 30 observations in each.
+
+                                <br><br><br><br> Machine learning models work by a cycle of training and testing. In the
+                                validation step, 1 bucket is selected as the 'test' set, while the others are used to
+                                train the model. Once training is completed, a test is done against the test set to see
+                                how accurate the model is. The accuracy is recorded.
+
+                                <br><br><br><br> From here the next bucket is selected as the 'test' set, and again all
+                                other buckets will be used to train the model, and the accuracy when tested is also
+                                recorded. This process will continue until every bucket has the opportunity to be
+                                selected as the 'test' set. This means we'll have run our model K or 5 times!
+
+                                <br><br><br><br> Finally, once all runs are completed, we simply average the accuracies.
+
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec6_text">
-                                sec6_text _6_parameter
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec6_text _6_parameter -->
+                                <br>tbd
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec7_text">
-                                sec7_text _7_modelselect
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec7_text _7_modelselect -->
+                                <br>We can now run the model and see how it performs!
+
+                                <br><br><br><br> Selecting the value of K will be very important in achieving the best
+                                accuracy from the model. We can select 5, 10, 20, or 30 as our number of folds. Feel
+                                free to see how high you can get the accuracy with all the options!
+
+                                <br><br><br><br> If you've explored all the available options, you'll have found that
+                                selecting a K value of 5 gives you the highest accuracy with an accuracy of <b>96%</b>.
+                                Pretty Impressive!
+
+                                <br><br><br><br> Hopefully you have a good understanding now of how we can use machine
+                                learning algorithms, utilize powerful models such as K Nearest Neighbors, and run and
+                                compare them to get the highest accuracy possible.
+
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec8_text">

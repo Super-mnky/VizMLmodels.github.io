@@ -156,6 +156,8 @@ async function sec4_6_1(loaded){
     .style("stroke-width", 2)
     .attr("stroke", mainColor['red'])
     .attr("stroke-dashoffset", 0)
+    .attr('opacity', 0) // removed temporarily
+
      
   function posi(d, i, radius){
       var x;
@@ -195,7 +197,7 @@ async function sec4_6_1(loaded){
     .attr('transform','translate('+(-pieX*1.37)+','+pieY*2+')')
     .call(d3.axisBottom(lengthScale_acc).tickFormat(function(d){return d;}));
 
-  // acc dot on x axis   
+  // acc dot on x axis
   var accAxis = pieArea.append('circle')
     .attr("fill", mainColor['red'])
     // .attr("stroke", '#323D52')
@@ -204,15 +206,20 @@ async function sec4_6_1(loaded){
     .transition(transition_500)
     .delay(function(d, i){return duration_2500})
     .attr("r", 5)
+    .attr('opacity', 0) // removed temporarily
 
   // text-labels-left   
   var yAxisTxts = ["Data", "Model", "Accuracy"]
-  var accValues = ["96% : LR"]
+
+  // var accValues = ["96% : LR"] // temporarily removed
+  var accValues = [""]
+
   var text_fold1 = pieArea.append("text")
     .text(yAxisTxts[0])
     .attr('class', 'axis-txt text-sm')
     .attr("x", 0).attr("y", 0)	
     .attr('transform','translate('+(-pieX/2)+','+((-pieY/40)) +')rotate(270)')
+
 
   var text_fold2 = pieArea.append("text")
     .text(yAxisTxts[1])
@@ -273,6 +280,8 @@ async function sec4_6_1(loaded){
     .style("stroke-width", 1)
     .attr("stroke", mainColor['red'])
     .attr("stroke-dashoffset", 0)
+    .attr('opacity', 0) // removed temporarily
+
      
   var text_acc = pieArea.append("text")
     .text(accValues[0])

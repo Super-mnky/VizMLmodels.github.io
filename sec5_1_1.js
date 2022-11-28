@@ -128,6 +128,7 @@ function sec5_1_1(loaded){
     .style("stroke-width", 2)
     .attr("stroke", mainColor['red'])
     .attr("stroke-dashoffset", 0)
+    .attr('opacity', 0) // removed temporarily
      
   function posi(d, i, radius){
       var x;
@@ -176,10 +177,14 @@ function sec5_1_1(loaded){
     .transition(transition_500)
     .delay(function(d, i){return duration_2500})
     .attr("r", 5)
+    .attr('opacity', 0) // removed temporarily
 
   // text-labels-left   
   var yAxisTxts = ["Data", "Model", "Accuracy"]
-  var accValues = ["96% : LR"]
+
+  //var accValues = ["96% : LR"] // removed temporarily
+  var accValues = [""]
+
   var text_fold1 = pieArea.append("text")
     .text(yAxisTxts[0])
     .attr('class', 'axis-txt text-sm')
@@ -245,6 +250,7 @@ function sec5_1_1(loaded){
     .style("stroke-width", 1)
     .attr("stroke", mainColor['red'])
     .attr("stroke-dashoffset", 0)
+    .attr('opacity', 0) // removed temporarily
      
   var text_acc = pieArea.append("text")
     .text(accValues[0])
