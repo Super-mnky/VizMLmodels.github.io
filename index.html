@@ -148,64 +148,138 @@
                                         <li><b>Vericolor</b></li>
                                         <li><b>Setosa</b></li>
                                 </ul>
-                                <br><br><br><br> Our goal then for our model to learn how the lengths and widths of the
-                                petals and speals.
+                                <br><br><br><br> Our goal then for our model is to learn how the lengths and widths of the
+                                petals and sepals indicate which species the particular observation relates to. Each
+                                species tends to have similar features, so if our model and learn the relationship, the
+                                model should be able to make accurate predictions for new observations.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_1_1_1_text">
-                                sec2_1_1_1_text _2_dataprep
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec2_1_1_1_text _2_dataprep -->
+                                <br>Let's take a closer look at our dataset. We can hover over each observation to see
+                                the features for each.
+
+                                <br><br><br><br> Each bubble here represents a single observation. Our total dataset has
+                                150 recorded observations, so there are 150 bubbles. Smaller bubbles indicate smaller
+                                lengths and widths, while larger bubbles represent larger lengths and width.
+
+                                <br><br><br><br>By clicking the <b>By Species</b> button we can see the separation
+                                between the species. We can see things a bit more clearly here. The Seota species tends
+                                to be a bit smaller in size, while Virginica tends to be larger, with versicolor tends
+                                to be somewhere in teh middle. This could be a useful pattern for our model!
+
+                                <br><br><br><br> By clicking the <b>Data Split</b> button, we can how we will break our
+                                dataset into different groupings:
+                                <br><br><br><br>
+                                <ul>
+                                        <li><b>The Train Set</b></li> will be used to train our model. These observations will
+                                        be used to learn the relationships to make accurate predictions.
+                                        <li><b>The Validation Set</b></li> will be used while the model is trained. It
+                                        is to ensure that training is moving in the right direction, ideally more
+                                        accurate as more data is used!
+                                        <li><b>The Test Set</b></li> is what we'll test our trained model on. We'll need
+                                        to test to see how accurate our model can perform on data our model hasn't seen
+                                        before. The model will not know the true species of the observations during
+                                        testing.
+                                </ul>
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_2_1_text">
-                                sec2_2_text _2_dataprep
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec2_2_text _2_dataprep -->
+                                <br>The term model has been a bit vague so far. What do we mean by this?
+
+                                <br><br><br><br> The type of model to be used for machine learning depends on the type
+                                of data your dataset is comprised of. Depending on this, certain models are more
+                                suitable than others in accomplish tasks. Let's review a few.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_text">
-                                sec3_text _3_classifier
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec3_text _3_classifier -->
+                                <br>If the dataset is only comprised of <i>binary</i> datatypes such as -5, 10, 0.001, 10,000 and the like
+                                two models and prmarily used:
+
+                                <br><br><br><br>
+                                <ul>
+                                        <li><b>Logistic Regression</b></li> is used when the task is to provide
+                                        <i>continuous</i> out. Consider trying to predict the price of a house. Perhaps
+                                        it could range from $10,000 to $10,000,000, it can be <i>many</i> values.
+                                        <li><b>Linear Regression</b></li> is used when the task is to provide a discrete
+                                        output. Consider trying to predict if an imagine is a cat, dog, or cow. There
+                                        are only <i>a few </i> values that can be output by the model.
+
+                                </ul>
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_1_text">
-                                sec3_text _3_classifier
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec3_text _3_classifier -->
+                                <br>If the dataset is only comprised of <i>multi-class</i> datatypes, these can come in
+                                the form of cats, dogs, and cows, but all have the same attributes such as weight,
+                                hair type, or claw type. In this case two models are again primarily used:
+
+                                <br><br><br><br>
+                                <ul>
+                                        <li><b>Logistic Regression</b></li> as explained before, best for
+                                        <i>continuous</i> output.
+                                        <li><b>KNN</b></li> or K Nearest Neighbors is used when you need to group
+                                        observations and output only a few values. K is an integer that decides how
+                                        many neighbors should be included when deciding if an observation belongs to
+                                        a certain type of observation.
+
+                                </ul>
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_2_text">
-                                sec3_text _3_classifier
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec3_text _3_classifier -->
+                                <br>TBD Regression is not a datatype.
+
+                                <br><br><br><br>
+                                <ul>
+                                        <li><b>TBD</b></li> TBD
+
+                                </ul>
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_3_text">
-                                sec3_text _3_classifier
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec3_text _3_classifier -->
+                                <br>Let's take another view of the dataset's petal lengths to see what insights we can gain:
+
+                                <br><br><br><br> By looking at only the petal lengths we can make an interesting observation!
+                                Look closely at the Setosa species. The petal length could be a very strong indicator
+                                for what species the observation belongs to, as they are <i>no other species</i> that
+                                have this small of petal length. Viriginica and Vericolor are a bit more murky. There
+                                are portions that overlap, which make useful this feature alone inconclusive in
+                                determining the species.
+
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_1_1_text">
-                                sec4_1_1_text _4_comparison
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec4_1_1_text _4_comparison -->
+                                <br>Let's take one more view to see if any patterns stick out:
+
+                                <br><br><br><br> From this view we can confirm that Setosa is uniquely grouped and
+                                because of this should be easier to identify. We will hope that our model can identify
+                                this pattern easily identify the species.
+
+                                <br><br><br><br> Virginica tends to be a bit larger in sepal length, while Vericolor
+                                tends to be a bit smaller. Perhaps our model can use these patterns to correctly
+                                identify all species.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_2_1_text">
-                                sec4_2_1_text _4_comparison
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec4_2_1_text _4_comparison -->
+                                <br>As we've discussed, KNN or K Nearest Neighbors will use 'K' neighbors to help
+                                identify which observation belong to which species by looking comparing it to it's
+                                neighbors.
+
+                                <br><br><br><br> Here, each dot represents an observation while the color of the
+                                background represents what species the model will predict the observation belongs to.
+                                Ideally we'd like every dot color and it's background to match, indicating a 100%
+                                accuracy.
+
+                                <br><br><br><br> Unfortunately you may spot some observations where there is a mismatch.
+                                Thankfully KNN with a k value of 1 isn't the only option! We can select other values,
+                                perhaps there are other values of K that will lead to more accurate predictions made.
+
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_3_1_text">
