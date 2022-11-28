@@ -36,7 +36,7 @@ async function sec_3_1_1_transition(loaded) {
     .attr('x1', dataX).attr('x2', dataX)
     .attr('y1', chartY1).attr('y2', chartY2)
     .transition(transition_800)
-    .attr('y1', 0).attr('y2', 0)
+    .attr('y1', 22).attr('y2', 22)
     // .attr('x1', 0).attr('x2', 0)
 
     // .attr('stroke', 'black').attr('stroke-width', '2')
@@ -50,7 +50,7 @@ async function sec_3_1_1_transition(loaded) {
     .attr('x1', modelX).attr('x2', modelX)
     .attr('y1', chartY1).attr('y2', chartY2)
     .transition(transitionPath)
-    .attr('y1', 0).attr('y2', 0)
+    .attr('y1', 22).attr('y2', 22)
     .attr('x1', modelX).attr('x2', modelX)
 
   // var points = ['bin-circle', 'rgsn-circle', 'lr-circle', 'knn-circle', 'ln-circle', 'unamed-1', 'unamed-2']
@@ -65,8 +65,8 @@ async function sec_3_1_1_transition(loaded) {
   //     .attr('r', '0')
   // }
 
-  var pivot = svg.append('circle').attr('r', '5').attr('cx', dataX).attr('cy', '325')
-    .attr('class', 'transition').attr('class', 'transition2')
+  var pivot = visContainer.append('circle').attr('r', '5').attr('cx', dataX).attr('cy', 22)
+    .attr('class', 'transition')
 
   var lines = ['bin-to-lr', 'bin-to-ln', 'mc-to-lr', 'mc-to-knn', 'rgsn-to-ln']
   var y1s = [180, 180, 325, 325, 420]
@@ -78,7 +78,7 @@ async function sec_3_1_1_transition(loaded) {
       .attr('x1', dataX).attr('x2', modelX)
       .attr('y1', yDist+y1s[i]).attr('y2', yDist+y2s[i])
       .transition(transitionPath)
-      .attr('y1', 0).attr('y2', 0)
+      .attr('y1', 22).attr('y2', 22)
       .attr('x1', dataX).attr('x2', modelX)
   }
 
@@ -88,7 +88,8 @@ async function sec_3_1_1_transition(loaded) {
   await delay(750);
   console.log("transition over")
 
-  pivot.transition().duration(500).attr("opacity", "0");
+  pivot.transition().duration(350).attr("cy",22)
+  //pivot.transition().duration(500).attr("opacity", "0");
 }
 
 //_4_comparison
@@ -119,7 +120,7 @@ async function sec4_1_1(loaded) {
 
   sec_3_1_1_transition(loaded);
 
-  await delay(1600);
+  await delay(1200);
 
   var lengthScale = d3.scaleLinear()
     .domain([0.0, 8]).range([heightMargin, height - heightMargin]);
@@ -184,10 +185,13 @@ async function sec4_1_1(loaded) {
       .data(dataset)
       .enter()
       .append("g")
+      .attr("transform", "translate("+285+",325)")
+
+      g.transition().duration(500)
       .attr("transform", function (d) {
         return ("translate(" + scaleLength(d.PetalLengthCm) + "," + 325 + ")")  //magic number to bring down dots
       })
-
+    
     svg.selectAll("g")
       .data(dataset)
       .enter()
@@ -200,8 +204,6 @@ async function sec4_1_1(loaded) {
       .transition().duration(250)
       .attr("r", 4.5)
 
-    svg.selectAll('circle.transition').remove();
-
     svg.selectAll(".circle-a")
       .transition().delay(function (d, i) { return i * 20; })
       .duration(1500)
@@ -210,6 +212,7 @@ async function sec4_1_1(loaded) {
           return ("translate(" + 0 + "," + 75 + ")");
         } else {
           if (d.Species == 'Iris-versicolor') {
+            svg.selectAll('circle.transition').remove();
             return ("translate(" + 0 + "," + 0 + ")");
           } else {
             if (d.Species == 'Iris-setosa') {
@@ -235,6 +238,7 @@ async function sec4_1_1(loaded) {
         }
       })
   });
+
 }
 
 //display chart
