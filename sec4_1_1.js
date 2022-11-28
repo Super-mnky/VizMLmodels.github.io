@@ -1,3 +1,6 @@
+var centered_x = -250;
+var centered_y = -250;
+
 async function sec_3_1_1_transition(loaded) {
   console.log("transitioning...")
 
@@ -9,7 +12,6 @@ async function sec_3_1_1_transition(loaded) {
       .attr('width', w_width).attr('height', w_height)
     visContainer = svg.append('g').attr("class", "visContainer")
       .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
-
   }
 
   // var dataX = 160
@@ -85,7 +87,7 @@ async function sec_3_1_1_transition(loaded) {
   await delay(500);
   svg.selectAll('.transition2').transition().duration(500).attr('x2', dataX);
 
-  await delay(750);
+  await delay(500);
   console.log("transition over")
 
   pivot.transition().duration(350).attr("cy",22)
@@ -121,9 +123,10 @@ async function sec4_1_1(loaded) {
   sec_3_1_1_transition(loaded);
 
   await delay(1200);
+  
 
   var lengthScale = d3.scaleLinear()
-    .domain([0.0, 8]).range([heightMargin, height - heightMargin]);
+    .domain([0.0, 8]).range([centered_x, -centered_x]);
 
 
   var widthScale = d3.scaleLinear()
@@ -147,14 +150,16 @@ async function sec4_1_1(loaded) {
     // var width = w_width
     // var height = w_height
 
-    var svg = d3.select('#sec4_1').select('svg')
+    var svg = d3.select("#sec4_1").select("svg").select("g.visContainer")
+    //var svg = d3.select('#sec4_1').select('svg')
     // .attr('transform', function(d, i) {return 'translate('+ (w_width/10) +','+(w_height/20) +')'})
 
     // var visContainer = svg.append('g').attr("class", "visContainer")
     // .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
 
+
     svg.append('g').attr('class', 'x axis')
-      .attr("transform", "translate(" + (widthMargin*3) + "," + (height- heightMargin) + ")")
+      .attr("transform", "translate( "+ 0 +" ," + heightMargin*2 + ")")
       .attr('opacity', '0')
       .call(d3.axisBottom(lengthScale).tickFormat(function (d) { return d; }))
       .transition().duration(1000)
@@ -163,33 +168,33 @@ async function sec4_1_1(loaded) {
     svg.append('text')
       .attr('class', 'label')
       .attr('id', 'sepal_length_label')
-      .attr('transform', 'translate(' + ((width - widthMargin) / 2 - 20) + ',' + (height - (heightMargin / 3)) + ')')
+      .attr('transform', 'translate( ' + -50 + ',' + (heightMargin*2 + 40) + ')')
       .text('Petal Length');
 
     svg.append('text')
       .attr('class', 'label')
-      .attr('transform', 'translate(' + widthMargin + ',' + (height - heightMargin - 250) + ') rotate(0)')
+      .attr('transform', 'translate(' + (centered_x-100) + ',' + -75 + ') rotate(0)')
+      .text('Setosa');
+
+    svg.append('text')
+      .attr('class', 'label')
+      .attr('transform', 'translate(' + (centered_x-100) + ',' + 0 + ') rotate(0)')
       .text('Vericolor');
 
     svg.append('text')
       .attr('class', 'label')
-      .attr('transform', 'translate(' + widthMargin + ',' + (height - heightMargin - 180) + ') rotate(0)')
+      .attr('transform', 'translate(' + (centered_x-100) + ',' + 75 + ') rotate(0)')
       .text('Virginica');
-
-    svg.append('text')
-      .attr('class', 'label')
-      .attr('transform', 'translate(' + widthMargin + ',' + (height - heightMargin - 325) + ') rotate(0)')
-      .text('Setosa');
 
     var g = svg.selectAll("g")
       .data(dataset)
       .enter()
       .append("g")
-      .attr("transform", "translate("+285+",325)")
+      .attr("transform", "translate(0,0)")
 
       g.transition().duration(500)
       .attr("transform", function (d) {
-        return ("translate(" + scaleLength(d.PetalLengthCm) + "," + 325 + ")")  //magic number to bring down dots
+        return ("translate(" + scaleLength(d.PetalLengthCm) + "," + 0 + ")")  //magic number to bring down dots
       })
     
     svg.selectAll("g")
@@ -237,6 +242,7 @@ async function sec4_1_1(loaded) {
           }
         }
       })
+      .attr('r','3.5')
   });
 
 }

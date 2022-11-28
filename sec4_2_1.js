@@ -4,27 +4,26 @@ function sec4_2_1(loaded){
 
   var svg;
   if (loaded){
-      svg = d3.select("#sec4_2").select("svg")
+      svg = d3.select("#sec4_2").select("svg").select("g.iris")
   } else {
     svg = d3.select('#sec4_2').append('svg')
       .attr('width', w_width).attr('height', w_height)
-    visContainer = svg.append('g').attr("class", "iris")
+    svg = svg.append('g').attr("class", "iris")
       .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
   }
   
-
   var lengthScale = d3.scaleLinear()
-  .domain([4,8]).range([heightMargin, height-heightMargin]);
+  .domain([4,8]).range([centered_x, -centered_x]);
 
   var widthScale = d3.scaleLinear()
-  .domain([1.8,4.5]).range([height-heightMargin, heightMargin]);
+  .domain([1.8,4.5]).range([-centered_x, centered_x]);
 
   function scaleLength(SepalLengthCm) {
     return lengthScale(SepalLengthCm);
   }
 
   var lengthScalePetal = d3.scaleLinear()
-  .domain([0.0, 8]).range([heightMargin, height - heightMargin]);
+  .domain([0.0, 8]).range([centered_x, -centered_x]);
 
   function scaleLengthPetal(PetalLengthCm) {
     return lengthScalePetal(PetalLengthCm);
@@ -32,11 +31,11 @@ function sec4_2_1(loaded){
 
   function yaxisPetal(species){
     if (species == "Iris-versicolor"){
-      return 325;
+      return 0;
     } else if (species == "Iris-virginica"){
-      return 410
+      return 75
     } else {
-      return 250
+      return -75
     }
   }
 
@@ -83,11 +82,11 @@ function sec4_2_1(loaded){
     .style("opacity", 0.7)
 
     svg.append('g').attr('class', 'x axis')
-    .attr("transform", "translate("+widthMargin+","+(height-heightMargin)+")")
+    .attr("transform", "translate("+0+","+(-centered_x)+")")
     .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}))
 
     svg.append('g').attr('class', 'y axis')
-    .attr("transform", "translate("+(widthMargin+heightMargin)+",0)")
+    .attr("transform", "translate("+centered_x+",0)")
     .call(d3.axisLeft(widthScale))
     .attr("opacity","0")
     .transition().duration(1000)
@@ -95,7 +94,7 @@ function sec4_2_1(loaded){
 
     svg.append('text')
       .attr('class', 'label')
-      .attr('transform','translate('+((width-widthMargin)/2 - 20)+','+(height-(heightMargin/3))+')')
+      .attr('transform','translate('+-50+','+ (-centered_x + 50) +')')
       .text('Sepal Length')
       .attr("opacity","0")
       .transition().duration(1000)
@@ -103,7 +102,7 @@ function sec4_2_1(loaded){
 
     svg.append('text')
       .attr('class', 'label')
-      .attr('transform','translate('+widthMargin+','+(height - heightMargin)/2+') rotate(90)')
+      .attr('transform','translate('+(centered_x - 50)+','+ -50 +') rotate(90)')
       .text('Sepal Width')
       .attr("opacity","0")
       .transition().duration(1000)

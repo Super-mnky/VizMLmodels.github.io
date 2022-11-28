@@ -160,6 +160,12 @@ line {
     transition: 0.5s;
 }
 
+.button-container-div {
+    height: 20px;
+    padding-top: 10px;
+    text-align: center;
+}
+
 .button-container-div2 {
     text-align: center;
 }

@@ -1,8 +1,16 @@
 var lengthScale = d3.scaleLinear()
-    .domain([4, 8]).range([heightMargin, height - heightMargin]);
+.domain([4,8]).range([centered_x, -centered_x]);
 
 var widthScale = d3.scaleLinear()
-    .domain([1.8, 4.5]).range([height - heightMargin, heightMargin]);
+.domain([1.8,4.5]).range([-centered_x, centered_x]);
+
+function scaleLength(SepalLengthCm) {
+  return lengthScale(SepalLengthCm);
+}
+
+function scaleWidth(SepalWidthCm) {
+    return widthScale(SepalWidthCm);
+}
 
 function color(d) {
     if (d == 'Iris-virginica') {
@@ -16,14 +24,6 @@ function color(d) {
             }
         }
     }
-}
-
-function scaleLength(SepalLengthCm) {
-    return lengthScale(SepalLengthCm);
-}
-
-function scaleWidth(SepalWidthCm) {
-    return widthScale(SepalWidthCm);
 }
 
 function distance(p1, p2) {
@@ -66,35 +66,36 @@ function sec4_3_1(loaded) {
     }
 
     var svg;
-    if (loaded) {
-        svg = d3.select("#sec4_3").select("svg");
+    if (loaded){
+        svg = d3.select("#sec4_3").select("svg").select("g.iris")
     } else {
-        svg = d3.select('#sec4_3').append('svg')
-        .attr('width', width)
-        .attr('height', height)
+      svg = d3.select('#sec4_3').append('svg')
+        .attr('width', w_width).attr('height', w_height)
+      svg = svg.append('g').attr("class", "iris")
+        .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
     }
-    /*
-    var hexbin = d3
+      
+    /*var hexbin = d3
     .hexbin()
     .extent([
-      [widthMargin/2* r, heightMargin/8 * r],
-      [width - widthMargin/2 * r, height - heightMargin/8 * r]
+      [(centered_x)/8* r, (centered_x)/8 * r],
+      [(-centered_x)/8 * r, (-centered_x)/8 * r]
     ])
     .radius(r);
     hexbin.centers().map(([x, y], i) => data.push({x: x, y: y, Species: 'Iris-setosa'}))
 
-    console.log(data)
-    */
+    console.log(data)*/
 
     var layer1 = svg.append("g").attr("stroke", "#000").attr("stroke-opacity", 0)
     var layer2 = svg.append("g")
 
     d3.csv('knn-predictions.csv').then(function (dataset) {
+        console.log(dataset)
         var hexbin = d3.hexbin()
-            .x(d => d.x)
-            .y(d => d.y)
-            .radius((r * width / (height - 1)) - 0.45)
-            .extent([[widthMargin, heightMargin], [width - widthMargin, height - heightMargin]])
+            .x(function(d) { return d.x})
+            .y(function(d) { return d.y})
+            .radius(r)
+            .extent([[-centered_x, -centered_x], [centered_x, centered_x]])
 
         bins = hexbin(dataset)
 
@@ -104,7 +105,8 @@ function sec4_3_1(loaded) {
             .attr('class', 'hexagon')
             .attr("d", hexbin.hexagon())
             .attr("fill-opacity", 0)
-            .attr("transform", d => `translate(${d.x},${d.y})`)
+            .attr("transform", function(d) { 
+                return "translate("+d.x +","+ d.y+")"})
             .attr('fill', function (d) { return color(d.knn3); })
             .transition().duration(1500)
             .attr("fill-opacity", 0.5)
@@ -122,21 +124,24 @@ function sec4_3_1(loaded) {
             })
 
         svg.append('g').attr('class', 'x axis')
-            .attr("transform", "translate(" + widthMargin + "," + (height - heightMargin) + ")")
-            .call(d3.axisBottom(lengthScale).tickFormat(function (d) { return d; }));
-
+            .attr("transform", "translate("+0+","+(-centered_x)+")")
+            .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}))
+        
         svg.append('g').attr('class', 'y axis')
-            .attr("transform", "translate(" + (widthMargin + heightMargin) + ",0)")
-            .call(d3.axisLeft(widthScale));
-
+            .attr("transform", "translate("+centered_x+",0)")
+            .call(d3.axisLeft(widthScale))
+            .attr("opacity","0")
+            .transition().duration(1000)
+            .attr("opacity","1")
+        
         svg.append('text')
             .attr('class', 'label')
-            .attr('transform', 'translate(' + ((width - widthMargin) / 2 - 20) + ',' + (height - (heightMargin / 3)) + ')')
+            .attr('transform','translate('+-50+','+ (-centered_x + 50) +')')
             .text('Sepal Length');
 
         svg.append('text')
             .attr('class', 'label')
-            .attr('transform', 'translate(' + widthMargin + ',' + (height - heightMargin) / 2 + ') rotate(90)')
+            .attr('transform','translate('+(centered_x - 50)+','+ -50 +') rotate(90)')
             .text('Sepal Width');
 
         console.log('showing dots')
@@ -149,16 +154,17 @@ function sec4_3_1(loaded) {
     })
 
     setupButtonsKNN();
+    //console.log(iris_data);
 }
 
 function updateKNN(knnVal) {
-    var svg = d3.select("#sec4_3").select("svg")
+    var svg = d3.select("#sec4_3").select("svg").select("g.iris")
     d3.csv('knn-predictions.csv').then(function (dataset) {
         var hexbin = d3.hexbin()
             .x(d => d.x)
             .y(d => d.y)
-            .radius(r * width / (height - 1))
-            .extent([[widthMargin, heightMargin], [width - widthMargin, height - heightMargin]])
+            .radius(r)
+            .extent([[-centered_x, -centered_x], [centered_x, centered_x]])
 
         bins = hexbin(dataset)
 
