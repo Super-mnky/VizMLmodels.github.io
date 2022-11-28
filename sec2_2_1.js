@@ -22,7 +22,7 @@ async function sec2_2_1_transition(loaded){
       .attr('stroke', mainColor['yellow']).attr('stroke-dasharray','4')
       .attr('stroke-width','1')
       .transition().duration(duration_500)
-      .attr('stroke','red').attr('stroke-dasharray','0').attr('fill','red')
+      .attr('stroke',mainColor['red']).attr('stroke-dasharray','0').attr('fill',mainColor['red'])
       .attr('rx','0').attr('ry','0')
       .attr('cx',0).attr('cy',0)
 
@@ -69,7 +69,7 @@ async function sec2_2_1_transition(loaded){
     .attr('stroke',mainColor['yellow']).attr('stroke-dasharray','4')
     .attr('stroke-width','1')
     .transition().duration(duration_500)
-    .attr('fill','blue').attr('stroke','blue').attr('stroke-dasharray','0')
+    .attr('fill',mainColor['blue']).attr('stroke',mainColor['blue']).attr('stroke-dasharray','0')
     .attr('rx','0').attr('ry','0')
     .attr('cx',0).attr('cy',0)
     
@@ -97,9 +97,9 @@ async function sec2_2_1_transition(loaded){
     visContainer.append('ellipse').attr('fill','white')
     .attr('fill', mainColor['yellow'])
     .attr('rx',radius*0.2).attr('ry', radius*0.2).attr('cx',0).attr('cy',0)
-    .attr('stroke','black').attr('stroke-dasharray','4')
+    .attr('stroke',mainColor['darkblue']).attr('stroke-dasharray','4')
     .transition().duration(duration_500)
-    .attr('fill','orange').attr('stroke','orange').attr('stroke-dasharray','0')
+    .attr('fill',mainColor['yellow']).attr('stroke',mainColor['yellow']).attr('stroke-dasharray','0')
     .attr('rx','0').attr('ry','0')
     .attr('cx',0).attr('cy',0)
       
@@ -204,7 +204,7 @@ function bubbleChart() {
   // @v4 scales now have a flattened naming scheme
   var fillColor = d3.scaleOrdinal()
     .domain(['Iris-setosa', 'Iris-versicolor', 'Iris-virginica'])
-    .range(['blue', 'red', 'orange']);
+    .range([mainColor['blue'], mainColor['red'], mainColor['yellow']]);
 
 
   /*
@@ -456,7 +456,7 @@ function bubbleChart() {
    */
   function showDetail(d) {
     // change outline to indicate hover state.
-    d3.select(this).attr('stroke', 'black');
+    d3.select(this).attr('stroke', mainColor['darkblue']);
 
     var content = '<span class="name">Length: </span><span class="value">' +
                   addCommas(d.value) +

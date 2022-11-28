@@ -20,15 +20,15 @@ async function sec2_1_1_1(loaded) {
 
   defs.append('marker').attr('id', 'startarrow').attr('orient', 'auto').attr('markerHeight', '4')
     .attr('refY', '2').attr('refX', '0').attr('markerWidth', '4').attr('markerUnits', 'strokeWidth')
-    .append('polygon').attr('fill', 'black').attr('points', '4 0, 4 4, 0 2')
+    .append('polygon').attr('fill', mainColor['darkblue']).attr('points', '4 0, 4 4, 0 2')
 
   defs.append('marker').attr('id', 'endarrow').attr('orient', 'auto').attr('markerHeight', '4')
     .attr('refY', '2').attr('refX', '0').attr('markerWidth', '4').attr('markerUnits', 'strokeWidth')
-    .append('polygon').attr('fill', 'black').attr('points', '0 0, 4 2, 0 4')
+    .append('polygon').attr('fill', mainColor['darkblue']).attr('points', '0 0, 4 2, 0 4')
   
   svg.select('image').attr('opacity',1).transition(transition_500).attr('opacity', 0)
-  svg.select('defs').selectAll('marker').selectAll('polygon').transition(transition_800).attr('fill','black')
-  svg.selectAll('line.sepal').transition(transition_800).attr('stroke','black')
+  svg.select('defs').selectAll('marker').selectAll('polygon').transition(transition_800).attr('fill',mainColor['darkblue'])
+  svg.selectAll('line.sepal').transition(transition_800).attr('stroke',mainColor['darkblue'])
   // svg.selectAll('line.petal').transition(transitionPath).attr('stroke','white')
   svg.selectAll('line.petal').remove()
   svg.selectAll('line.sepalAnnotate').remove()
@@ -40,9 +40,9 @@ async function sec2_1_1_1(loaded) {
   var centerCircle = visContainer.append('ellipse').attr("class", "irisCircle")
     .attr('fill', mainColor['yellow'])
     .attr('rx',radius*0.5).attr('ry', radius*0.5).attr('cx',0).attr('cy',0)
-    .attr('stroke','black').attr('stroke-dasharray','4')
+    .attr('stroke',mainColor['darkblue']).attr('stroke-dasharray','4')
     .attr('rx',radius*0.5).attr('ry', radius*0.5).attr('cx',0).attr('cy',0)
-    .attr('stroke','black').attr('stroke-dasharray','4')
+    .attr('stroke',mainColor['darkblue']).attr('stroke-dasharray','4')
     .attr('stroke-width','1')
     .transition(transition_500)
     .attr('rx',radius*0.2).attr('ry', radius*0.2)
@@ -51,13 +51,13 @@ async function sec2_1_1_1(loaded) {
     .attr('stroke-width','3')
 
   var sepallaxis = visContainer.append('line').attr('class','sepal sepalAxisX')
-    .attr('stroke', 'black').attr('stroke-width', '2')
+    .attr('stroke', mainColor['darkblue']).attr('stroke-width', '2')
     .attr('x1','0').attr('x2', '0')
     .attr('y1','124').attr('y2', '10')
     .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
   
   var sepalwaxis = visContainer.append('line').attr('class','sepal sepalAxisY')
-    .attr('stroke', 'black').attr('stroke-width', '2')
+    .attr('stroke', mainColor['darkblue']).attr('stroke-width', '2')
     .attr('x1','57').attr('x2', '-52')
     .attr('y1','60').attr('y2', '60')
     .attr('marker-start','url(#startarrow)').attr('marker-end','url(#endarrow)')
@@ -66,7 +66,7 @@ async function sec2_1_1_1(loaded) {
 
     svg.selectAll('line')
     //versicolor
-    visContainer.append('text').attr('class','label_iris irisCircle').attr('fill','black')
+    visContainer.append('text').attr('class','label_iris irisCircle').attr('fill',mainColor['darkblue'])
     .text('Versicolor').attr('transform','translate(-48, -110)').attr('opacity','0')
     .transition(transition_1000).attr('opacity','1')
 
@@ -85,7 +85,7 @@ async function sec2_1_1_1(loaded) {
     .attr('stroke-width','3')
 
     visContainer.append('text').attr("class", "label_iris irisCircle")
-    .attr('fill','black')
+    .attr('fill',mainColor['darkblue'])
     .text('Setosa').attr('transform','translate(215,-110)').attr('opacity','0')
     .transition().duration(duration_800).attr('opacity','1')
 
@@ -115,7 +115,7 @@ async function sec2_1_1_1(loaded) {
     .attr('stroke-width','3')
 
     visContainer.append('text').attr('class','label_iris irisCircle')
-    .attr('fill','black')
+    .attr('fill',mainColor['darkblue'])
     .text('Virginica').attr('transform','translate(-290, -110)').attr('opacity','0')
     .transition().duration(duration_800).attr('opacity','1')
 

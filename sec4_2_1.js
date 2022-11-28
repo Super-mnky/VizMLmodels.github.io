@@ -47,7 +47,7 @@ function sec4_2_1(loaded){
 
   function showDetail(d) {
     // change outline to indicate hover state.
-    d3.select(this).attr('stroke', 'black');
+    d3.select(this).attr('stroke', mainColor['darkblue']);
 
     var content = '<span class="name">Sepal Length: </span><span class="value">' +
       addCommas(d.SepalLengthCm) +
@@ -115,13 +115,13 @@ function sec4_2_1(loaded){
           g.append("circle")
           .attr('fill', function(d) {
             if (d.Species == 'Iris-virginica') {
-              return 'orange';
+              return mainColor['yellow'];
             } else {
             if (d.Species == 'Iris-versicolor') {
-              return 'red';
+              return mainColor['red'];
             } else {
             if (d.Species == 'Iris-setosa') {
-              return 'blue';
+              return mainColor['blue'];
             }}}})
           .on('mouseover', showDetail)
           .on('mouseout', hideDetail)  

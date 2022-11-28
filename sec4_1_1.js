@@ -27,28 +27,28 @@ async function sec_3_1_1_transition(loaded) {
 
 
   visContainer.append('line').attr('id', 'data-line').attr('class', 'transition')
-    // .attr('stroke', 'black').attr('stroke-width', '1')
+    // .attr('stroke', mainColor['darkblue']).attr('stroke-width', '1')
     // .attr('x1', dataX).attr('x2', dataX)
     // .attr('y1', '140').attr('y2', '480')
     // .transition(transitionPath)
     // .attr('y1', '325').attr('y2', '325')
     // .attr('x1', dataX).attr('x2', dataX)
 
-    .attr('stroke', 'black').attr('stroke-width', '2')
+    .attr('stroke', mainColor['darkblue']).attr('stroke-width', '2')
     .attr('x1', dataX).attr('x2', dataX)
     .attr('y1', chartY1).attr('y2', chartY2)
     .transition(transition_800)
     .attr('y1', 22).attr('y2', 22)
     // .attr('x1', 0).attr('x2', 0)
 
-    // .attr('stroke', 'black').attr('stroke-width', '2')
+    // .attr('stroke', mainColor['darkblue']).attr('stroke-width', '2')
     // .attr('x1', dataX).attr('x2', dataX)
     // .attr('y1', chartY1).attr('y2', chartY1)
     // // .transition(transitionPath)
     // .attr('y2', chartY2)
 
     visContainer.append('line').attr('id', 'model-line').attr('class', 'transition')
-    .attr('stroke', 'black').attr('stroke-width', '2')
+    .attr('stroke', mainColor['darkblue']).attr('stroke-width', '2')
     .attr('x1', modelX).attr('x2', modelX)
     .attr('y1', chartY1).attr('y2', chartY2)
     .transition(transitionPath)
@@ -76,7 +76,7 @@ async function sec_3_1_1_transition(loaded) {
 
   for (i = 0; i < lines.length; i++) {
     visContainer.append('line').attr('id', lines[i]).attr('class', 'transition').attr('class', 'transition2')
-      .attr('stroke', 'black').attr('stroke-width', '1')
+      .attr('stroke', mainColor['darkblue']).attr('stroke-width', '1')
       .attr('x1', dataX).attr('x2', modelX)
       .attr('y1', yDist+y1s[i]).attr('y2', yDist+y2s[i])
       .transition(transitionPath)
@@ -101,7 +101,7 @@ async function sec4_1_1(loaded) {
 
   function showDetail(d) {
     // change outline to indicate hover state.
-    d3.select(this).attr('stroke', 'black');
+    d3.select(this).attr('stroke', mainColor['darkblue']);
 
     var content = '<span class="name">Petal Length: </span><span class="value">' +
       addCommas(d.PetalLengthCm) +
@@ -229,15 +229,15 @@ async function sec4_1_1(loaded) {
       .attr('fill', function (d) {
         if (d.Species == 'Iris-virginica') {
           console.log('Virginica detected')
-          return 'orange';
+          return mainColor['yellow'];
         } else {
           if (d.Species == 'Iris-versicolor') {
             console.log('Vericolor detected')
-            return 'red';
+            return mainColor['red'];
           } else {
             if (d.Species == 'Iris-setosa') {
               console.log('Setosa detected')
-              return 'blue';
+              return mainColor['blue'];
             }
           }
         }

@@ -10,9 +10,9 @@ function sec3_1_1(loaded) {
     var svg;
     if (loaded){
         svg = d3.select("#sec3").select("svg")
-        svg.selectAll("circle").attr("fill","black")
+        svg.selectAll("circle").attr("fill",mainColor['darkblue'])
         svg.select("#line2").remove()
-        svg.selectAll("line").attr("stroke","black").attr("stroke-width","1")
+        svg.selectAll("line").attr("stroke",mainColor['darkblue']).attr("stroke-width","1")
         return ;    
     } else {
         svg = d3.select("#sec3").append("svg")
@@ -24,14 +24,14 @@ function sec3_1_1(loaded) {
     var transitionPath = d3.transition().ease(d3.easeSin).duration(2000);
 
     visContainer.append('line').attr('id', 'data-line')
-        .attr('stroke', 'black').attr('stroke-width', '2')
+        .attr('stroke', mainColor['darkblue']).attr('stroke-width', '2')
         .attr('x1', dataX).attr('x2', dataX)
         .attr('y1', chartY1).attr('y2', chartY1)
         // .transition(transitionPath)
         .attr('y2', chartY2)
 
     visContainer.append('line').attr('id', 'model-line')
-        .attr('stroke', 'black').attr('stroke-width', '2')
+        .attr('stroke', mainColor['darkblue']).attr('stroke-width', '2')
         .attr('x1', modelX).attr('x2', modelX)
         .attr('y1', chartY1).attr('y2', chartY1)
         // .transition(transitionPath)
@@ -43,7 +43,7 @@ function sec3_1_1(loaded) {
 
     for (i = 0; i < lines.length; i++) {
         visContainer.append('line').attr('id', lines[i])
-            .attr('stroke', 'black').attr('stroke-width', '1')
+            .attr('stroke', mainColor['darkblue']).attr('stroke-width', '1')
             .attr('x1', dataX).attr('x2', dataX)
             .attr('y1', yDist+y1s[i]).attr('y2', yDist+y1s[i])
             .transition(transition_800)
@@ -70,7 +70,7 @@ function sec3_1_1(loaded) {
    
     for (i = 0; i < texts.length; i++) {
         visContainer.append('text').attr('class', 'label')
-        .attr('fill','black').attr('opacity','0')
+        .attr('fill',mainColor['darkblue']).attr('opacity','0')
         // .attr('transform','translate'+transforms[i])
         .attr('transform', 'translate('+ tcxs[i] +','+ (yDist+tcys[i]+5) +')')
         .text(texts[i])
@@ -85,7 +85,7 @@ function sec3_1_1(loaded) {
 
     for (i = 0; i < labels.length; i++) {
         visContainer.append('text').attr('class', 'label')
-        .attr('fill','black').attr('opacity','0')
+        .attr('fill',mainColor['darkblue']).attr('opacity','0')
         // .attr('transform','translate'+transforms[i])
         .attr('transform', 'translate('+ (lcxs[i]-5) +','+ (lcys[i]-20) +')')
         .text(labels[i])
@@ -98,33 +98,33 @@ function sec3_1_1(loaded) {
 function sec3_2_1(loaded){
     svg = d3.select("#sec3").select("svg")
 
-    svg.selectAll("circle").attr("fill","black")
-    svg.selectAll("line").attr("stroke","black").attr("stroke-width","1")
+    svg.selectAll("circle").attr("fill",mainColor['darkblue'])
+    svg.selectAll("line").attr("stroke",mainColor['darkblue']).attr("stroke-width","1")
 
     svg.select("g.iris").append("line").attr("id","line2")
-    .attr('stroke', 'black').attr('stroke-width', '1')
+    .attr('stroke', mainColor['darkblue']).attr('stroke-width', '1')
     .attr('x1', dataX).attr('x2', modelX)
     .attr('y1', yDist+180).attr('y2', yDist+325)
 
-    svg.select("#bin-circle").attr("fill","red")
-    svg.select("#bin-to-lr").attr("stroke","red").attr("stroke-width","3")
-    svg.select("#line2").attr("stroke","red").attr("stroke-width","3")
-    svg.select("#lr-circle").attr("fill","red")
-    svg.select("#ln-circle").attr("fill","red")
+    svg.select("#bin-circle").attr("fill",mainColor['red'])
+    svg.select("#bin-to-lr").attr("stroke",mainColor['red']).attr("stroke-width","3")
+    svg.select("#line2").attr("stroke",mainColor['red']).attr("stroke-width","3")
+    svg.select("#lr-circle").attr("fill",mainColor['red'])
+    svg.select("#ln-circle").attr("fill",mainColor['red'])
 }
 
 function sec3_2_2(loaded){
     svg = d3.select("#sec3").select("svg")
 
     svg.select("#line2").remove()
-    svg.selectAll("circle").attr("fill","black")
-    svg.selectAll("line").attr("stroke","black").attr("stroke-width","1")
+    svg.selectAll("circle").attr("fill",mainColor['darkblue'])
+    svg.selectAll("line").attr("stroke",mainColor['darkblue']).attr("stroke-width","1")
 
-    svg.select("#mc-circle").attr("fill","red")
-    svg.select("#mc-to-lr").attr("stroke","red").attr("stroke-width","3")
-    svg.select("#mc-to-knn").attr("stroke","red").attr("stroke-width","3")
-    svg.select("#lr-circle").attr("fill","red")
-    svg.select("#knn-circle").attr("fill","red")
+    svg.select("#mc-circle").attr("fill",mainColor['red'])
+    svg.select("#mc-to-lr").attr("stroke",mainColor['red']).attr("stroke-width","3")
+    svg.select("#mc-to-knn").attr("stroke",mainColor['red']).attr("stroke-width","3")
+    svg.select("#lr-circle").attr("fill",mainColor['red'])
+    svg.select("#knn-circle").attr("fill",mainColor['red'])
 }
 
 function sec3_2_3(loaded){
@@ -134,12 +134,12 @@ function sec3_2_3(loaded){
     }
     svg = d3.select("#sec3").select("svg")
 
-    svg.selectAll("circle").attr("fill","black")
-    svg.selectAll("line").attr("stroke","black").attr("stroke-width","1")
+    svg.selectAll("circle").attr("fill",mainColor['darkblue'])
+    svg.selectAll("line").attr("stroke",mainColor['darkblue']).attr("stroke-width","1")
 
-    svg.select("#rgsn-circle").attr("fill","red")
-    svg.select("#rgsn-to-ln").attr("stroke","red").attr("stroke-width","3")
-    svg.select("#ln-circle").attr("fill","red")
+    svg.select("#rgsn-circle").attr("fill",mainColor['red'])
+    svg.select("#rgsn-to-ln").attr("stroke",mainColor['red']).attr("stroke-width","3")
+    svg.select("#ln-circle").attr("fill",mainColor['red'])
 }
     /*
     <text class="label" fill="black" opacity="1" transform="translate(140,120)">Data</text>

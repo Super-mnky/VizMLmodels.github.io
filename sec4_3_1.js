@@ -14,13 +14,13 @@ function scaleWidth(SepalWidthCm) {
 
 function color(d) {
     if (d == 'Iris-virginica') {
-        return 'orange';
+        return mainColor['yellow'];
     } else {
         if (d == 'Iris-versicolor') {
-            return 'red';
+            return mainColor['red'];
         } else {
             if (d == 'Iris-setosa') {
-                return 'blue';
+                return mainColor['blue'];
             }
         }
     }
@@ -43,7 +43,7 @@ function sec4_3_1(loaded) {
      */
     function showDetail(d) {
         // change outline to indicate hover state.
-        d3.select(this).attr('stroke', 'black');
+        d3.select(this).attr('stroke', mainColor['darkblue']);
 
         var content = '<span class="name">Sepal Length: </span><span class="value">' +
             addCommas(d.SepalLengthCm) +
@@ -147,7 +147,7 @@ function sec4_3_1(loaded) {
         console.log('showing dots')
         g.append("circle")
             .attr("r", 3.5)
-            .attr("stroke", 'black')
+            .attr("stroke", mainColor['darkblue'])
             .attr('fill', function (d) { return color(d.Species); })
             .on('mouseover', showDetail)
             .on('mouseout', hideDetail)
