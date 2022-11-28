@@ -1,4 +1,4 @@
-var dividen = 5
+var dividen = 6
 var modelX = (w_width/dividen);
 var dataX = -w_width/dividen
 var chartY1 = -150

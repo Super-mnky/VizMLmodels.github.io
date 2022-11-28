@@ -3,11 +3,13 @@
 function sec431_to_461(loaded){
   var svg;
   if (loaded){
-    svg = d3.select('#sec4_6').select('svg')
+    svg = d3.select('#sec4_6').select('svg').select("g.iris")
   } else {
     svg = d3.select('#sec4_6').append('svg')
     .attr('width', width)
     .attr('height', height)
+    svg = svg.append('g').attr("class", "iris")
+    .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
   }
 
   d3.csv('iris.csv').then(function (dataset) {
@@ -28,8 +30,8 @@ function sec431_to_461(loaded){
         .transition().duration(1000)
         .attr("r","30")
         .attr("fill",mainColor['lightgreen'])
-        .attr("transform",function (d) { return "translate("+(345 - scaleLength(d.SepalLengthCm))+","+
-        (160 - scaleWidth(d.SepalWidthCm))+")"})
+        .attr("transform",function (d) { return "translate("+(-120 - scaleLength(d.SepalLengthCm))+","+
+        (-145 - scaleWidth(d.SepalWidthCm))+")"})
 })
 
 }
@@ -38,7 +40,7 @@ async function sec4_6_1(loaded){
   sec431_to_461(loaded);
   svg = d3.select('#sec4_6').select('svg')
 
-  await delay(1200);
+  await delay(1000);
 //   var svg = d3.select('#sec4_6').append('svg')
 //   .attr('width', w_width)
 //   .attr('height', w_height)

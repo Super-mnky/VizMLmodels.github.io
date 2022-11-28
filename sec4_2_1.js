@@ -82,14 +82,16 @@ function sec4_2_1(loaded){
     .style("opacity", 0.7)
 
     svg.append('g').attr('class', 'x axis')
-    .attr("transform", "translate("+0+","+(-centered_x)+")")
+    .attr("transform", "translate("+0+","+heightMargin*2+")")
     .call(d3.axisBottom(lengthScale).tickFormat(function(d){return d;}))
+    .transition().duration(1000)
+    .attr("transform", "translate("+0+","+(-centered_x)+")")
 
     svg.append('g').attr('class', 'y axis')
     .attr("transform", "translate("+centered_x+",0)")
     .call(d3.axisLeft(widthScale))
     .attr("opacity","0")
-    .transition().duration(1000)
+    .transition().duration(1500)
     .attr("opacity","1")
 
     svg.append('text')
@@ -97,7 +99,7 @@ function sec4_2_1(loaded){
       .attr('transform','translate('+-50+','+ (-centered_x + 50) +')')
       .text('Sepal Length')
       .attr("opacity","0")
-      .transition().duration(1000)
+      .transition().duration(1500)
       .attr("opacity","1")  
 
     svg.append('text')
@@ -105,7 +107,7 @@ function sec4_2_1(loaded){
       .attr('transform','translate('+(centered_x - 50)+','+ -50 +') rotate(90)')
       .text('Sepal Width')
       .attr("opacity","0")
-      .transition().duration(1000)
+      .transition().duration(1500)
       .attr("opacity","1")  
 
     var circles = svg.selectAll("g")

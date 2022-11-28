@@ -20,16 +20,16 @@ html, body {
 
 /* Text */
 #sections{
-    width: 25%;
+    width: 30%;
 }
 
 .text-posi{
-    margin-left: 75%;
+    margin-left: 65%;
 }
 
 .section-text{
     height: 100%;
-    margin: 0px 0px 500px;
+    margin: 0px 20px 500px;
 }
 
 .block{
@@ -162,7 +162,7 @@ line {
 
 .button-container-div {
     height: 20px;
-    padding-top: 10px;
+    margin-top: 10px;
     text-align: center;
 }
 
