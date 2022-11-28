@@ -61,11 +61,11 @@ function sec3_1_1(loaded) {
             .transition(transitionPath).attr('r', '5')
     }
 
-    var texts = ['Binary', 'Multi-Classes', 'Regression', 'Logistic Regression',
+    var texts = ['Binary', 'Multi-Classes', 'Text', 'Logistic Regression',
         'KNN', 'Linear Regression']
     var dX = 130;
     var mX = 20;
-    var tcxs = [dataX-dX+55, dataX-dX, dataX-dX+20, modelX+mX, modelX+mX, modelX+mX, modelX+mX]
+    var tcxs = [dataX-dX+55, dataX-dX, dataX-dX+75, modelX+mX, modelX+mX, modelX+mX, modelX+mX]
     var tcys = [180, 325, 420, 180, 240, 325, 380]
    
     for (i = 0; i < texts.length; i++) {

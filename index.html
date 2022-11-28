@@ -119,6 +119,7 @@
                 <!-- Add a section block for every text we want -->
                 <div id="sections" , class="text-posi">
                         <div class="section-text" id="sec1_text">
+                                <br>Please press spacebar to continue...
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_1_1_text">
@@ -223,18 +224,22 @@
                                         <li><b>KNN</b></li> or K Nearest Neighbors is used when you need to group
                                         observations and output only a few values. K is an integer that decides how
                                         many neighbors should be included when deciding if an observation belongs to
-                                        a certain type of observation.
+                                        a certain type of observation. It is a powerful model, we'll use this for our
+                                        walkthrough.
 
                                 </ul>
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_2_text">
                                 <!-- sec3_text _3_classifier -->
-                                <br>TBD Regression is not a datatype.
+                                <br>If the dataset is only comprised of <i>text</i> datatypes, these can come in
+                                in a wide variety of forms. Typically the task is to define the part of speech from
+                                the grouping of letters then score them, to understand their meaning:
 
                                 <br><br><br><br>
                                 <ul>
-                                        <li><b>TBD</b></li> TBD
+                                        <li><b>Linear Regression</b></li> can often be an effective way to accomplish
+                                        the task
 
                                 </ul>
                                 <p class="block"></p>
@@ -277,16 +282,20 @@
                                 accuracy.
 
                                 <br><br><br><br> Unfortunately you may spot some observations where there is a mismatch.
-                                Thankfully KNN with a k value of 1 isn't the only option! We can select other values,
-                                perhaps there are other values of K that will lead to more accurate predictions made.
+                                Thankfully KNN with a k value of 3 isn't the only option! We can select other values,
+                                perhaps there are other values of K that will lead to more accurate predictions to be made.
 
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_3_1_text">
-                                sec4_3_1_text _4_comparison
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                <!-- sec4_3_1_text _4_comparison -->
+                                <br>With those insights, we can now run our KNN model to see how it ultimately performs.
+
+                                <br><br><br><br> Let's test with a K value of 5 to see how accurate the model is. As
+                                we discussed, only 60% of our data will be used strictly for the training of our model,
+                                indicated by the filled circles. For each of the 90 observations, our model will select
+                                the
+
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec5_text">
@@ -311,10 +320,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec8_text">
-                                sec8_text _8_featureselect
-                                <br>Statistical analysis of the models performance help inform decisions on which models
-                                are appropriate for the given task. Comparing how all of the test cases perform, helps
-                                ensure the business requirement is met whne it is ultimately deployed.
+                                
                                 <p class="block"></p>
                         </div>
                 </div>
