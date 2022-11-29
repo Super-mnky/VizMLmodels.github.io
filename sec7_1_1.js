@@ -191,25 +191,25 @@ function sec7_1_1(loaded) {
     .attr('transform', 'translate(' + (pieX / 2 + (radius * 4) + acc) + ',' + pieY * 2 + ')')
 
   // text-labels-left   
-  var yAxisTxts = ["Data", "Model", "Accuracy"]
-  var accValues = ["96% : LR"]
-  var text_fold1 = pieArea.append("text")
-    .text(yAxisTxts[0])
-    .attr('class', 'axis-txt text-sm')
-    .attr("x", 0).attr("y", 0)
-    .attr('transform', 'translate(' + (-pieX / 2) + ',' + ((-pieY / 40)) + ')rotate(270)')
-
-  var text_fold2 = pieArea.append("text")
-    .text(yAxisTxts[1])
-    .attr('class', 'axis-txt text-sm')
-    .attr("x", 0).attr("y", 0)
-    .attr('transform', 'translate(' + (-pieX / 2) + ',' + ((pieY * 1.35) - radius) + ')rotate(270)')
-
-  var text_fold3 = pieArea.append("text")
-    .text(yAxisTxts[2])
-    .attr('class', 'axis-txt text-sm')
-    .attr("x", 0).attr("y", 0)
-    .attr('transform', 'translate(' + (-pieX / 2) + ',' + ((pieY * 2.5) - radius) + ')rotate(270)')
+    var yAxisTxts = ["Data", "Model", "Accuracy"]
+    var accValues = ["96% : LR"]
+    var text_fold1 = pieArea.append("text")
+      .text(yAxisTxts[0])
+      .attr('class', 'axis-txt text-sm')
+      .attr("x", 0).attr("y", 0)	
+      .attr('transform','translate('+(-pieX/1.9)+','+((-pieY/4.5)) +')rotate(90)')
+  
+    var text_fold2 = pieArea.append("text")
+      .text(yAxisTxts[1])
+      .attr('class', 'axis-txt text-sm')
+      .attr("x", 0).attr("y", 0)	
+      .attr('transform','translate('+(-pieX/1.9)+','+((pieY*1.1)-radius)+')rotate(90)')
+  
+    var text_fold3 = pieArea.append("text")
+      .text(yAxisTxts[2])
+      .attr('class', 'axis-txt text-sm')
+      .attr("x", 0).attr("y", 0)	
+      .attr('transform','translate('+(-pieX/1.9)+','+((pieY*2.14)-radius)+')rotate(90)')
 
   // text outline-rect
   var text_fold1_rect = pieArea.append("rect")
@@ -286,7 +286,8 @@ function sec7_1_1(loaded) {
     .text("20%").attr('class', 'acc-txt text-sm').attr("x", 60).attr("y", 10)
 
   //checkboxs
-  var numOfFold = 0;
+  var numOfFold = 5;
+  var selectedList = 1;
   var acc_data = ["0.97", "0.98"]
 
   // changeUIPos()
@@ -299,14 +300,15 @@ function sec7_1_1(loaded) {
     .on("change", function (d) {
       var selected = d3.select(this).property("value")
       console.log(selected);
-      numOfFold = selected;
+      selectedList = selected;
       reset()
     })
 
   d3.select("#k_apply").on("click", function () {
+    reset()
     updateAll()
     updatePie()
-    updateLine()
+    // updateLine()
   })
 
   function updatePie() {
@@ -317,7 +319,7 @@ function sec7_1_1(loaded) {
     pies_layer
       .transition(transition_500)
       .delay(function (d, i) { return i * duration_500 })
-      .attr("stroke", function (d, i) { return i == i ? mainColor['darkblue'] : mainColor['lightgreen'] })
+      .attr("stroke", function (d, i) { return i == i ? mainColor['darkblue'] : mainColor['yellow'] })
 
   }
 
@@ -335,7 +337,7 @@ function sec7_1_1(loaded) {
       .attr('transform', 'translate(' + (0) + ',' + (0) + ')rotate(270)')
 
     pies_layer
-      .attr("stroke", function (d, i) { return i == i ? mainColor['blue'] : mainColor['darkblue'] })
+      .attr("stroke", function (d, i) { return i == i ? mainColor['yellow'] : mainColor['darkblue'] })
 
     innnerRect
       .attr("width", radius * 2).attr("height", radius * 2)
@@ -399,9 +401,9 @@ function sec7_1_1(loaded) {
       .attr("stroke-dasharray", "2px")
 
     text_acc
-      .attr("fill", mainColor['blue'])
+      .attr("fill", mainColor['darkblue'])
       .transition(transition_500)
-      .text(function(d, i){return acc_data[i]})
+      .text(function(d, i){return acc_data[selectedList-1]})
       .delay(function (d, i) { return duration_2500 })
       .attr("opacity", 1)
   }

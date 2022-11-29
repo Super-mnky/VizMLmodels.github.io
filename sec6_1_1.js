@@ -208,7 +208,7 @@ function sec6_1_1(loaded){
       .text(yAxisTxts[0])
       .attr('class', 'axis-txt text-sm')
       .attr("x", 0).attr("y", 0)	
-      .attr('transform','translate('+(-pieX/1.9)+','+((-pieY/5)) +')rotate(90)')
+      .attr('transform','translate('+(-pieX/1.9)+','+((-pieY/4.5)) +')rotate(90)')
   
     var text_fold2 = pieArea.append("text")
       .text(yAxisTxts[1])
@@ -354,7 +354,7 @@ function sec6_1_1(loaded){
       .style("stroke", function(d, i){return (i < numOfFold) ? mainColor['red'] : mainColor['darkblue']})
 
       accLine
-      // .attr("opacity", 0)
+      .attr("opacity", 0)
       .attr("stroke-dashoffset", 4)
       .attr("stroke-dasharray", 1)
       // .style("stroke", mainColor['darkblue'])
@@ -414,7 +414,7 @@ function sec6_1_1(loaded){
       text_acc
       .transition(transition_500)
       .text(function(d, i){return acc_data[i]})
-      .attr("fill", mainColor['blue'])
+      .attr("fill", mainColor['darkblue'])
       .delay(function(d, i){return duration_2500})
       .attr("opacity", 1)
 
