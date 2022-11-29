@@ -15,6 +15,16 @@
         <div id="main">
                 <!-- Add a section block for every visualization we want -->
                 <div id="_1_intro">
+                        <div id="bc_container" class="?">
+                                <div id="breadCrumb" class="text-sm rotate">
+                                        <div class="breadCrumb_child margin_r_sm" id="b1">Data Preparation</div>
+                                        <div class="breadCrumb_child margin_r_sm" id="b2">Classifiers Selection</div>
+                                        <div class="breadCrumb_child margin_r_sm" id="b3">Model Comparison</div>
+                                        <div class="breadCrumb_child margin_r_sm" id="b4">K-folds Validation</div>
+                                        <div class="breadCrumb_child margin_r_sm" id="b5">Model Selection</div>
+                                        <div class="breadCrumb_child" id="b6">Feature Selection</div>
+                                </div>
+                        </div>
                         <div class="viz visView" id="sec1">
                         </div>
                 </div>
@@ -61,7 +71,7 @@
                 </div>
                 <div id="_6_parameter">
                         <div class="viz visView" id="sec6_1">
-                                <div class="controler">
+                                <div class="controler" id ="fold_UI">
                                         <div class="dropdown">
                                                 <div class="btn_lable text-sm">Select fold counts</div>
                                                 <select id="fold_dropdown" class="margin_ssm">
@@ -80,14 +90,12 @@
                 </div>
                 <div id="_7_modelselect">
                         <div class="viz visView" id="sec7_1">
-                                <div class="controler">
+                                <div class="controler" id ="k_UI">
                                         <div class="dropdown">
                                                 <div class="btn_lable text-sm">Select K counts</div>
                                                 <select id="k_dropdown" class="margin_ssm">
-                                                        <option value="5">K=5</option>
                                                         <option value="10">K=10</option>
                                                         <option value="20">K=20</option>
-                                                        <option value="30">K=30</option>
                                                 </select>
                                         </div>
                                         <div class="apply">
@@ -384,6 +392,8 @@
 
         //Comment out the color to test
 
+         // darkblue red yellow blue
+
         /*
         var mainColor = {"darkgreen": '#379237', 'lightgreen':"#00FFE0", 'darkblue':"#1C1259", 
         'red':'#EE4266', 'darkred':'#900C3F', 'lightred':"#FF5733", 'yellow':"#FCD307", 'violet':"#66308f",
@@ -394,11 +404,18 @@
         'red':'#FF2442', 'darkred':'#900C3F', 'lightred':"#FF5733", 'yellow':"#FFB830", 'violet':"#66308f",
         'blue':'#3DB2FF'}
         
+        
         /*
         var mainColor = {"darkgreen": '#379237', 'lightgreen':"#00FFE0", 'darkblue':"#11144C", 
         'red':'#E16262', 'darkred':'#900C3F', 'lightred':"#FF5733", 'yellow':"#FABC60", 'violet':"#66308f",
         'blue':'#3A9679'}
         */
+  
+        
+        // var mainColor = {"darkgreen": '#379237', 'lightgreen':"#00FFE0", 'darkblue':"#11144C", 
+        // 'red':'#EE5007', 'darkred':'#900C3F', 'lightred':"#FF5733", 'yellow':"#FFB830", 'violet':"#66308f",
+        // 'blue':'#5BB318'}
+        
        
         //time
         var duration_2500 = 2500    

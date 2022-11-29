@@ -44,6 +44,9 @@ html, body {
 #sections div.graph-scroll-active{
 	opacity: 1;
 }
+.text-ssm{
+    font-size: 0.4em;
+}
 
 .text-sm{
     font-size: 0.8em;
@@ -69,17 +72,50 @@ html, body {
     border: 1px solid red; 
 }
 /*btn*/
-.controler{
+#fold_UI{
+    /* position: absolute; */
+
+}
+/* .controler{
     position: absolute;
     left: 650px;
-    top: 125px;
+  ≈
 }
 
 .controler_checkbox{
     position: absolute;
     left: 650px;
     top: 115px;
+} */
+
+/* centering */
+.center-topbotton{
+    /* position: fixed; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+#bc_container{
+    position: relative;
+}
+#breadCrumb{
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    display: flex;
+}
+
+.breadCrumb_child{
+    text-align: center;
+}
+
+.rotate {
+    -moz-transform: translateX(-50%) translateY(-50%) rotate(-270deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-270deg);
+  transform:  translateX(-50%) translateY(-50%) rotate(-270deg);
+}
+
 .botton1 {
     background-color: #323D52;
     border: none;
@@ -106,6 +142,10 @@ html, body {
 }
 .margin_lg{
     margin-top: 20px;
+}
+
+.margin_r_sm{
+    margin-right: 10px;
 }
 /* 
   Visualizations:

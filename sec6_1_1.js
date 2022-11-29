@@ -25,27 +25,32 @@ function sec6_1_1(loaded){
     var accX_base = (pieX/2)+(radius*4)
   
     var margin_s = 5;
+    var numOfFold = 1;
   
-    //color
-    var mainColor = {"darkgreen": '#379237', 'lightgreen':"#00FFE0", 'darkblue':"#323D52", 'red':'#C70039', 'darkred':'#900C3F', 'lightred':"#FF5733", 'yellow':"#FFC300"}
+    // //color
+    // var mainColor = {"darkgreen": '#379237', 'lightgreen':"#00FFE0", 'darkblue':"#323D52", 'red':'#C70039', 'darkred':'#900C3F', 'lightred':"#FF5733", 'yellow':"#FFC300"}
 
     // set the color scale
     var color = d3.scaleOrdinal()
       .domain(pieData)
-      .range([mainColor['yellow'], mainColor['lightred']])
-  
-    //time
-    var duration_2500 = 2500    
-    var duration_2000 = 2000
-    var duration_500 = 500
-    var duration_250 = 250
-  
-    // transition
-    const transition_2500 = d3.transition().ease(d3.easeSin).duration(duration_2500);
-    const transition_2000 = d3.transition().ease(d3.easeSin).duration(duration_2000);
-    const transition_500 = d3.transition().ease(d3.easeSin).duration(duration_500);
-    const transition_250 = d3.transition().ease(d3.easeSin).duration(duration_250);
-  
+      .range([mainColor['yellow'], mainColor['red']])
+
+    // left titles  
+    // var title_data = ["Data Preparation", "Classifiers Selection", "Model Comparison", "K-folds Validation", "Model Selection", "Feature Selection"]
+    
+    // var title_con = svg.append('g')
+    // .attr('transform','translate('+(-100)+','+(0)+')rotate(180)')
+
+    // var text_titles = title_con.selectAll('g')
+    // .data(title_data)
+    // .enter()
+    // .append("g")
+    // .append("text")
+    // .text(function(d, i){return title_data[i]})
+    // .attr('class', 'text-sm')
+    // .attr("x", 0).attr("y", 0)	
+    // .attr('transform', function(d, i) {return 'translate('+(0)+','+(i*130)+')rotate(270)'})
+
     // pieArea position 
     pieArea
     .attr('transform', function(d, i) {return 'translate('+pieX+','+(pieY+padding)+')'})
@@ -83,29 +88,34 @@ function sec6_1_1(loaded){
       .attr("class", "pieCircle")
       .attr("fill", 'white')
       // .attr("opacity", 0)
-      .attr("stroke", mainColor['darkblue'])
-      .style("stroke-dasharray", ("3, 3"))
-      .attr("stroke-width", 1)
+      // .attr("stroke", mainColor['red'])
+      // .style("stroke-dasharray", ("3, 3"))
+      // .attr("stroke-width", 1)
       .attr("cx", 0).attr("cy", 0)
       .attr("r", radius)
+      .style("fill", function(d, i){return i == 0 ? "none" : "white"})
+      .style("stroke-width", function(d, i){return i == 0 ? 4 : 1})
+      .style("stroke-dasharray", function(d, i){return i == 0 ? ("0, 0") : ("3, 3")})
+      .style("stroke", function(d, i){return i < numOfFold ? mainColor['red'] : mainColor['darkblue']})
+
       // pies_layer
       // .transition(transition_500)
       // .delay(function(d, i){return i*duration_500})
       // .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
       
-    // var pies_layer = pieGroup.append('circle')
-    //   .attr("class", "pieCircle")
-    //   .attr("fill", 'none')
-    //   // .attr("opacity", 0)
-    //   .attr("stroke", 'lightgreen')
-    //   .attr("stroke-width", 4)
-    //   .attr("cx", 0).attr("cy", 0)
-    //   .attr("r", radius)
-    //   pies_layer
-    //   .transition(transition_500)
-    //   .delay(function(d, i){return i*duration_500})
-    //   .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
-    
+      // var pies_layer = pieGroup.append('circle')
+      //   .attr("class", "pieCircle")
+      //   .attr("fill", 'none')
+      //   // .attr("opacity", 0)
+      //   .attr("stroke", 'lightgreen')
+      //   .attr("stroke-width", 4)
+      //   .attr("cx", 0).attr("cy", 0)
+      //   .attr("r", radius)
+      //   pies_layer
+      //   .transition(transition_500)
+      //   .delay(function(d, i){return i*duration_500})
+      //   .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
+      
     // text-fold
     var attribute = "fold"
       var text_fold = pieGroup.append("text")
@@ -115,7 +125,7 @@ function sec6_1_1(loaded){
   
     // 4 datalines 
     var dataLines = pieGroup.append("line")
-      .attr("stroke", mainColor['darkblue'])
+      .style("stroke", mainColor['darkblue'])
       .style("stroke-dasharray", ("3, 3"))
       .style("stroke-width", 1)
       .attr("x1", 0).attr("y1", radius)
@@ -131,7 +141,7 @@ function sec6_1_1(loaded){
    
     // acc line  
     var accLine = pieArea.append("line")
-      .attr("stroke", '#323D52')
+      .style("stroke", mainColor['darkblue'])
       .style("stroke-width", 0)
       .attr("x1", radius*2).attr("y1", pieY-radius)
       .attr("x2", accX_base).attr("y2", pieY*2+acc)
@@ -186,7 +196,7 @@ function sec6_1_1(loaded){
   
     // acc dot on x axis   
     var accAxis = pieArea.append('circle')
-      .attr("fill", mainColor['darkgreen'])
+      .attr("fill", mainColor['blue'])
       // .attr("stroke", '#323D52')
       .attr("cx", 0).attr("cy", 0).attr("r", 0)
       .attr('transform','translate('+(pieX/2+(radius*4)+acc)+','+pieY*2+')')
@@ -198,19 +208,19 @@ function sec6_1_1(loaded){
       .text(yAxisTxts[0])
       .attr('class', 'axis-txt text-sm')
       .attr("x", 0).attr("y", 0)	
-      .attr('transform','translate('+(-pieX/2)+','+((-pieY/40)) +')rotate(270)')
+      .attr('transform','translate('+(-pieX/1.9)+','+((-pieY/5)) +')rotate(90)')
   
     var text_fold2 = pieArea.append("text")
       .text(yAxisTxts[1])
       .attr('class', 'axis-txt text-sm')
       .attr("x", 0).attr("y", 0)	
-      .attr('transform','translate('+(-pieX/2)+','+((pieY*1.35)-radius)+')rotate(270)')
+      .attr('transform','translate('+(-pieX/1.9)+','+((pieY*1.1)-radius)+')rotate(90)')
   
     var text_fold3 = pieArea.append("text")
       .text(yAxisTxts[2])
       .attr('class', 'axis-txt text-sm')
       .attr("x", 0).attr("y", 0)	
-      .attr('transform','translate('+(-pieX/2)+','+((pieY*2.5)-radius)+')rotate(270)')
+      .attr('transform','translate('+(-pieX/1.9)+','+((pieY*2.14)-radius)+')rotate(90)')
 
     // text outline-rect
     var text_fold1_rect = pieArea.append("rect")
@@ -240,15 +250,15 @@ function sec6_1_1(loaded){
       .attr("height", radius)
       .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY*2.41))+')rotate(270)')
   
-    var text_title = pieArea.append("text")
-      .text("Parameter Tuning")
-      .attr('class', 'title-txt text-md')
-      .attr("x", 0).attr("y", 0)
-      .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
+    // var text_title = pieArea.append("text")
+    //   .text("Parameter Tuning")
+    //   .attr('class', 'title-txt text-md')
+    //   .attr("x", 0).attr("y", 0)
+    //   .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
   
     // acc line & text
     var accLine_result = pieArea.append("line")
-      .attr("stroke", mainColor['darkgreen'])
+      .style("stroke", mainColor['blue'])
       .style("stroke-width", 0)
       .attr("x1", accX_base+acc).attr("y1", pieY*2)
       .attr("x2", accX_base+acc).attr("y2", ((pieY*2)+(radius*2))-margin_s)
@@ -275,7 +285,7 @@ function sec6_1_1(loaded){
     .attr('transform','translate('+((pieX/2)-radius/1.3)+','+(-pieY/2)+')')
     
     var legned_rect1 = legend.append("rect")
-    .attr("x", 0).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["lightred"])
+    .attr("x", 0).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["red"])
     var legned_rect2 = legend.append("rect")
     .attr("x", 45).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["yellow"]) 
     var legend_text1 = legend.append("text")
@@ -285,57 +295,23 @@ function sec6_1_1(loaded){
     var legend_text3 = legend.append("text")
     .text("20%").attr('class', 'acc-txt text-sm').attr("x", 60).attr("y", 10)
   
-  //checkboxs
+  //checkboxs and acc data
     var data = ["fold1", "fold2", "fold3", "fold4", "fold5"]
-    var numOfFold = 0;
-    // d3.select("#apply_fold").on("click", function() {
-    //     var checked = [];
-    //     var boxes = d3.selectAll("input.myCheckbox:checked");
-    //     boxes.each(function() {
-    //         var cb = d3.select(this);
-    //             if(cb.property("checked")){
-    //                 checked.push(cb.property("value"));
-    //             }
-    //     });
-    //     numOfFold = checked.length
-    //     console.log(checked)
-    //     console.log(numOfFold)
-    //     updateNumber()
-    //     updatePie()
-    // });
-    
-    // var text_fold = pieArea.append("text")
-    // .text(numOfFold+"_folds")
-    // .attr('class', 'title-txt text-md')
-    // .attr("x", 0).attr("y", 0)
-    // .attr('transform','translate('+((pieX*1.3))+','+(0)+')')
+    var acc_data = ["0.95123", "0.95236", "0.96121", "0.962642", "0.952334"]
 
-    // var text_des = pieArea.append("text")
-    // .text("Applied to the model")
-    // .attr('class', 'title-txt text-sm')
-    // .attr("x", 0).attr("y", 0)
-    // .attr('transform','translate('+((pieX*1.3))+','+(20)+')')
-
+  // changeUIPos()
+    const elem = document.getElementById('fold_UI');
+    elem.style.position = "absolute";
+    elem.style.marginLeft = ((w_width/2)+(width/3.4)) +'px';
+    elem.style.marginTop = ((w_height/2)-(height/3.5)) +'px';
+  
   //dropdown
-  // d3.select("#selected-dropdown").text(numOfFold+"_folds");
-    // var text_fold = pieArea.append("text")
-    //   .text(numOfFold+"_folds")
-    //   .attr('class', 'title-txt text-md')
-    //   .attr("x", 0).attr("y", 0)
-    //   .attr('transform','translate('+((pieX*1.3))+','+(0)+')')
-
-    // var text_des = pieArea.append("text")
-    //   .text("Select Num. of folds")
-    //   .attr('class', 'title-txt text-sm')
-    //   .attr("x", 0).attr("y", 0)
-    //   .attr('transform','translate('+((pieX*1.3))+','+(-45)+')')
-
     d3.select("#fold_dropdown")
       .on("change",function(d){
         var selected = d3.select(this).property("value")
         console.log( selected );
         numOfFold = selected;
-        updateNumber()
+        // updateNumber()
         updatePie()
         updateLine()
         reset()
@@ -345,9 +321,9 @@ function sec6_1_1(loaded){
       updateAll()
     }) 
   
-    function updateNumber(){
-        text_fold.text(numOfFold+"_folds")
-    }
+    // function updateNumber(){
+    //     text_fold.text(numOfFold+"_folds")
+    // }
 
     function updatePie(){
       pies_layer
@@ -355,24 +331,33 @@ function sec6_1_1(loaded){
       
       innnerRect
       .attr("width", radius*2).attr("height", radius*2)
+
+      pies
+      .transition(transition_800)
+      .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
     }
 
     function updateLine(){
       dataLines
       .attr("stroke-dashoffset", 0)
       .attr("stroke-dasharray", 4)
-      .attr("stroke", mainColor['darkblue'])
+      .style("stroke", mainColor['darkblue'])
       .style("stroke-width", 1)
     }
 
     function reset(){
+      console.log(numOfFold)
       pies_layer
-      .style("stroke-width", function(d, i){return (i < numOfFold) ? 0 : 1})
-     
+      .style("stroke-width", function(d, i){return (i < numOfFold) ? 4 : 1})
+      // .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
+      .style("stroke-dasharray", function(d, i){return (i < numOfFold) ? ("0, 0") : ("3, 3")})
+      .style("stroke", function(d, i){return (i < numOfFold) ? mainColor['red'] : mainColor['darkblue']})
+
       accLine
-      .attr("opacity", 0)
-      .attr("stroke-dashoffset", 400)
+      // .attr("opacity", 0)
+      .attr("stroke-dashoffset", 4)
       .attr("stroke-dasharray", 1)
+      // .style("stroke", mainColor['darkblue'])
      
       accAxis
       .attr("r", 0)
@@ -396,7 +381,7 @@ function sec6_1_1(loaded){
       .transition(transition_500)
       .delay(function(d, i){return i*duration_500})
       .style("stroke-width", function(d, i){return (i < numOfFold) ? 2:1})
-      .attr("stroke", function(d, i){return (i < numOfFold) ? mainColor["lightred"] : mainColor['darkblue']})
+      // .style("stroke", function(d, i){return (i < numOfFold) ? mainColor["red"] : mainColor['darkblue']})
       .attr("stroke-dashoffset", function(d, i){return (i < numOfFold) ? 4 : 0})
     
       innnerRect
@@ -411,7 +396,7 @@ function sec6_1_1(loaded){
       .delay(function(d, i){return duration_2000})
       .attr("opacity", 1)
       .style("stroke-width", 2)
-      .attr("stroke", mainColor['darkgreen'])
+      .style("stroke", mainColor['blue'])
       .attr("stroke-dashoffset", 0)
 
       accAxis
@@ -428,57 +413,28 @@ function sec6_1_1(loaded){
       
       text_acc
       .transition(transition_500)
+      .text(function(d, i){return acc_data[i]})
+      .attr("fill", mainColor['blue'])
       .delay(function(d, i){return duration_2500})
       .attr("opacity", 1)
+
+      pies
+      .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
+      .transition(transition_2000)
+      .attr('transform','translate('+(0)+','+(0)+')rotate(90)')
+
+      pies_layer
+      .transition(transition_500)
+      .delay(function(d, i){return i*duration_500})
+      .style("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['red']})
+     
     }
-
-
-    // var pies = pieGroup.selectAll('.pie')
-    // .data(data_ready)
-    //   .enter()
-    //   .append('g')
-    //   .attr('class', 'arc')
-    //   .append('path')
-    //   .attr('d', d3.arc()
-    //     .innerRadius(0)
-    //     .outerRadius(radius)
-    //   )
-    //   .attr('fill', function(d){ return(color(d.data.key)) })
-    //   .style("opacity", 0)
-    //   // .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
-    //   // .transition(transition_2000)
-    //   // .attr('transform','translate('+(0)+','+(0)+')rotate(90)')
-
-    // var pies_layer = pieGroup.append('circle')
-    //   .attr("class", "pieCircle")
-    //   .attr("fill", 'none')
-    //   // .attr("opacity", 0)
-    //   .attr("stroke", mainColor['darkblue'])
-    //   .style("stroke-dasharray", ("3, 3"))
-    //   .attr("stroke-width", 1)
-    //   .attr("cx", 0).attr("cy", 0)
-    //   .attr("r", radius)
-    //   // pies_layer
-    //   // .transition(transition_500)
-    //   // .delay(function(d, i){return i*duration_500})
-    //   // .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
-      
-    // // var pies_layer = pieGroup.append('circle')
-    // //   .attr("class", "pieCircle")
-    // //   .attr("fill", 'none')
-    // //   // .attr("opacity", 0)
-    // //   .attr("stroke", 'lightgreen')
-    // //   .attr("stroke-width", 4)
-    // //   .attr("cx", 0).attr("cy", 0)
-    // //   .attr("r", radius)
-    // //   pies_layer
-    // //   .transition(transition_500)
-    // //   .delay(function(d, i){return i*duration_500})
-    // //   .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
-    
   }//end of func
 
-
+  // function changeUIPos() {
+  //   const elem = document.getElementById('fold_UI');
+  //   elem.style.width = w_width/2;
+  // }
 //display chart
 // var myChart611 = sec6_1_1();
 
