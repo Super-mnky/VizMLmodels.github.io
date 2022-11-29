@@ -5,12 +5,12 @@ function sec6_1_1(loaded){
       svg = d3.select('#sec6_1').select('svg')
     } else {
       svg = d3.select('#sec6_1').append('svg')
-      .attr('width', width)
-      .attr('height', height)  
+      .attr('width', w_width)
+      .attr('height', w_height)  
     }
 
     svg = svg.append('g').attr("class", "iris-2")
-    .attr('transform', function(d, i) {return 'translate('+ (w_width/8) +',10)'})
+    .attr('transform', function(d, i) {return 'translate('+ ((w_width/2)-(width/2)) +','+((w_height/2.2)-(height/2)) +')'})
   
     var radius = 30;
     var count = [1,2,3,4,5];

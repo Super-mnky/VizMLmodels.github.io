@@ -65,7 +65,9 @@ html, body {
 .intro_title, svg{
     font-family: 'Comfortaa', cursive;
 }
-
+.visCon{
+    border: 1px solid red; 
+}
 /*btn*/
 .controler{
     position: absolute;
@@ -160,12 +162,12 @@ line {
     transition: 0.5s;
 }
 
-.button-container-div {
+/* .button-container-div {
     height: 20px;
     margin-top: 10px;
     text-align: center;
     width: 70vw;
-}
+} */
 
 .button-container-div2 {
     text-align: center;

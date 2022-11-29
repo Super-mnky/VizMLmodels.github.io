@@ -13,7 +13,7 @@ var viz_ids = [
   '#sec4_2', //sec4_2_1
   '#sec4_3', //sec4_3_1
   '#sec4_6', //sec4_6_1
-  '#sec5_1', //sec5_1_1
+  // '#sec5_1', //sec5_1_1
   '#sec6_1', //sec6_1_1
   '#sec7_1', //sec7_1_1
   '#sec8_1', //sec8_1_1
@@ -26,7 +26,7 @@ var viz_fns = [
   sec4_1_1, sec4_2_1,
   sec4_3_1,
   sec4_6_1,
-  sec5_1_1,
+  // sec5_1_1,
   sec6_1_1,
   sec7_1_1, 
   sec8_1_1,

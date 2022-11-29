@@ -5,12 +5,12 @@ function sec7_1_1(loaded) {
     svg = d3.select('#sec7_1').select('svg')
   } else {
     svg = d3.select('#sec7_1').append('svg')
-    .attr('width', width)
-    .attr('height', height)
+    .attr('width', w_width)
+    .attr('height', w_height)
   }
 
   svg = svg.append('g').attr("class", "iris-2")
-  .attr('transform', function(d, i) {return 'translate('+ (w_width/8) +',0)'})
+  .attr('transform', function(d, i) {return 'translate('+ ((w_width/2)-(width/2)) +','+((w_height/2.2)-(height/2)) +')'})
 
   var radius = 30;
   var count = [1, 2, 3, 4, 5];
@@ -34,17 +34,17 @@ function sec7_1_1(loaded) {
     .domain(pieData)
     .range([mainColor['lightgreen'], mainColor['darkgreen']])
 
-  //time
-  var duration_2500 = 2500
-  var duration_2000 = 2000
-  var duration_500 = 500
-  var duration_250 = 250
+  // //time
+  // var duration_2500 = 2500
+  // var duration_2000 = 2000
+  // var duration_500 = 500
+  // var duration_250 = 250
 
-  // transition
-  const transition_2500 = d3.transition().ease(d3.easeSin).duration(duration_2500);
-  const transition_2000 = d3.transition().ease(d3.easeSin).duration(duration_2000);
-  const transition_500 = d3.transition().ease(d3.easeSin).duration(duration_500);
-  const transition_250 = d3.transition().ease(d3.easeSin).duration(duration_250);
+  // // transition
+  // const transition_2500 = d3.transition().ease(d3.easeSin).duration(duration_2500);
+  // const transition_2000 = d3.transition().ease(d3.easeSin).duration(duration_2000);
+  // const transition_500 = d3.transition().ease(d3.easeSin).duration(duration_500);
+  // const transition_250 = d3.transition().ease(d3.easeSin).duration(duration_250);
 
   // pieArea position 
   pieArea

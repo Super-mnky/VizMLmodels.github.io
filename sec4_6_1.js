@@ -6,10 +6,10 @@ function sec431_to_461(loaded){
     svg = d3.select('#sec4_6').select('svg').select("g.iris")
   } else {
     svg = d3.select('#sec4_6').append('svg')
-    .attr('width', width)
-    .attr('height', height)
-    svg = svg.append('g').attr("class", "iris")
-    .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
+    .attr('width', w_width)
+    .attr('height', w_height)
+    // svg = svg.append('g').attr("class", "visCon")
+    // .attr('transform', function(d, i) {return 'translate('+ (0) +','+(0) +')'})
   }
 
   d3.csv('iris.csv').then(function (dataset) {
@@ -41,7 +41,9 @@ async function sec4_6_1(loaded){
   svg = d3.select('#sec4_6').select('svg')
 
   svg = svg.append('g').attr("class", "iris-2")
-  .attr('transform', function(d, i) {return 'translate('+ (w_width/8) +',0)'})
+  .attr('transform', function(d, i) {return 'translate('+ ((w_width/2)-(width/2)) +','+((w_height/2.2)-(height/2)) +')'})
+
+  // .attr('transform', function(d, i) {return 'translate('+ (w_width/8) +',0)'})
 
   await delay(1000);
 //   var svg = d3.select('#sec4_6').append('svg')
@@ -68,17 +70,17 @@ async function sec4_6_1(loaded){
     .domain(pieData)
     .range(["#00FFE0", "#1E8B8B", "#323D52"])
 
-  //time
-  var duration_2500 = 2000    
-  var duration_2000 = 2000
-  var duration_500 = 500
-  var duration_250 = 250
+  // //time
+  // var duration_2500 = 2000    
+  // var duration_2000 = 2000
+  // var duration_500 = 500
+  // var duration_250 = 250
 
-  // transition
-  const transition_2500 = d3.transition().ease(d3.easeSin).duration(duration_2500);
-  const transition_2000 = d3.transition().ease(d3.easeSin).duration(duration_2000);
-  const transition_500 = d3.transition().ease(d3.easeSin).duration(duration_500);
-  const transition_250 = d3.transition().ease(d3.easeSin).duration(duration_250);
+  // // transition
+  // const transition_2500 = d3.transition().ease(d3.easeSin).duration(duration_2500);
+  // const transition_2000 = d3.transition().ease(d3.easeSin).duration(duration_2000);
+  // const transition_500 = d3.transition().ease(d3.easeSin).duration(duration_500);
+  // const transition_250 = d3.transition().ease(d3.easeSin).duration(duration_250);
 
   // pieArea position 
   pieArea
@@ -92,7 +94,7 @@ async function sec4_6_1(loaded){
     .attr('transform', function(d, i) {return 'translate('+(((2*i*radius)))+','+0+')'})
     .attr('class', 'pies')
     
-  // pie charts   
+  // pie charts
   var pie = d3.pie()
     .value(function(d) {return d.value; })
   var data_ready = pie(d3.entries(pieData))

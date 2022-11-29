@@ -1,3 +1,5 @@
+
+// Haxagon
 var lengthScale = d3.scaleLinear()
 .domain([4,8]).range([centered_x, -centered_x]);
 
