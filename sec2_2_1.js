@@ -141,9 +141,9 @@ function bubbleChart() {
 
   // X locations of the year titles.
   var yearsTitleX = {
-    'Iris-setosa': 160,
-    'Iris-versicolor': width / 2,
-    'Iris-virginica': width - 160
+    'Iris-setosa': 200,
+    'Iris-versicolor': width / 2 - 20,
+    'Iris-virginica': width - 250
   };
 
   var trainCenters = {
@@ -153,9 +153,9 @@ function bubbleChart() {
   };
 
   var trainTitleX = {
-    'Train 60%': 160,
-    'Validation 20%': width / 2,
-    'Test 20%': width - 160
+    'Train 60%': 200,
+    'Validation 20%': width / 2 + 20,
+    'Test 20%': width - 250
   };
 
   // @v4 strength to apply to the position forces
@@ -425,7 +425,7 @@ function bubbleChart() {
     years.enter().append('text')
       .attr('class', 'train')
       .attr('x', function (d) { return trainTitleX[d]; })
-      .attr('y', 100)
+      .attr('y', 70)
       .attr('text-anchor', 'middle')
       .text(function (d) { return d; });
   }
@@ -445,7 +445,7 @@ function bubbleChart() {
     years.enter().append('text')
       .attr('class', 'year')
       .attr('x', function (d) { return yearsTitleX[d]; })
-      .attr('y', 100)
+      .attr('y', 70)
       .attr('text-anchor', 'middle')
       .text(function (d) { return d; });
   }

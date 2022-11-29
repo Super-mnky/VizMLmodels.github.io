@@ -90,7 +90,6 @@ function sec4_3_1(loaded) {
     var layer2 = svg.append("g")
 
     d3.csv('knn-predictions.csv').then(function (dataset) {
-        console.log(dataset)
         var hexbin = d3.hexbin()
             .x(function(d) { return d.x})
             .y(function(d) { return d.y})

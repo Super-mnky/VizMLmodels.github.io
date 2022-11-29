@@ -11,6 +11,10 @@ function sec8_1_1(loaded){
       visContainer = svg.append('g').attr("class", "iris")
       .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.5) +')'})
     }
+
+    svg = svg.append('g').attr("class", "iris-2")
+    .attr('transform', function(d, i) {return 'translate('+ (w_width/8) +',0)'})
+  
     // var svg = d3.select('#sec8_1').append('svg')
     // .attr('width', w_width)
     // .attr('height', w_height)

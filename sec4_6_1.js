@@ -30,7 +30,7 @@ function sec431_to_461(loaded){
         .transition().duration(1000)
         .attr("r","30")
         .attr("fill",mainColor['lightgreen'])
-        .attr("transform",function (d) { return "translate("+(-120 - scaleLength(d.SepalLengthCm))+","+
+        .attr("transform",function (d) { return "translate("+(-3 - scaleLength(d.SepalLengthCm))+","+
         (-145 - scaleWidth(d.SepalWidthCm))+")"})
 })
 
@@ -39,6 +39,9 @@ function sec431_to_461(loaded){
 async function sec4_6_1(loaded){
   sec431_to_461(loaded);
   svg = d3.select('#sec4_6').select('svg')
+
+  svg = svg.append('g').attr("class", "iris-2")
+  .attr('transform', function(d, i) {return 'translate('+ (w_width/8) +',0)'})
 
   await delay(1000);
 //   var svg = d3.select('#sec4_6').append('svg')

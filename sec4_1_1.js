@@ -68,6 +68,7 @@ async function sec_3_1_1_transition(loaded) {
   // }
 
   var pivot = visContainer.append('circle').attr('r', '5').attr('cx', dataX).attr('cy', 22)
+    .attr("fill",mainColor['darkblue'])
     .attr('class', 'transition')
 
   var lines = ['bin-to-lr', 'bin-to-ln', 'mc-to-lr', 'mc-to-knn', 'rgsn-to-ln']
@@ -129,15 +130,21 @@ async function sec4_1_1(loaded) {
     .domain([0.0, 8]).range([centered_x, -centered_x]);
 
 
-  var widthScale = d3.scaleLinear()
-    .domain([1.8, 4.5]).range([height - heightMargin, heightMargin]);
+  var speciesScale = d3.scaleLinear()
+    .domain([0.0, 1]).range([-75, 75]);
 
   function scaleLength(SepalLengthCm) {
     return lengthScale(SepalLengthCm);
   }
 
-  function scaleWidth(SepalWidthCm) {
-    return widthScale(SepalWidthCm);
+  function scaleSpecies(speciess) {
+    if (species == "Iris-versicolor"){
+      return 0;
+    } else if (species == "Iris-virginica"){
+      return 75
+    } else {
+      return -75
+    }
   }
 
   var tooltip = floatingTooltip('gates_tooltip', 240);
@@ -157,6 +164,15 @@ async function sec4_1_1(loaded) {
     // var visContainer = svg.append('g').attr("class", "visContainer")
     // .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
 
+
+    svg.append('g').attr('class','y axis')
+    .attr('transform', 'translate('+centered_x+','+ -5 +')')
+    .attr('opacity','0')
+    .call(d3.axisLeft(speciesScale)
+      .tickValues([0, 0.5, 1])
+      .tickFormat(function (d) { return ''; }))
+    .transition().duration(1000)
+    .attr('opacity', '1')
 
     svg.append('g').attr('class', 'x axis')
       .attr("transform", "translate( "+ 0 +" ," + heightMargin*2 + ")")

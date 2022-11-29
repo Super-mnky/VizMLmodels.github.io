@@ -10,6 +10,9 @@ function sec5_1_1(loaded){
     .attr('height', height)
   }
 
+  svg = svg.append('g').attr("class", "iris-2")
+  .attr('transform', function(d, i) {return 'translate('+ (w_width/8) +',10)'})
+
   var radius = 30;
   var count = [1,2,3,4,5];
   var pieData = {a:20,b:80}

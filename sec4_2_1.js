@@ -87,12 +87,16 @@ function sec4_2_1(loaded){
     .transition().duration(1000)
     .attr("transform", "translate("+0+","+(-centered_x)+")")
 
+    var speciesScale = d3.scaleLinear()
+    .domain([0.0, 1]).range([-75, 75]);
+
     svg.append('g').attr('class', 'y axis')
-    .attr("transform", "translate("+centered_x+",0)")
-    .call(d3.axisLeft(widthScale))
-    .attr("opacity","0")
+    .attr("transform", "translate("+centered_x+",-5)")
+    .call(d3.axisLeft(speciesScale).tickValues([0, 0.5, 1])
+    .tickFormat(function (d) { return ''; }))
     .transition().duration(1500)
-    .attr("opacity","1")
+    .call(d3.axisLeft(widthScale))
+    .attr("transform", "translate("+centered_x+",0)")
 
     svg.append('text')
       .attr('class', 'label')

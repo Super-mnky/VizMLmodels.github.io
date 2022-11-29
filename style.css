@@ -69,13 +69,13 @@ html, body {
 /*btn*/
 .controler{
     position: absolute;
-    left: 550px;
+    left: 650px;
     top: 125px;
 }
 
 .controler_checkbox{
     position: absolute;
-    left: 520px;
+    left: 650px;
     top: 115px;
 }
 .botton1 {
@@ -164,6 +164,7 @@ line {
     height: 20px;
     margin-top: 10px;
     text-align: center;
+    width: 70vw;
 }
 
 .button-container-div2 {
