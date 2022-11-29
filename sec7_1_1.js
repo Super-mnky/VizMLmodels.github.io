@@ -288,7 +288,7 @@ function sec7_1_1(loaded) {
   //checkboxs
   var numOfFold = 5;
   var selectedList = 1;
-  var acc_data = ["0.97", "0.98"]
+  var acc_data = ["0.97", "0.98"];
 
   // changeUIPos()
     const elem = document.getElementById('k_UI');

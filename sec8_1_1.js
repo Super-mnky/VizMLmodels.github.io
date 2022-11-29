@@ -36,12 +36,12 @@ function sec8_1_1(loaded){
     var margin_s = 5;
   
     //color
-    var mainColor = {"darkgreen": '#379237', 'lightgreen':"#00FFE0", 'darkblue':"#323D52", 'red':'#C70039', 'darkred':'#900C3F', 'lightred':"#FF5733", 'yellow':"#FFC300"}
+    // var mainColor = {"darkgreen": '#379237', 'lightgreen':"#00FFE0", 'darkblue':"#323D52", 'red':'#C70039', 'darkred':'#900C3F', 'lightred':"#FF5733", 'yellow':"#FFC300"}
 
     // set the color scale
     var color = d3.scaleOrdinal()
       .domain(pieData)
-      .range([mainColor['lightgreen'], mainColor['darkgreen']])
+      .range([mainColor['yellow'], mainColor['darkgreen']])
   
     // //time
     // var duration_2500 = 2500    
@@ -83,7 +83,7 @@ function sec8_1_1(loaded){
    
     var pies = pieGroup.append('circle')
     .attr("class", "pieCircle")
-    .attr("fill", mainColor['lightgreen'])
+    .attr("fill", mainColor['yellow'])
     .attr("stroke", mainColor['darkblue'])
     .attr("stroke-width", 4)
     .attr("cx", 0).attr("cy", 0)
@@ -93,7 +93,7 @@ function sec8_1_1(loaded){
     .attr("class", "pieCircle")
     .attr("fill", 'none')
     // .attr("opacity", 0)
-    .attr("stroke", 'lightgreen')
+    .attr("stroke", mainColor['red'])
     .attr("stroke-width", 4)
     .attr("cx", 0).attr("cy", 0)
     .attr("r", radius)
@@ -167,7 +167,7 @@ function sec8_1_1(loaded){
   
     // acc dot on x axis
     var accAxis = pieArea.append('circle')
-      .attr("fill", mainColor['darkgreen'])
+      .attr("fill", mainColor['blue'])
       // .attr("stroke", '#323D52')
       .attr("cx", 0).attr("cy", 0).attr("r", 0)
       .attr('transform','translate('+(pieX/2+(radius*4)+acc)+','+pieY*multiply_axis+')')
@@ -179,19 +179,19 @@ function sec8_1_1(loaded){
       .text(yAxisTxts[0])
       .attr('class', 'axis-txt text-sm')
       .attr("x", 0).attr("y", 0)	
-      .attr('transform','translate('+(-pieX/2)+','+((pieY-85)) +')rotate(270)')
+      .attr('transform','translate('+(-pieX/1.9)+','+((pieY-110)) +')rotate(90)')
 
     var text_fold2 = pieArea.append("text")
       .text(yAxisTxts[1])
       .attr('class', 'axis-txt text-sm')
       .attr("x", 0).attr("y", 0)	
-      .attr('transform','translate('+(-pieX/2)+','+((pieY*1.95))+')rotate(270)')
+      .attr('transform','translate('+(-pieX/1.9)+','+((pieY*1.7))+')rotate(90)')
   
     var text_fold3 = pieArea.append("text")
       .text(yAxisTxts[2])
       .attr('class', 'axis-txt text-sm')
       .attr("x", 0).attr("y", 0)	
-      .attr('transform','translate('+(-pieX/2)+','+((pieY*2.5))+')rotate(270)')
+      .attr('transform','translate('+(-pieX/1.9)+','+((pieY*2.15))+')rotate(90)')
 
     // text outline-rect
     var text_fold1_rect = pieArea.append("rect")
@@ -221,15 +221,15 @@ function sec8_1_1(loaded){
       .attr("height", radius)
       .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY+250))+')rotate(270)')
   
-    var text_title = pieArea.append("text")
-      .text("Feature Selection")
-      .attr('class', 'title-txt text-md')
-      .attr("x", 0).attr("y", 0)
-      .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
+    // var text_title = pieArea.append("text")
+    //   .text("Feature Selection")
+    //   .attr('class', 'title-txt text-md')
+    //   .attr("x", 0).attr("y", 0)
+    //   .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
   
     // acc line & text
     var accLine_result = pieArea.append("line")
-      .attr("stroke", mainColor['darkgreen'])
+      .attr("stroke", mainColor['blue'])
       .style("stroke-width", 0)
       .attr("x1", accX_base+acc).attr("y1", ((pieY*2)+(radius*2))-margin_s)
       .attr("x2", accX_base+acc).attr("y2", ((pieY*2)+(radius*3))-margin_s)
@@ -242,31 +242,42 @@ function sec8_1_1(loaded){
       .attr("stroke-dasharray", "2px")
       .attr('transform','translate('+ (accX_base+acc-margin_s)+','+((pieY*2)+(radius*3))+')rotate(-270)')
 
-  //legend
-    var legend = pieArea.append("g")
-    .attr("x", 0).attr("y", 0)
-    .attr('transform','translate('+((pieX/2)-radius/1.3)+','+(-pieY/2)+')')
+  // //legend
+  //   var legend = pieArea.append("g")
+  //   .attr("x", 0).attr("y", 0)
+  //   .attr('transform','translate('+((pieX/2)-radius/1.3)+','+(-pieY/2)+')')
     
-    var legned_rect1 = legend.append("rect")
-    .attr("x", 0).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["lightred"])
-    var legned_rect2 = legend.append("rect")
-    .attr("x", 45).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["yellow"]) 
-    var legend_text1 = legend.append("text")
-    .text("Data").attr('class', 'acc-txt text-sm text-bold').attr("x", -34).attr("y", 10)
-    var legend_text2 = legend.append("text")
-    .text("80%").attr('class', 'acc-txt text-sm').attr("x", 15).attr("y", 10)
-    var legend_text3 = legend.append("text")
-    .text("20%").attr('class', 'acc-txt text-sm').attr("x", 60).attr("y", 10)
+  //   var legned_rect1 = legend.append("rect")
+  //   .attr("x", 0).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["red"])
+  //   var legned_rect2 = legend.append("rect")
+  //   .attr("x", 45).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["yellow"]) 
+  //   var legend_text1 = legend.append("text")
+  //   .text("Data").attr('class', 'acc-txt text-sm text-bold').attr("x", -34).attr("y", 10)
+  //   var legend_text2 = legend.append("text")
+  //   .text("80%").attr('class', 'acc-txt text-sm').attr("x", 15).attr("y", 10)
+  //   var legend_text3 = legend.append("text")
+  //   .text("20%").attr('class', 'acc-txt text-sm').attr("x", 60).attr("y", 10)
   
   //checkboxs
     var checked = [];
     var numOfFold = 0
+    var isChecked = true;
+    var acc_data = ["1.6797", "1.6914"];
+
+
+    // changeUIPos()
+    const elem = document.getElementById('feature_UI');
+    elem.style.position = "absolute";
+    elem.style.marginLeft = ((w_width/2)+(width/3.4)) +'px';
+    elem.style.marginTop = ((w_height/2)-(height/2.6)) +'px';
+    
     d3.selectAll(".age_box").on('change', function() {
         if (this.value == 4){ reset()}
         if(this.checked) {
           console.log('You checked the checkbox:');
           console.log(this.value);  
           checked.push(this.value)
+          isChecked = true;
         } else {
           console.log('You unchecked the checkbox:');
           console.log(this.value);  
@@ -276,6 +287,7 @@ function sec8_1_1(loaded){
           }
           checked 
           = checked.filter((element) => element !== this.value);
+          isChecked = false;
         }
         console.log(checked)
       });
@@ -299,7 +311,7 @@ function sec8_1_1(loaded){
       pies_layer
       .transition(transition_250)
       .delay(function(d, i){return i*duration_250/10})
-      .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})  
+      .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['yellow']})  
     }
 
     function updateLine(){
@@ -316,7 +328,7 @@ function sec8_1_1(loaded){
       .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
         
       pies_layer
-      .attr("stroke", function(d, i){return i == i ? mainColor['lightgreen'] : mainColor['darkblue']})
+      .attr("stroke", function(d, i){return i == i ? mainColor['red'] : mainColor['darkblue']})
      
       innnerRect
       .attr("width", radius*2).attr("height", radius*2)
@@ -363,7 +375,7 @@ function sec8_1_1(loaded){
       .delay(function(d, i){return duration_500*2})
       .attr("opacity", 1)
       .style("stroke-width", 2)
-      .attr("stroke", mainColor['darkgreen'])
+      .attr("stroke", mainColor['blue'])
       .attr("stroke-dashoffset", 0)
 
       accAxis
@@ -378,9 +390,14 @@ function sec8_1_1(loaded){
       .style("stroke-width", 1)
       .attr("stroke-dasharray", "2px")
       
+      var RMSE;
+      if (isChecked){RMSE = 0} else {RMSE = 1}
+
       text_acc
+      .attr("fill", mainColor['darkblue'])
       .transition(transition_500)
-      .delay(function(d, i){return duration_500*2})
+      .text(function(d, i){return acc_data[RMSE]})
+      .delay(function (d, i) { return duration_1000 })
       .attr("opacity", 1)
     }
 
