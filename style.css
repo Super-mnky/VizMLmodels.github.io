@@ -212,6 +212,28 @@ line {
     transition: 0.5s;
 }
 
+button {
+    border: #323D52 solid 2px;
+    border-radius: 3px;
+    color: #323D52;
+    background-color: white;
+    margin-right: 15px;
+}
+
+button:hover {
+    border: #323D52 solid 2px;
+    border-radius: 3px;
+    color: white;
+    background-color: #475e89;
+    margin-right: 15px;
+}
+
+.active, .knn-active {
+    color: #fff;
+    border: #323D52 solid 2px;
+    background-color: #323D52;
+}
+
 .button-container-div {
     height: 20px;
     margin-top: 10px;
