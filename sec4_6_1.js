@@ -2,6 +2,7 @@
 
 function sec431_to_461(loaded){
   var svg;
+  var bin;
   if (loaded){
     svg = d3.select('#sec4_6').select('svg').select("g.iris")
   } else {
@@ -11,6 +12,9 @@ function sec431_to_461(loaded){
     // svg = svg.append('g').attr("class", "visCon")
     // .attr('transform', function(d, i) {return 'translate('+ (0) +','+(0) +')'})
   }
+
+  bin = svg.append('g').attr("class", "iris-bin")
+  .attr('transform', function(d, i) {return 'translate('+ ((w_width/2)+(width/2)) +','+((w_height/2.2)+(height/2)) +')'})
 
   d3.csv('iris.csv').then(function (dataset) {
     //console.table(dataset)
@@ -44,7 +48,9 @@ async function sec4_6_1(loaded){
   .attr('transform', function(d, i) {return 'translate('+ ((w_width/2)-(width/2)) +','+((w_height/2.2)-(height/2)) +')'})
 
   // .attr('transform', function(d, i) {return 'translate('+ (w_width/8) +',0)'})
-
+  const elem = document.getElementById('modelselect_UI');
+  elem.style.position = "absolute";
+  elem.style.marginLeft = -1000 +'px';
   await delay(1000);
 //   var svg = d3.select('#sec4_6').append('svg')
 //   .attr('width', w_width)
@@ -65,10 +71,10 @@ async function sec4_6_1(loaded){
   var margin_s = 5;
 
   // set the color scale
-  var mainColor = {"green": '#1E8B8B', 'lightgreen':"#00FFE0", 'darkblue':"#323D52", 'red':'#C70039', 'darkred':'#900C3F' }
-  var color = d3.scaleOrdinal()
-    .domain(pieData)
-    .range(["#00FFE0", "#1E8B8B", "#323D52"])
+  // var mainColor = {"green": '#1E8B8B', 'lightgreen':"#00FFE0", 'darkblue':"#323D52", 'red':'#C70039', 'darkred':'#900C3F' }
+  // var color = d3.scaleOrdinal()
+  //   .domain(pieData)
+  //   .range(["#00FFE0", "#1E8B8B", "#323D52"])
 
   // //time
   // var duration_2500 = 2000    
@@ -81,7 +87,6 @@ async function sec4_6_1(loaded){
   // const transition_2000 = d3.transition().ease(d3.easeSin).duration(duration_2000);
   // const transition_500 = d3.transition().ease(d3.easeSin).duration(duration_500);
   // const transition_250 = d3.transition().ease(d3.easeSin).duration(duration_250);
-
   // pieArea position 
   pieArea
   .attr('transform', function(d, i) {return 'translate('+pieX+','+(pieY+padding)+')'})
@@ -101,7 +106,7 @@ async function sec4_6_1(loaded){
   
   var pies = pieGroup.append('circle')
     .attr("class", "pieCircle")
-    .attr("fill", function(d, i){return i < 2 ? "none" : mainColor['lightgreen']})
+    .attr("fill", function(d, i){return i < 2 ? "none" : mainColor['darkblue']})
     .attr("cx", 0).attr("cy", 0)
     .attr("r","0")
     .transition(transition_500)
@@ -113,15 +118,16 @@ async function sec4_6_1(loaded){
     // .attr("opacity", 0)
     // .attr("stroke", 'lightgreen')
     // .attr("stroke-width", 4)
-    .attr("stroke", mainColor['darkblue'])
+    .attr("stroke", mainColor['yellow'])
     .attr("stroke-width", function(d, i){return i < 2 ? "1px" : "4px"})
     .style("stroke-dasharray", function(d, i){return i < 2 ? ("3, 3") : 0 })
     .attr("cx", 0).attr("cy", 0)
     .attr("r", radius)
+    .attr("stroke", function(d, i){return i > 1 ? mainColor['yellow'] : mainColor['darkblue']})
     pies_layer
-    .transition(transition_500)
+    .transition(transition_250)
     .delay(function(d, i){return i*duration_500})
-    .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['lightgreen']})
+    .attr("stroke", function(d, i){return i > 1 && i == i ? mainColor['red'] : mainColor['darkblue']})
   
   // text-fold
   var attribute = "20%"
@@ -141,10 +147,10 @@ async function sec4_6_1(loaded){
     .attr("stroke-dashoffset", 400)
     .attr("stroke-dasharray", 4)
     .transition(transition_500)
-    .delay(function(d, i){return i*duration_500})
-    .style("stroke-width", function(d, i){return (i == i) ? 2:1})
-    .attr("stroke", mainColor["green"])
-    .attr("stroke-dashoffset", 0)
+    .delay(function(d, i){return i*duration_250})
+    .style("stroke-width", function(d, i){return (i == i && i > 1) ? 2:1})
+    .attr("stroke", function(d, i){return (i == i && i > 1) ? mainColor['red']:mainColor['darkblue']})
+    .attr("stroke-dashoffset", function(d, i){return (i == i && i > 1) ? 0:400})
  
    
   // acc line  
@@ -156,12 +162,12 @@ async function sec4_6_1(loaded){
     accLine
     .attr("stroke-dashoffset", 400)
     .attr("stroke-dasharray", 4)
-    .transition(transition_250)
-    .delay(function(d, i){return duration_2000})
+    .transition(transition_800)
+    .delay(function(d, i){return duration_1500})
     .style("stroke-width", 2)
     .attr("stroke", mainColor['red'])
     .attr("stroke-dashoffset", 0)
-    .attr('opacity', 0) // removed temporarily
+    .attr('opacity', 1) // removed temporarily
 
      
   function posi(d, i, radius){
@@ -191,8 +197,11 @@ async function sec4_6_1(loaded){
     .attr("rx", radius).attr("ry", radius)								
     .attr("width", radius*2).attr("height", radius*2)
     .attr('transform','translate('+0+','+pieY+')')
+
+    innnerRect
     .transition(transition_2500)
-    .attr("width", radius*10)
+    .delay(function (d, i) { return duration_1500 })
+    .attr("width", radius * 10)
 
   // acc x axis  
   var lengthScale_acc = d3.scaleLinear()
@@ -204,27 +213,24 @@ async function sec4_6_1(loaded){
 
   // acc dot on x axis
   var accAxis = pieArea.append('circle')
-    .attr("fill", mainColor['red'])
+    .attr("fill", mainColor['darkblue'])
     // .attr("stroke", '#323D52')
     .attr("cx", 0).attr("cy", 0).attr("r", 0)
     .attr('transform','translate('+(pieX/2+(radius*4)+acc)+','+pieY*2+')')
     .transition(transition_500)
-    .delay(function(d, i){return duration_2500})
+    .delay(function(d, i){return duration_2000})
     .attr("r", 5)
-    .attr('opacity', 0) // removed temporarily
+    .attr('opacity', 1) // removed temporarily
 
   // text-labels-left   
   var yAxisTxts = ["Data", "Model", "Accuracy"]
-
-  // var accValues = ["96% : LR"] // temporarily removed
-  var accValues = [""]
+  var accValues = ["96%: Logistic Regression", "97%: KNN, K=10", "98%: KNN, K=20"] // temporarily removed
 
   var text_fold1 = pieArea.append("text")
     .text(yAxisTxts[0])
     .attr('class', 'axis-txt text-sm')
     .attr("x", 0).attr("y", 0)	
     .attr('transform','translate('+(-pieX/2)+','+((-pieY/40)) +')rotate(270)')
-
 
   var text_fold2 = pieArea.append("text")
     .text(yAxisTxts[1])
@@ -265,11 +271,11 @@ async function sec4_6_1(loaded){
     .attr("height", radius)
     .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY*2.41))+')rotate(270)')
 
-  var text_title = pieArea.append("text")
-    .text("Model comparison")
-    .attr('class', 'title-txt text-md')
-    .attr("x", 0).attr("y", 0)
-    .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
+  // var text_title = pieArea.append("text")
+  //   .text("Model comparison")
+  //   .attr('class', 'title-txt text-md')
+  //   .attr("x", 0).attr("y", 0)
+  //   .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
 
   // acc line & text
   var accLine_result = pieArea.append("line")
@@ -283,12 +289,11 @@ async function sec4_6_1(loaded){
     .transition(transition_250)
     .delay(function(d, i){return duration_2000})
     .style("stroke-width", 1)
-    .attr("stroke", mainColor['red'])
+    .attr("stroke", mainColor['darkblue'])
     .attr("stroke-dashoffset", 0)
-    .attr('opacity', 0) // removed temporarily
+    .attr('opacity', 1) // removed temporarily
 
-     
-  var text_acc = pieArea.append("text")
+  var text_acc_LR = pieArea.append("text")
     .text(accValues[0])
     .attr('class', 'acc-txt text-sm')
     .attr("x", 0).attr("y", 0)
@@ -298,21 +303,149 @@ async function sec4_6_1(loaded){
     .delay(function(d, i){return duration_2500})
     .attr("opacity", 1)
   
-//legend
-//   var legend = pieArea.append("g")
-//   .attr("x", 0).attr("y", 0)
-//   .attr('transform','translate('+((pieX/2)-radius/1.3)+','+(-pieY/2)+')')
+  // var text_acc_K10 = pieArea.append("text")
+  //   .text(accValues[0])
+  //   .attr('class', 'acc-txt text-sm')
+  //   .attr("x", 0).attr("y", 0)
+  //   .attr("opacity", 0)
+  //   .attr('transform','translate('+ (accX_base+acc-margin_s)+','+((pieY*2)+(radius*2))+')rotate(-270)')
+  //   .transition(transition_500)
+  //   .delay(function(d, i){return duration_2500})
+  //   .attr("opacity", 1)
   
-//   var legned_rect1 = legend.append("rect")
-//   .attr("x", 0).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["green"])
-//   var legned_rect2 = legend.append("rect")
-//   .attr("x", 45).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", mainColor["lightgreen"])
-//   var legend_text1 = legend.append("text")
-//   .text("Data").attr('class', 'acc-txt text-sm text-bold').attr("x", -34).attr("y", 10)
-//   var legend_text2 = legend.append("text")
-//   .text("80%").attr('class', 'acc-txt text-sm').attr("x", 15).attr("y", 10)
-//   var legend_text3 = legend.append("text")
-//   .text("20%").attr('class', 'acc-txt text-sm').attr("x", 60).attr("y", 10)
+  var text_acc_k20 = pieArea.append("text")
+    .text(accValues[0])
+    .attr('class', 'acc-txt text-sm')
+    .attr("x", 0).attr("y", 0)
+    .attr("opacity", 0)
+    .attr('transform','translate('+ (accX_base+acc-margin_s)+','+((pieY*2)+(radius*2))+')rotate(-270)')
+    .transition(transition_500)
+    .delay(function(d, i){return duration_2500})
+    .attr("opacity", 1)
+  
+    await delay(4000);
+    reset()
+    await delay(1000);
+    redo()
+    k10()
+    await delay(4000);
+    reset()
+    await delay(1000);
+    redo()
+    k20()
+    await delay(4000);
+    reset()
+
+    function reset(){
+      pies_layer
+      // .transition(transition_800)
+      // .delay(function(d, i){return duration_1000})
+      .attr("fill", function(d, i){return i < 2 ? 'white' : mainColor['darkblue']})  
+      .attr("stroke", function(d, i){return i > 1 ? mainColor['yellow'] : mainColor['darkblue']})
+
+      dataLines
+      // .transition(transition_500)
+      // .delay(function(d, i){return i*duration_250})
+      .style("stroke-width", 1)
+      .attr("stroke", mainColor['darkblue'])
+      .attr("stroke-dashoffset", 400)
+  
+      innnerRect
+      // .transition(transition_2500)
+      // .delay(function (d, i) { return duration_1500 })
+      .attr("width", radius * 2)
+
+      accLine
+      .style("stroke-width", 1)
+      .attr("stroke", mainColor['darkblue'])
+      .attr("stroke-dashoffset", 400)
+      .attr('opacity', 1) // removed temporarily
+    }
+
+    function redo(){
+      pies_layer
+      .transition(transition_250)
+      .delay(function(d, i){return i*duration_500})
+      .attr("stroke", function(d, i){return i > 1 && i == i ? mainColor['red'] : mainColor['darkblue']})
+
+      dataLines
+      // .attr("stroke-dashoffset", 400)
+      // .attr("stroke-dasharray", 4)
+      .transition(transition_500)
+      .delay(function(d, i){return i*duration_250})
+      .style("stroke-width", function(d, i){return (i == i && i > 1) ? 2:1})
+      .attr("stroke", function(d, i){return (i == i && i > 1) ? mainColor['red']:mainColor['darkblue']})
+      .attr("stroke-dashoffset", function(d, i){return (i == i && i > 1) ? 0:400})
+
+      innnerRect
+      .transition(transition_2000)
+      .delay(function (d, i) { return duration_1500})
+      .attr("width", radius * 10)
+
+      accLine
+      .transition(transition_800)
+      .delay(function(d, i){return duration_1500})
+      .style("stroke-width", 2)
+      .attr("stroke", mainColor['red'])
+      .attr("stroke-dashoffset", 0)
+      .attr('opacity', 1) // removed temporarily
+
+      // accLine_result
+      // .transition(transition_800)
+      // .delay(function(d, i){return duration_1500})
+      // .style("stroke-width", 2)
+      // .attr("stroke", mainColor['red'])
+      // .attr("stroke-dashoffset", 0)
+      // .attr('opacity', 1) // removed temporarily
+    }
+
+    function k10(){
+      var text_acc_K10 = pieArea.append("text")
+      .text(accValues[1])
+      .attr('class', 'acc-txt text-sm')
+      .attr("x", 0).attr("y", 0)
+      .attr("opacity", 0)
+      .attr('transform','translate('+ (accX_base+acc-(margin_s*5))+','+((pieY*2)+(radius*2))+')rotate(-270)')
+      .transition(transition_500)
+      .delay(function(d, i){return duration_2500})
+      .attr("opacity", 1)
+
+      // accLine_result
+      // .attr("stroke-dashoffset", 400)
+      // .attr("stroke-dasharray", 4)
+      // .transition(transition_250)
+      // .delay(function(d, i){return duration_2000})
+      // .style("stroke-width", 1)
+      // .attr("stroke", mainColor['red'])
+      // .attr("stroke-dashoffset", 0)
+      // .attr('opacity', 1) // removed temporarily
+    }
+
+    function k20(){
+      var text_acc_K10 = pieArea.append("text")
+      .text(accValues[2])
+      .attr('class', 'acc-txt text-sm')
+      .attr("x", 0).attr("y", 0)
+      .attr("opacity", 0)
+      .attr('transform','translate('+ (accX_base+acc-(margin_s*9))+','+((pieY*2)+(radius*2))+')rotate(-270)')
+      .transition(transition_500)
+      .delay(function(d, i){return duration_2500})
+      .attr("opacity", 1)
+
+      // accLine_result
+      // .attr("stroke-dashoffset", 400)
+      // .attr("stroke-dasharray", 4)
+      // .transition(transition_250)
+      // .delay(function(d, i){return duration_2000})
+      // .style("stroke-width", 1)
+      // .attr("stroke", mainColor['red'])
+      // .attr("stroke-dashoffset", 0)
+      // .attr('opacity', 1) // removed temporarily
+    }
+
+   
+
+
 
 }//end of func
 

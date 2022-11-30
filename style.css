@@ -16,6 +16,8 @@ html, body {
 #main {
     margin: 0px;
     position: relative;
+    font-family: 'Albert Sans', sans-serif;
+
 }
 
 /* Text */
@@ -65,7 +67,7 @@ html, body {
     font-weight: 200;;
 }
 
-.intro_title, svg{
+.intro_title{
     font-family: 'Comfortaa', cursive;
 }
 .visCon{

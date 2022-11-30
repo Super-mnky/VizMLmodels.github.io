@@ -6,9 +6,12 @@
         <title>Main Page</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <link rel="stylesheet" href="./style.css">
+        
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -63,6 +66,19 @@
                         </div>
                         <div class="viz visView" id="sec4_6">
                                 <div class="button-container-div">
+                                </div>
+                                <div class="controler" id ="modelselect_UI">
+                                        <div class="m_dropdown">
+                                                <div class="btn_lable text-sm">Select a model</div>
+                                                <select id="m_dropdown" class="margin_ssm">
+                                                        <option value="1">Logistic Regression</option>
+                                                        <option value="1">K=10</option>
+                                                        <option value="2">K=20</option>
+                                                </select>
+                                        </div>
+                                        <div class="apply">
+                                                <button id="m_apply" class="margin_md button1">Apply</button>
+                                        </div>
                                 </div>
                         </div>
                 </div>
@@ -130,11 +146,14 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_1_1_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec2_1_1_text _2_dataprep -->
                                 <br>Welcome!
-                                <br><br>We will be exploring machine learning models and how to compare them by
+                                <div class = "margin_md">
+                                We will be exploring machine learning models and how to compare them by
                                 utilizing the Iris dataset originally created by R.A. Fisher and provided by
                                 UCI's Machine Learning Repository.
+                                </div>
 
                                 <br><br><br><br>But what is machine learning? Machine learning systems work by using
                                 data to generate a model from the features composing each observation. After a model is
@@ -147,6 +166,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_1_2_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec2_1_2_text _2_dataprep -->
                                 <br>What exactly will our model be predicting? Each observation will have attributes
                                 associated with each observation. The Iris dataset contains 3 different species in total:
@@ -163,6 +183,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_1_1_1_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec2_1_1_1_text _2_dataprep -->
                                 <br>Let's take a closer look at our dataset. We can hover over each observation to see
                                 the features for each.
@@ -193,6 +214,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_2_1_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec2_2_text _2_dataprep -->
                                 <br>The term model has been a bit vague so far. What do we mean by this?
 
@@ -202,6 +224,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec3_text _3_classifier -->
                                 <br>If the dataset is only comprised of <i>binary</i> datatypes such as -5, 10, 0.001, 10,000 and the like
                                 two models and prmarily used:
@@ -219,6 +242,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_1_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec3_text _3_classifier -->
                                 <br>If the dataset is only comprised of <i>multi-class</i> datatypes, these can come in
                                 the form of cats, dogs, and cows, but all have the same attributes such as weight,
@@ -238,6 +262,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_2_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec3_text _3_classifier -->
                                 <br>If the dataset is only comprised of <i>text</i> datatypes, these can come in
                                 in a wide variety of forms. Typically the task is to define the part of speech from
@@ -252,6 +277,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_3_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec3_text _3_classifier -->
                                 <br>Let's take another view of the dataset's petal lengths to see what insights we can gain:
 
@@ -265,6 +291,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_1_1_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec4_1_1_text _4_comparison -->
                                 <br>Let's take one more view to see if any patterns stick out:
 
@@ -278,6 +305,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_2_1_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec4_2_1_text _4_comparison -->
                                 <br>As we've discussed, KNN or K Nearest Neighbors will use 'K' neighbors to help
                                 identify which observation belong to which species by looking comparing it to it's
@@ -303,6 +331,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_3_1_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec4_3_1_text _4_comparison -->
                                 <br>We can now examine how we will assess how the model will ultimately perform.
 
@@ -342,11 +371,13 @@
                                 <p class="block"></p>
                         </div> -->
                         <div class="section-text" id="sec6_text">
+                                <div class="section-title">Feature Selection</div> 
                                 sec6_text _6_parameter
                                 <br>tbd
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec7_text">
+                                <div class="section-title">Feature Selection</div> 
                                 <!-- sec7_text _7_modelselect -->
                                 <br>We can now run the model and see how it performs!
 
@@ -365,7 +396,7 @@
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec8_text">
-                                <br>Feature Selection
+                               <div class="section-title">Feature Selection</div> 
                                 <br> Hopefully you have a good understanding now of how we can use machine
                                 learning algorithms, utilize powerful models such as K Nearest Neighbors, and run and
                                 compare them to get the highest accuracy possible.
@@ -421,6 +452,7 @@
         //time
         var duration_2500 = 2500    
         var duration_2000 = 2000
+        var duration_1500 = 1500
         var duration_1000 = 1000
         var duration_800 = 800
         var duration_500 = 500
@@ -430,6 +462,7 @@
         const transition_2500 = d3.transition().ease(d3.easeSin).duration(duration_2500);
         const transition_2000 = d3.transition().ease(d3.easeSin).duration(duration_2000);
         const transition_1000 = d3.transition().ease(d3.easeSin).duration(duration_1000);
+        const transition_1500 = d3.transition().ease(d3.easeSin).duration(duration_1500);
         const transition_800 = d3.transition().ease(d3.easeSin).duration(duration_800);
         const transition_500 = d3.transition().ease(d3.easeSin).duration(duration_500);
         const transition_250 = d3.transition().ease(d3.easeSin).duration(duration_250);
