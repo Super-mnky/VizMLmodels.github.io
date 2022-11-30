@@ -1,5 +1,5 @@
 // Scrolling Mechanism:
-var current_viz = 0
+var prev_viz = 0
 var viz_ids = [
   '#sec1',
   '#sec2_1', //2_1_1
@@ -39,6 +39,24 @@ var viz_loaded = [
   false, false, false, false, false, false
 ]
 
+var sidebar = [
+  null,
+  '#b1', '#b1', '#b1',
+  '#b2', '#b2', '#b2', '#b2',
+  '#b3', '#b3', '#b3', '#b3',
+  '#b4',
+  '#b5',
+  '#b6'
+]
+
+function colorSidebar(i){
+  if (i == 0){
+    d3.select(sidebar[prev_viz]).style("color", '#323D52')
+  } else {
+    d3.select(sidebar[prev_viz]).style("color", '#323D52')
+    d3.select(sidebar[i]).style("color", '#3DB2FF')
+  }
+}
 
 d3.graphScroll()
     .graph(d3.selectAll('#graph'))
@@ -50,17 +68,20 @@ d3.graphScroll()
     })
 
 function updateViz(i) {
-  d3.select(viz_ids[current_viz]).style('display', 'none')
+  d3.select(viz_ids[prev_viz]).style('display', 'none')
   d3.select(viz_ids[i]).style('display','block')
 
-  if (viz_loaded[i] && (viz_ids[i] != viz_ids[current_viz])) {
+  if (viz_loaded[i] && (viz_ids[i] != viz_ids[prev_viz])) {
     d3.select(viz_ids[i]).selectAll("svg").remove()
     viz_loaded[i] = false;
   } 
 
   viz_fns[i](viz_loaded[i])
   viz_loaded[i] = true;
-  current_viz = i
+
+  colorSidebar(i);
+
+  prev_viz = i
 
   /*
   if (!viz_loaded[i]){

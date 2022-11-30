@@ -9,12 +9,13 @@ function sec431_to_461(loaded){
     svg = d3.select('#sec4_6').append('svg')
     .attr('width', w_width)
     .attr('height', w_height)
+
+    svg = svg.append('g').attr("class", "iris")
+    .attr('transform', function(d, i) {return 'translate('+ (w_width/2) +','+(w_height/2.2) +')'})
+
     // svg = svg.append('g').attr("class", "visCon")
     // .attr('transform', function(d, i) {return 'translate('+ (0) +','+(0) +')'})
   }
-
-  bin = svg.append('g').attr("class", "iris-bin")
-  .attr('transform', function(d, i) {return 'translate('+ ((w_width/2)+(width/2)) +','+((w_height/2.2)+(height/2)) +')'})
 
   d3.csv('iris.csv').then(function (dataset) {
     //console.table(dataset)
@@ -29,13 +30,13 @@ function sec431_to_461(loaded){
 
     g.append("circle")
         .attr("r", 3.5)
-        .attr("stroke", 'black')
+        .attr("stroke", mainColor['darkblue'])
         .attr('fill', function (d) { return color(d.Species); })
         .transition().duration(1000)
         .attr("r","30")
-        .attr("fill",mainColor['lightgreen'])
-        .attr("transform",function (d) { return "translate("+(-3 - scaleLength(d.SepalLengthCm))+","+
-        (-145 - scaleWidth(d.SepalWidthCm))+")"})
+        .attr("fill",mainColor['yellow'])
+        .attr("transform",function (d) { return "translate("+(6 - scaleLength(d.SepalLengthCm))+","+
+        (-(height/4) - scaleWidth(d.SepalWidthCm))+")"})
 })
 
 }
