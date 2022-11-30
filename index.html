@@ -142,12 +142,6 @@
                 <!-- Add a section block for every text we want -->
                 <div id="sections" , class="text-posi">
                         <div class="section-text" id="sec1_text">
-                                <br>Please press spacebar to continue...
-                                <p class="block"></p>
-                        </div>
-                        <div class="section-text" id="sec2_1_1_text">
-                                <div class="section-title">Feature Selection</div> 
-                                <!-- sec2_1_1_text _2_dataprep -->
                                 <br>Welcome!
                                 <div class = "margin_md">
                                 We will be exploring machine learning models and how to compare them by
@@ -155,20 +149,27 @@
                                 UCI's Machine Learning Repository.
                                 </div>
 
-                                <br><br><br><br>But what is machine learning? Machine learning systems work by using
-                                data to generate a model from the features composing each observation. After a model is
-                                generated learning from the data we have, the model can make predictions on new observations.
-                                This is our main tasks, so we want our model to predict with the highest accuracy possible.
+                                <p class="block"></p>
+                        </div>
+                        <div class="section-text" id="sec2_1_1_text">
+                                <!-- sec2_1_1_text _2_dataprep -->
+                                <br><br><br><br>But what is machine learning?
 
-                                <br><br><br><br>So what are these attributes that our model will learn? This Iris
-                                dataset is a collection of Iris plants. Our model will learn from <b>petal</b> and
-                                <b>sepal</b> lengths and widths.
+                                <br><br><br><br>Machine learning systems work by using  data to generate a model from
+                                the features composing each observation. After a model is  generated learning from the
+                                data we have, the model can make predictions on new observations. This is our main task,
+                                so we'd like our model to predict with the highest accuracy possible.
+
+                                <br><br><br><br>So what are these attributes that our model will learn from? The Iris
+                                dataset is a collection of Iris plants. Each observation in our dataset comes complete
+                                with measurements of the lengths and widths of the <b>petal</b> and <b>sepal</b>
+                                recorded in centimeters.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_1_2_text">
                                 <div class="section-title">Feature Selection</div> 
                                 <!-- sec2_1_2_text _2_dataprep -->
-                                <br>What exactly will our model be predicting? Each observation will have attributes
+                                <br>And what exactly will our model be predicting? Each observation will have attributes
                                 associated with each observation. The Iris dataset contains 3 different species in total:
                                 <br><br><br><br>
                                 <ul>
@@ -176,37 +177,39 @@
                                         <li><b>Vericolor</b></li>
                                         <li><b>Setosa</b></li>
                                 </ul>
-                                <br><br><br><br> Our goal then for our model is to learn how the lengths and widths of the
-                                petals and sepals indicate which species the particular observation relates to. Each
-                                species tends to have similar features, so if our model and learn the relationship, the
-                                model should be able to make accurate predictions for new observations.
+                                <br><br><br><br> Each species tends to have similar
+                                features, so if our model and learn the relationship, the model should be able to
+                                perform well. Our goal then for our model is to learn how the lengths and widths of the
+                                petals and sepals indicate which species the particular observation so that it can make
+                                accurate predictions based on these attributes.
+
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec2_1_1_1_text">
                                 <div class="section-title">Feature Selection</div> 
                                 <!-- sec2_1_1_1_text _2_dataprep -->
-                                <br>Let's take a closer look at our dataset. We can hover over each observation to see
-                                the features for each.
+                                <br>Let's first take a look at our entire dataset.
 
                                 <br><br><br><br> Each bubble here represents a single observation. Our total dataset has
                                 150 recorded observations, so there are 150 bubbles. Smaller bubbles indicate smaller
-                                lengths and widths, while larger bubbles represent larger lengths and width.
+                                lengths and widths, while larger bubbles represent larger lengths and width. We can
+                                hover over each observation to see the measurements for each.
 
-                                <br><br><br><br>By clicking the <b>By Species</b> button we can see the separation
-                                between the species. We can see things a bit more clearly here. The Seota species tends
+                                <br><br><br><br>By clicking the <b>By Species</b> button we can see the dataset
+                                separated by species. We can see things a bit more clearly here. The Setosa species tends
                                 to be a bit smaller in size, while Virginica tends to be larger, with versicolor tends
-                                to be somewhere in teh middle. This could be a useful pattern for our model!
+                                to be somewhere in the middle. This could be a useful pattern for our model!
 
                                 <br><br><br><br> By clicking the <b>Data Split</b> button, we can how we will break our
                                 dataset into different groupings:
                                 <br><br><br><br>
                                 <ul>
-                                        <li><b>The Train Set</b></li> will be used to train our model. These observations will
-                                        be used to learn the relationships to make accurate predictions.
-                                        <li><b>The Validation Set</b></li> will be used while the model is trained. It
+                                        <li><b>The Train Set</b></li> This set will be used to train our model. These observations will
+                                        be used to learn the relationships between attributes and the species to make accurate predictions.
+                                        <li><b>The Validation Set</b></li> This set will be used while the model is trained. It
                                         is to ensure that training is moving in the right direction, ideally more
                                         accurate as more data is used!
-                                        <li><b>The Test Set</b></li> is what we'll test our trained model on. We'll need
+                                        <li><b>The Test Set</b></li> This set is what we'll test our trained model on. We'll need
                                         to test to see how accurate our model can perform on data our model hasn't seen
                                         before. The model will not know the true species of the observations during
                                         testing.
@@ -218,23 +221,26 @@
                                 <!-- sec2_2_text _2_dataprep -->
                                 <br>The term model has been a bit vague so far. What do we mean by this?
 
-                                <br><br><br><br> The type of model to be used for machine learning depends on the type
-                                of data your dataset is comprised of. Depending on this, certain models are more
-                                suitable than others in accomplish tasks. Let's review a few.
+                                <br><br><br><br> The best model to be used for machine learning tasks depends on the type
+                                of data our dataset comprises. Depending on this, certain models are more
+                                suitable than others.
+
+                                <br><br><br><br>Let's review a few.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec3_text">
                                 <div class="section-title">Feature Selection</div> 
                                 <!-- sec3_text _3_classifier -->
-                                <br>If the dataset is only comprised of <i>binary</i> datatypes such as -5, 10, 0.001, 10,000 and the like
-                                two models and prmarily used:
+                                <br>If the dataset is only comprised of <i>binary</i> datatypes such as -5, 10, 0.001,
+                                10,000 and the like, two of the best models to use are:
 
                                 <br><br><br><br>
                                 <ul>
-                                        <li><b>Logistic Regression</b></li> is used when the task is to provide
+                                        <li><b>Logistic Regression</b></li> This is used when the task is to provide
                                         <i>continuous</i> out. Consider trying to predict the price of a house. Perhaps
-                                        it could range from $10,000 to $10,000,000, it can be <i>many</i> values.
-                                        <li><b>Linear Regression</b></li> is used when the task is to provide a discrete
+                                        it could range from $10,000 to $10,000,000, or anywhere inbetween.
+                                        it can be <i>many</i> values.
+                                        <li><b>Linear Regression</b></li> This is used when the task is to provide discrete
                                         output. Consider trying to predict if an imagine is a cat, dog, or cow. There
                                         are only <i>a few </i> values that can be output by the model.
 
@@ -244,19 +250,19 @@
                         <div class="section-text" id="sec3_1_text">
                                 <div class="section-title">Feature Selection</div> 
                                 <!-- sec3_text _3_classifier -->
-                                <br>If the dataset is only comprised of <i>multi-class</i> datatypes, these can come in
-                                the form of cats, dogs, and cows, but all have the same attributes such as weight,
-                                hair type, or claw type. In this case two models are again primarily used:
+                                <br>If the dataset is comprised of <i>multi-class</i> datatypes, these can come in
+                                the form of cats, dogs, and cows, and all have the same attributes such as weight,
+                                hair type, or claw type. In this, the usual two models to use are:
 
                                 <br><br><br><br>
                                 <ul>
-                                        <li><b>Logistic Regression</b></li> as explained before, best for
+                                        <li><b>Logistic Regression</b></li> As explained before, best for
                                         <i>continuous</i> output.
-                                        <li><b>KNN</b></li> or K Nearest Neighbors is used when you need to group
-                                        observations and output only a few values. K is an integer that decides how
+                                        <li><b>KNN</b></li> K Nearest Neighbors is used when you need to group
+                                        observations, and output only a few values. K is an integer that decides how
                                         many neighbors should be included when deciding if an observation belongs to
-                                        a certain type of observation. It is a powerful model, we'll use this for our
-                                        walkthrough.
+                                        a certain type of observation. We've chosen this model, as it is a powerful
+                                        model that is suitable for our task
 
                                 </ul>
                                 <p class="block"></p>
@@ -265,13 +271,14 @@
                                 <div class="section-title">Feature Selection</div> 
                                 <!-- sec3_text _3_classifier -->
                                 <br>If the dataset is only comprised of <i>text</i> datatypes, these can come in
-                                in a wide variety of forms. Typically the task is to define the part of speech from
+                                in a wide variety of forms. Typically, the task is to define the part of speech from
                                 the grouping of letters then score them, to understand their meaning:
 
                                 <br><br><br><br>
                                 <ul>
-                                        <li><b>Linear Regression</b></li> can often be an effective way to accomplish
-                                        the task
+                                        <li><b>Linear Regression</b></li> This model is often be an effective way to
+                                        accomplish the task by collapsing the probabilities of many options to a single
+                                        choice.
 
                                 </ul>
                                 <p class="block"></p>
@@ -282,10 +289,12 @@
                                 <br>Let's take another view of the dataset's petal lengths to see what insights we can gain:
 
                                 <br><br><br><br> By looking at only the petal lengths we can make an interesting observation!
-                                Look closely at the Setosa species. The petal length could be a very strong indicator
-                                for what species the observation belongs to, as they are <i>no other species</i> that
-                                have this small of petal length. Viriginica and Vericolor are a bit more murky. There
-                                are portions that overlap, which make useful this feature alone inconclusive in
+                                Look closely at the Setosa species. The petal length could be a strong indicator
+                                for what species the observation belongs to. We can see that <i>no other species</i> have
+                                as small of petal lengths.
+
+                                <br><br><br><br>Viriginica and Vericolor are a bit more tricky. There
+                                are portions that overlap, which make using this feature alone inconclusive in
                                 determining the species.
 
                                 <p class="block"></p>
@@ -293,40 +302,43 @@
                         <div class="section-text" id="sec4_1_1_text">
                                 <div class="section-title">Feature Selection</div> 
                                 <!-- sec4_1_1_text _4_comparison -->
-                                <br>Let's take one more view to see if any patterns stick out:
+                                <br>Let's take one more view to see if we can identify any more patterns:
 
                                 <br><br><br><br> From this view we can confirm that Setosa is uniquely grouped and
-                                because of this should be easier to identify. We will hope that our model can identify
-                                this pattern easily identify the species.
+                                because of this, it should be easier to identify. We will hope that our model can identify
+                                this pattern to easily identify the species.
 
-                                <br><br><br><br> Virginica tends to be a bit larger in sepal length, while Vericolor
-                                tends to be a bit smaller. Perhaps our model can use these patterns to correctly
-                                identify all species.
+                                <br><br><br><br> We can see that on average, Virginica tends to be a bit larger in both
+                                sepal length and sepal length, while Vericolor tends to be a bit smaller. Perhaps our
+                                model can use this pattern to correctly identify between these two.
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec4_2_1_text">
                                 <div class="section-title">Feature Selection</div> 
                                 <!-- sec4_2_1_text _4_comparison -->
-                                <br>As we've discussed, KNN or K Nearest Neighbors will use 'K' neighbors to help
-                                identify which observation belong to which species by looking comparing it to it's
-                                neighbors.
+                                <br>As we've discussed, KNN or K Nearest Neighbors will be our model. Let's discuss how
+                                this will work.
 
-                                <br><br><br><br> Here, each dot represents an observation while the color of the
-                                background represents what species the model will predict the observation belongs to.
-                                Ideally we'd like every dot color and it's background to match, indicating a 100%
-                                accuracy.
+                                <br><br><br><br>KNN will use 'K' nearest neighbors to help identify which species the
+                                observation should belong to by comparing it to it's K nearest neighbors.
 
                                 <br><br><br><br> KNN is a powerful model due to how the 'clustering' mechanism works.
                                 For each new observation the model will look at the 'K' nearest neighbors species
                                 and attributes to decide what is the most likely species of the observation. The model
                                 will then move to the next unknown observation, sequentially going through all until
-                                it has made a prediction on all new observations.
+                                it has made a prediction on all unknown observations.
 
-                                <br><br><br><br> The model has been run initially with a K value of 3. Unfortunately it
+                                <br><br><br><br> Here, each dot represents an observation while the color of the
+                                background represents what species the model will predict the observation belongs to.
+                                Ideally we'd like every dot color, and it's background to match, indicating a 100%
+                                accuracy.
+
+                                <br><br><br><br> The model has been run initially with a K value of 3. It looks like our
+                                model has predict many observations correctly! Unfortunately it
                                 doesn't seem to have gotten everything correct. You may spot some observations where
                                 there is a mismatch. Thankfully KNN with a k value of 3 isn't the only option! We can
-                                select other values, perhaps there are other values of K that will lead to more accurate
-                                predictions to be made.
+                                select other values, as perhaps there are other values of K that will lead to more accurate
+                                predictions than others.
 
                                 <p class="block"></p>
                         </div>
@@ -337,67 +349,60 @@
 
                                 <br><br><br><br> As we've discussed, our KNN model will use 60% of our dataset totalling
                                 90 observations to begin learning the associations needed to make accurate predictions,
-                                20% or 30 observations will be used to help validate the training, and 20% or 30
+                                20% or 30 observations will be used to help validate the training, and the last 20% or 30
                                 observations will be used as a testing set.
 
                                 <br><br><br><br> As the model completes it's training, the model progress bar will
                                 fill. Once it is at 100% percent, the training is completed.
 
-                                <br><br><br><br> The accuracy will be displaced through the accuracy chart. What we hope
-                                to see is very high accuracy once we test our model against the testing set.
+                                <br><br><br><br> The accuracy will be displayed via the accuracy bar. What we hope
+                                to see is very high accuracy once we get to testing our model against the testing set.
 
                                 <p class="block"></p>
                         </div>
-                        <!-- <div class="section-text" id="sec5_text"> -->
-                                <!-- sec5_text _5_kfold -->
-                                <!-- <br>Lastly, we can finally examine how the validation step is done using KNN.
+                        <div class="section-text" id="sec6_text">
+                                <br>We're just about ready to start testing, but an important step to discuss first is
+                                tuning some parameters.
 
-                                <br><br><br><br> The validation step is used to help make use of all of our data. To the
-                                left we have selected a K value of 5. What this means is we'll split our entire dataset
-                                into 5 equal buckets. In our case each bucket will have 30 observations in each.
+                                <br><br><br><br> One such parameter is the number of folds to use during validation step.
+                                This step is used to help make the best use of all of our data and to limit bias. If we
+                                select 5 for this value, we'll split our entire dataset
+                                into 5 equal buckets. In our case given the size of our dataset, each bucket will have 30 observations in each.
 
-                                <br><br><br><br> Machine learning models work by a cycle of training and testing. In the
-                                validation step, 1 bucket is selected as the 'test' set, while the others are used to
-                                train the model. Once training is completed, a test is done against the test set to see
-                                how accurate the model is. The accuracy is recorded.
+                                <br><br><br><br> Once the buckets are created, 1 bucket is selected as the 'test' set,
+                                while the others are used to train the model. Once training is completed, a test is done
+                                against the test set to see how accurate the model is. The accuracy is then recorded.
 
                                 <br><br><br><br> From here the next bucket is selected as the 'test' set, and again all
-                                other buckets will be used to train the model, and the accuracy when tested is also
-                                recorded. This process will continue until every bucket has the opportunity to be
-                                selected as the 'test' set. This means we'll have run our model K or 5 times!
+                                the other buckets will be used to train the model, with the accuracy recorded after
+                                testing. This process will continue until every bucket has had the opportunity to be
+                                selected as the 'test' set. This means we'll have run our model 5 times!
 
                                 <br><br><br><br> Finally, once all runs are completed, we simply average the accuracies.
+                                The model can be ran with several options for how many folds to use. Can you find the optimum fold value?
 
-                                <p class="block"></p>
-                        </div> -->
-                        <div class="section-text" id="sec6_text">
-                                <div class="section-title">Feature Selection</div> 
-                                sec6_text _6_parameter
-                                <br>tbd
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec7_text">
                                 <div class="section-title">Feature Selection</div> 
                                 <!-- sec7_text _7_modelselect -->
-                                <br>We can now run the model and see how it performs!
+                                <br>If you've tried them all, then you'll have seen:
 
-                                <br><br><br><br> Selecting the value of K will be very important in achieving the best
-                                accuracy from the model. We can select 5, 10, 20, or 30 as our number of folds. Feel
-                                free to see how high you can get the accuracy with all the options!
+                                <br><br><br><br> Setting a fold value of 5 was the best! Let's use that, but we have
+                                one more parameter to tune before we can conclude tuning our model. K for KNN!
 
-                                <br><br><br><br> If you've explored all the available options, you'll have found that
-                                selecting a K value of 5 gives you the highest accuracy with an accuracy of <b>96%</b>.
-                                Pretty Impressive!
+                                <br><br><br><br> This is a familiar concept but just to review, this value will determine
+                                how many nearest observations or neighbors our model will use to help determine the species
+                                from an observation. We can select a coule values.
 
-                                <br><br><br><br> Hopefully you have a good understanding now of how we can use machine
-                                learning algorithms, utilize powerful models such as K Nearest Neighbors, and run and
-                                compare them to get the highest accuracy possible.
+                                <br><br><br><br>Try it out to determine which value gives us the best performance!
 
                                 <p class="block"></p>
                         </div>
                         <div class="section-text" id="sec8_text">
-                               <div class="section-title">Feature Selection</div> 
-                                <br> Hopefully you have a good understanding now of how we can use machine
+
+                                Feature Selection
+                                Hopefully you have a good understanding now of how we can use machine
                                 learning algorithms, utilize powerful models such as K Nearest Neighbors, and run and
                                 compare them to get the highest accuracy possible.
                                 <p class="block"></p>
@@ -495,6 +500,8 @@
 <script src="sec6_1_1.js"></script>
 <script src="sec7_1_1.js"></script>
 <script src="sec8_1_1.js"></script>
+<script src="sec1_1.js"></script>
+
 <script src="main.js"></script>
 
 </html>
