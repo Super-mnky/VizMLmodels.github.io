@@ -176,7 +176,7 @@
                                         <li><b>Vericolor</b></li>
                                         <li><b>Setosa</b></li>
                                 </ul>
-                                 Each species tends to have similar
+                                Each species tends to have similar
                                 features, so if our model and learn the relationship, the model should be able to
                                 perform well. Our goal then for our model is to learn how the lengths and widths of the
                                 petals and sepals indicate which species the particular observation so that it can make
@@ -188,7 +188,7 @@
                                 <div class="section-title"></div>
                                 Let's first take a look at our entire dataset.
 
-                                 Each bubble here represents a single observation. Our total dataset has
+                                Each bubble here represents a single observation. Our total dataset has
                                 150 recorded observations, so there are 150 bubbles. Smaller bubbles indicate smaller
                                 lengths and widths, while larger bubbles represent larger lengths and width. We can
                                 hover over each observation to see the measurements for each.
@@ -198,7 +198,7 @@
                                 to be a bit smaller in size, while Virginica tends to be larger, with versicolor tends
                                 to be somewhere in the middle. This could be a useful pattern for our model!
 
-                                 By clicking the <b>Data Split</b> button, we can how we will break our
+                                By clicking the <b>Data Split</b> button, we can how we will break our
                                 dataset into different groupings:
                                 
                                 <ul>
@@ -218,7 +218,7 @@
                                 <div class="section-title">Classifier Selection</div>
                                 The term model has been a bit vague so far. What do we mean by this?
 
-                                 The best model to be used for machine learning tasks depends on the type
+                                The best model to be used for machine learning tasks depends on the type
                                 of data our dataset comprises. Depending on this, certain models are more
                                 suitable than others.
 
@@ -281,7 +281,7 @@
                                 <div class="section-title">Model Comparison</div>
                                 Let's take another view of the dataset's petal lengths to see what insights we can gain:
 
-                                 By looking at only the petal lengths we can make an interesting observation!
+                                By looking at only the petal lengths we can make an interesting observation!
                                 Look closely at the Setosa species. The petal length could be a strong indicator
                                 for what species the observation belongs to. We can see that <i>no other species</i> have
                                 as small of petal lengths.
@@ -296,11 +296,11 @@
                                 <div class="section-title"></div>
                                 Let's take one more view to see if we can identify any more patterns:
 
-                                 From this view we can confirm that Setosa is uniquely grouped and
+                                From this view we can confirm that Setosa is uniquely grouped and
                                 because of this, it should be easier to identify. We will hope that our model can identify
                                 this pattern to easily identify the species.
 
-                                 We can see that on average, Virginica tends to be a bit larger in both
+                                We can see that on average, Virginica tends to be a bit larger in both
                                 sepal length and sepal length, while Vericolor tends to be a bit smaller. Perhaps our
                                 model can use this pattern to correctly identify between these two.
                                 <p class="block"></p>
@@ -313,18 +313,18 @@
                                 KNN will use 'K' nearest neighbors to help identify which species the
                                 observation should belong to by comparing it to it's K nearest neighbors.
 
-                                 KNN is a powerful model due to how the 'clustering' mechanism works.
+                                KNN is a powerful model due to how the 'clustering' mechanism works.
                                 For each new observation the model will look at the 'K' nearest neighbors species
                                 and attributes to decide what is the most likely species of the observation. The model
                                 will then move to the next unknown observation, sequentially going through all until
                                 it has made a prediction on all unknown observations.
 
-                                 Here, each dot represents an observation while the color of the
+                                Here, each dot represents an observation while the color of the
                                 background represents what species the model will predict the observation belongs to.
                                 Ideally we'd like every dot color, and it's background to match, indicating a 100%
                                 accuracy.
 
-                                 The model has been run initially with a K value of 3. It looks like our
+                                The model has been run initially with a K value of 3. It looks like our
                                 model has predict many observations correctly! Unfortunately it
                                 doesn't seem to have gotten everything correct. You may spot some observations where
                                 there is a mismatch. Thankfully KNN with a k value of 3 isn't the only option! We can
@@ -337,15 +337,15 @@
                                 <div class="section-title"></div>
                                 We can now examine how we will assess how the model will ultimately perform.
 
-                                 As we've discussed, our KNN model will use 60% of our dataset totalling
+                                As we've discussed, our KNN model will use 60% of our dataset totalling
                                 90 observations to begin learning the associations needed to make accurate predictions,
                                 20% or 30 observations will be used to help validate the training, and the last 20% or 30
                                 observations will be used as a testing set.
 
-                                 As the model completes it's training, the model progress bar will
+                                As the model completes it's training, the model progress bar will
                                 fill. Once it is at 100% percent, the training is completed.
 
-                                 The accuracy will be displayed via the accuracy bar. What we hope
+                                The accuracy will be displayed via the accuracy bar. What we hope
                                 to see is very high accuracy once we get to testing our model against the testing set.
 
                                 <p class="block"></p>
@@ -355,16 +355,16 @@
                                 We're just about ready to start testing, but an important step to discuss first is
                                 tuning some parameters.
 
-                                 One such parameter is the number of folds to use during validation step.
+                                One such parameter is the number of folds to use during validation step.
                                 This step is used to help make the best use of all of our data and to limit bias. If we
                                 select 5 for this value, we'll split our entire dataset
                                 into 5 equal buckets. In our case given the size of our dataset, each bucket will have 30 observations in each.
 
-                                 Once the buckets are created, 1 bucket is selected as the 'test' set,
+                                Once the buckets are created, 1 bucket is selected as the 'test' set,
                                 while the others are used to train the model. Once training is completed, a test is done
                                 against the test set to see how accurate the model is. The accuracy is then recorded.
 
-                                 From here the next bucket is selected as the 'test' set, and again all
+                                From here the next bucket is selected as the 'test' set, and again all
                                 the other buckets will be used to train the model, with the accuracy recorded after
                                 testing. This process will continue until every bucket has had the opportunity to be
                                 selected as the 'test' set. This means we'll have run our model 5 times!
@@ -378,10 +378,10 @@
                                 <div class="section-title">Model Selection</div>
                                 If you've tried them all, then you'll have seen:
 
-                                 Setting a fold value of 5 was the best! Let's use that, but we have
+                                Setting a fold value of 3 was the best! Let's use that, but we have
                                 one more parameter to tune before we can conclude tuning our model. K for KNN!
 
-                                 This is a familiar concept but just to review, this value will determine
+                                This is a familiar concept but just to review, this value will determine
                                 how many nearest observations or neighbors our model will use to help determine the species
                                 from an observation. We can select a coule values.
 
@@ -391,8 +391,7 @@
                         </div>
                         <div class="section-text" id="sec8_text">
                                 <div class="section-title">Thank you!</div>
-                                Hopefully you've enjoyed exploring our narrative story in learn machine learning model metrics
-                                and how to compare them. Hopefully you have a good understanding now of how we can use machine
+                                Thank you for exploring our narrative story. Hopefully you have a good understanding now of how we can use machine
                                 learning algorithms, utilize powerful models such as K Nearest Neighbors, and run and
                                 compare them to get the highest accuracy possible.
                                 <p class="block"></p>

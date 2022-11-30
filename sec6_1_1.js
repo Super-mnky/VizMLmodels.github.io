@@ -297,7 +297,7 @@ function sec6_1_1(loaded){
   
   //checkboxs and acc data
     var data = ["fold1", "fold2", "fold3", "fold4", "fold5"]
-    var acc_data = ["0.95123", "0.95236", "0.96121", "0.962642", "0.952334"]
+    var acc_data = ["0.95123", "0.95236", "0.962642", "0.952334", "0.96121"]
 
   // changeUIPos()
     const elem = document.getElementById('fold_UI');
@@ -372,6 +372,9 @@ function sec6_1_1(loaded){
     }
 
     function updateAll(){
+      var acc_index = document.getElementById('fold_dropdown').selectedOptions[0].value;
+      getvalue = acc_data[acc_index-1]
+
       dataLines
       .attr("stroke-dashoffset", function(d, i){return (i < numOfFold) ? 400 : 0})
       // .attr("stroke-dashoffset", 0)
@@ -413,7 +416,10 @@ function sec6_1_1(loaded){
       
       text_acc
       .transition(transition_500)
-      .text(function(d, i){return acc_data[i]})
+
+      //.text(function(d, i){return acc_data[i]})
+      .text(function(d, i){return getvalue})
+
       .attr("fill", mainColor['darkblue'])
       .delay(function(d, i){return duration_2500})
       .attr("opacity", 1)
