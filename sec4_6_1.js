@@ -225,25 +225,25 @@ async function sec4_6_1(loaded){
 
   // text-labels-left   
   var yAxisTxts = ["Data", "Model", "Accuracy"]
-  var accValues = ["96%: Logistic Regression", "97%: KNN, K=10", "98%: KNN, K=20"] // temporarily removed
+  var accValues = ["96%: Logistic Regression", "95%: KNN, K=1", "97%: KNN, K=5"] // temporarily removed
 
   var text_fold1 = pieArea.append("text")
-    .text(yAxisTxts[0])
-    .attr('class', 'axis-txt text-sm')
-    .attr("x", 0).attr("y", 0)	
-    .attr('transform','translate('+(-pieX/2)+','+((-pieY/40)) +')rotate(270)')
+  .text(yAxisTxts[0])
+  .attr('class', 'axis-txt text-sm')
+  .attr("x", 0).attr("y", 0)	
+  .attr('transform','translate('+(-pieX/1.9)+','+((-pieY/4.5)) +')rotate(90)')
 
-  var text_fold2 = pieArea.append("text")
-    .text(yAxisTxts[1])
-    .attr('class', 'axis-txt text-sm')
-    .attr("x", 0).attr("y", 0)	
-    .attr('transform','translate('+(-pieX/2)+','+((pieY*1.35)-radius)+')rotate(270)')
+var text_fold2 = pieArea.append("text")
+  .text(yAxisTxts[1])
+  .attr('class', 'axis-txt text-sm')
+  .attr("x", 0).attr("y", 0)	
+  .attr('transform','translate('+(-pieX/1.9)+','+((pieY*1.1)-radius)+')rotate(90)')
 
-  var text_fold3 = pieArea.append("text")
-    .text(yAxisTxts[2])
-    .attr('class', 'axis-txt text-sm')
-    .attr("x", 0).attr("y", 0)	
-    .attr('transform','translate('+(-pieX/2)+','+((pieY*2.5)-radius)+')rotate(270)')
+var text_fold3 = pieArea.append("text")
+  .text(yAxisTxts[2])
+  .attr('class', 'axis-txt text-sm')
+  .attr("x", 0).attr("y", 0)	
+  .attr('transform','translate('+(-pieX/1.9)+','+((pieY*2.14)-radius)+')rotate(90)')
 
   var text_fold1_rect = pieArea.append("rect")
     .attr("fill", "none")
