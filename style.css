@@ -193,7 +193,7 @@ ul{
 */
 #_1_intro{
     margin-right: calc(100%-50px);
-    width: 95%;
+    width: 50%;
     position: sticky;
     top: 0px;
     float: left;
