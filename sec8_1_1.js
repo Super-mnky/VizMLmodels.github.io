@@ -184,7 +184,7 @@ function sec8_1_1(loaded){
   
     // text-labels-left
     var yAxisTxts = ["Data", "Model", "Accuracy"]
-    var features = ["feature1", "feature2", "feature3", "feature4"]
+    var features = ["Sepal Length", "Sepal Width", "Petal Length", "Petal Width"]
     var accValues = ["96% : LR"]
     var text_fold1 = pieArea.append("text")
       .text(yAxisTxts[0])
@@ -273,8 +273,25 @@ function sec8_1_1(loaded){
     var checked = [];
     var numOfFold = 0
     var isChecked = true;
-    var acc_data = ["1.6797", "1.6914"];
-
+    //var acc_data = ["1.6797", "1.6914"];
+    // Where the values go: 1111, 1110, 1101, ... like a truth table
+    // SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm
+    var acc_data = ['0.960',
+    '0.940',
+    '0.940',
+    '0.773',
+    '0.973',
+    '0.933',
+    '0.927',
+    '0.687',
+    '0.967',
+    '0.947',
+    '0.967',
+    '0.520',
+    '0.960',
+    '0.953',
+    '0.960',
+    '0.000']
 
     // changeUIPos()
     const elem = document.getElementById('feature_UI');
@@ -283,7 +300,14 @@ function sec8_1_1(loaded){
     elem.style.marginTop = ((w_height/2)-(height/2.1)) +'px';
     
     d3.selectAll(".age_box").on('change', function() {
-        if (this.value == 4){ reset() }
+        if (this.checked) {
+          checked.push(this.value)
+        } else {
+          checked = checked.filter(function(element) {
+            return element !== this.value;
+          });
+        }
+        /*if (this.value == 4){ reset() }
         if(this.checked) {
           console.log('You checked the checkbox:');
           console.log(this.value);  
@@ -299,7 +323,7 @@ function sec8_1_1(loaded){
           checked = checked.filter((element) => element !== this.value);
           isChecked = false;
         }
-        console.log(checked)
+        console.log(checked)*/
       });
 
     // function updateNumber(){
@@ -307,6 +331,9 @@ function sec8_1_1(loaded){
     // }
 
     d3.select("#feature_apply").on("click", function() {
+
+      console.log(checked)
+
       reset()
       updateAll()
       updatePie()
