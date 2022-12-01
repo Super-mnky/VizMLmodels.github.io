@@ -17,6 +17,7 @@ var viz_ids = [
   '#sec6_1', //sec6_1_1
   '#sec7_1', //sec7_1_1
   '#sec8_1', //sec8_1_1
+  '#sec9'
 ]
 
 var viz_fns = [
@@ -30,13 +31,14 @@ var viz_fns = [
   sec6_1_1,
   sec7_1_1, 
   sec8_1_1,
+  sec9
 ]
 
 
 var viz_loaded = [
   false, false, false, false, false, 
   true, true, true, true, false, 
-  false, false, false, false, false, false
+  false, false, false, false, false, false, false
 ]
 
 var sidebar = [
@@ -46,11 +48,12 @@ var sidebar = [
   '#b3', '#b3', '#b3', '#b3',
   '#b4',
   '#b5',
-  '#b6'
+  '#b6',
+  null
 ]
 
 function colorSidebar(i){
-  if (i == 0){
+  if (i == 0 || i == 16){
     d3.select(sidebar[prev_viz]).style("color", '#323D52')
   } else {
     d3.select(sidebar[prev_viz]).style("color", '#323D52')
@@ -139,6 +142,9 @@ async function sec2_2_1(){
 }
 
 function sec3(){
+}
+
+function sec9(){
 }
 
 // function sec4_1_1(){
