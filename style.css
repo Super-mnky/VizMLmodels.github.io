@@ -30,7 +30,7 @@ ul{
 }
 
 .indent_md{
-    text-indent: 90px;
+    text-indent: 50px;
 }
 
 /* Text */
@@ -96,6 +96,13 @@ ul{
 #sec1_text{
     padding-top: 50vh;
 }
+
+@media (min-width: 690px){
+    #sections {
+        transform: translateX(-30px);
+    }
+}
+
 
 /*btn*/
 #fold_UI{
