@@ -80,20 +80,30 @@ function sec8_1_1(loaded){
         else if (i < 5){m = (2*i*radius)}
         return m
     }
-   
+
+    var colors = ['#00FFE0', '#3DB2FF', '#00C2FF', '#00FFE0', '#3DB2FF', '#0075FF', 
+    '#00C2FF', '#0075FF', '#00C2FF', '#00C2FF', '#BDFF00', '#00FFE0', '#3DB2FF', 
+    '#00C2FF', '#00FFE0', '#3DB2FF', '#0075FF', '#00C2FF', '#00C2FF', '#BDFF00']
+
     var pies = pieGroup.append('circle')
     .attr("class", "pieCircle")
-    .attr("fill", mainColor['yellow'])
+    .attr("fill", function(d, i){return getColor(d, i)})
     .attr("stroke", mainColor['darkblue'])
     .attr("stroke-width", 4)
     .attr("cx", 0).attr("cy", 0)
     .attr("r", radius)
 
+    function getColor(d, i){
+      return colors[i] 
+      // return '#3DB2FF'
+    }
+
+  
     var pies_layer = pieGroup.append('circle')
     .attr("class", "pieCircle")
     .attr("fill", 'none')
     // .attr("opacity", 0)
-    .attr("stroke", mainColor['red'])
+    .attr("stroke", mainColor['yellow'])
     .attr("stroke-width", 4)
     .attr("cx", 0).attr("cy", 0)
     .attr("r", radius)
@@ -174,12 +184,13 @@ function sec8_1_1(loaded){
   
     // text-labels-left
     var yAxisTxts = ["Data", "Model", "Accuracy"]
+    var features = ["feature1", "feature2", "feature3", "feature4"]
     var accValues = ["96% : LR"]
     var text_fold1 = pieArea.append("text")
       .text(yAxisTxts[0])
       .attr('class', 'axis-txt text-sm')
       .attr("x", 0).attr("y", 0)	
-      .attr('transform','translate('+(-pieX/1.9)+','+((pieY-110)) +')rotate(90)')
+      .attr('transform','translate('+(-pieX/1.9)+','+((pieY-98)) +')rotate(90)')
 
     var text_fold2 = pieArea.append("text")
       .text(yAxisTxts[1])
@@ -199,7 +210,7 @@ function sec8_1_1(loaded){
       .attr("stroke", '#323D52')
       .style("stroke-dasharray", "2px")
       .attr("x", 0).attr("y", 0)						
-      .attr("width", radius*9.5)
+      .attr("width", radius*8.7)
       .attr("height", radius)
       .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY+50))+')rotate(270)')
   
@@ -220,13 +231,13 @@ function sec8_1_1(loaded){
       .attr("width", radius*2.5)
       .attr("height", radius)
       .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY+250))+')rotate(270)')
-  
-    // var text_title = pieArea.append("text")
-    //   .text("Feature Selection")
-    //   .attr('class', 'title-txt text-md')
-    //   .attr("x", 0).attr("y", 0)
-    //   .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
-  
+
+    for (i = 0; i < features.length; i++) {
+      pieArea.append('text').attr('class', 'featuretxt text-sm')
+        .attr('fill','black').attr('opacity','1')
+        .attr('transform', 'translate('+ pieX*1.26 +','+ (i*62) +')')
+        .text(features[i])
+    }
     // acc line & text
     var accLine_result = pieArea.append("line")
       .attr("stroke", mainColor['blue'])
@@ -268,8 +279,8 @@ function sec8_1_1(loaded){
     // changeUIPos()
     const elem = document.getElementById('feature_UI');
     elem.style.position = "absolute";
-    elem.style.marginLeft = ((w_width/2)+(width/3.4)) +'px';
-    elem.style.marginTop = ((w_height/2)-(height/2.6)) +'px';
+    elem.style.marginLeft = ((w_width/2)-(width*0.375)) +'px';
+    elem.style.marginTop = ((w_height/2)-(height/2.1)) +'px';
     
     d3.selectAll(".age_box").on('change', function() {
         if (this.value == 4){ reset()}
@@ -328,7 +339,7 @@ function sec8_1_1(loaded){
       .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
         
       pies_layer
-      .attr("stroke", function(d, i){return i == i ? mainColor['red'] : mainColor['darkblue']})
+      .attr("stroke", function(d, i){return i == i ? mainColor['yellow'] : mainColor['darkblue']})
      
       innnerRect
       .attr("width", radius*2).attr("height", radius*2)

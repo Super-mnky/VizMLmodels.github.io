@@ -271,6 +271,14 @@ var text_fold3 = pieArea.append("text")
     .attr("width", radius*3)
     .attr("height", radius)
     .attr('transform','translate('+ ((-pieX/2)-radius/1.7) +','+((pieY*2.41))+')rotate(270)')
+ 
+  var text_model = pieArea.append("text")
+    .attr("fill", mainColor['darkblue'])
+    .text('R.L.')
+    .attr('class', 'axis-txt text-md')
+    .attr("x", 0).attr("y", 0)	
+    .attr('transform','translate('+(-pieX/3)+','+((pieY*1.1)-radius*0.9)+')rotate(90)')
+     
 
   // var text_title = pieArea.append("text")
   //   .text("Model comparison")
@@ -411,6 +419,9 @@ var text_fold3 = pieArea.append("text")
       .delay(function(d, i){return duration_2500})
       .attr("opacity", 1)
 
+      text_model.text('KNN, K=1')
+      .attr('transform','translate('+(-pieX/3)+','+((pieY*1.1)-radius*2)+')rotate(90)')
+
       // accLine_result
       // .attr("stroke-dashoffset", 400)
       // .attr("stroke-dasharray", 4)
@@ -432,6 +443,9 @@ var text_fold3 = pieArea.append("text")
       .transition(transition_500)
       .delay(function(d, i){return duration_2500})
       .attr("opacity", 1)
+
+      text_model.text('KNN, K=5')
+      .attr('transform','translate('+(-pieX/3)+','+((pieY*1.1)-radius*2)+')rotate(90)')
 
       // accLine_result
       // .attr("stroke-dashoffset", 400)
