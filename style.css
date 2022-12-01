@@ -30,7 +30,7 @@ ul{
 }
 
 .indent_md{
-    text-indent: 90px;
+    text-indent: 50px;
 }
 
 /* Text */
@@ -92,6 +92,18 @@ ul{
 .visCon{
     border: 1px solid red; 
 }
+
+#sec1_text{
+    padding-top: 50vh;
+}
+
+@media (min-width: 690px){
+    #sections {
+        transform: translateX(-30px);
+    }
+}
+
+
 /*btn*/
 #fold_UI{
     /* position: absolute; */
@@ -253,7 +265,6 @@ button:hover {
     border-radius: 3px;
     color: white;
     background-color: #475e89;
-    margin-right: 15px;
 }
 
 .active, .knn-active {
