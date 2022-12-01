@@ -180,11 +180,11 @@ function sec8_1_1(loaded){
       .attr("fill", mainColor['blue'])
       // .attr("stroke", '#323D52')
       .attr("cx", 0).attr("cy", 0).attr("r", 0)
-      .attr('transform','translate('+(pieX/2+(radius*4)+acc)+','+pieY*multiply_axis+')')
+      .attr('transform','translate(0,'+pieY*multiply_axis+')')
   
     // text-labels-left
     var yAxisTxts = ["Data", "Model", "Accuracy"]
-    var features = ["Sepal Length", "Sepal Width", "Petal Length", "Petal Width"]
+    var features = ["Petal Width", "Petal Length", "Sepal Width", "Sepal Length"]
     var accValues = ["96% : LR"]
     var text_fold1 = pieArea.append("text")
       .text(yAxisTxts[0])
@@ -270,7 +270,7 @@ function sec8_1_1(loaded){
   //   .text("20%").attr('class', 'acc-txt text-sm').attr("x", 60).attr("y", 10)
   
   //checkboxs
-    var checked = [];
+    var checked = ["0","1","2","3"];
     var numOfFold = 0
     var isChecked = true;
     //var acc_data = ["1.6797", "1.6914"];
@@ -303,10 +303,12 @@ function sec8_1_1(loaded){
         if (this.checked) {
           checked.push(this.value)
         } else {
+          var v = this.value
           checked = checked.filter(function(element) {
-            return element !== this.value;
+            return element !== v;
           });
         }
+
         /*if (this.value == 4){ reset() }
         if(this.checked) {
           console.log('You checked the checkbox:');
@@ -348,7 +350,7 @@ function sec8_1_1(loaded){
       pies_layer
       .transition(transition_250)
       .delay(function(d, i){return i*duration_250/10})
-      .attr("stroke", function(d, i){return i == i ? mainColor['darkblue'] : mainColor['yellow']})  
+      .attr("stroke", function(d, i){return checked.includes(Math.floor(i/5)+'') ? mainColor['darkblue'] : mainColor['yellow']})  
     }
 
     function updateLine(){
@@ -365,7 +367,7 @@ function sec8_1_1(loaded){
       .attr('transform','translate('+(0)+','+(0)+')rotate(270)')
         
       pies_layer
-      .attr("stroke", function(d, i){return i == i ? mainColor['yellow'] : mainColor['darkblue']})
+      .attr("stroke", function(d, i){return i==i ? mainColor['yellow'] : mainColor['darkblue']})
      
       innnerRect
       .attr("width", radius*2).attr("height", radius*2)
@@ -375,8 +377,8 @@ function sec8_1_1(loaded){
       .attr("stroke-dashoffset", 400)
       .attr("stroke-dasharray", 1)
      
-      accAxis
-      .attr("r", 0)
+      //accAxis
+      //.attr("r", 0)
 
       accLine_result
       .attr("opacity", 0)
@@ -415,9 +417,16 @@ function sec8_1_1(loaded){
       .attr("stroke", mainColor['blue'])
       .attr("stroke-dashoffset", 0)
 
+      var idx = 15 - checked.reduce(function (acc, x) { acc += 2**(+x); return acc}, 0)
+      console.log(idx)
+
+      var x_dist = lengthScale_acc(+(acc_data[idx])) + (-pieX * 1.37)
+      console.log(x_dist)
+  
       accAxis
       .transition(transition_500)
       .delay(function(d, i){return duration_500*2})
+      .attr("transform","translate(" + x_dist + ","+ (pieY * multiply_axis) +")")
       .attr("r", 5)
 
       accLine_result
@@ -433,7 +442,8 @@ function sec8_1_1(loaded){
       text_acc
       .attr("fill", mainColor['darkblue'])
       .transition(transition_500)
-      .text(function(d, i){return acc_data[RMSE]})
+      .text(acc_data[idx])
+      .attr("transform","translate(" + x_dist + ","+ (pieY * multiply_axis + radius) +")rotate(90)")
       .delay(function (d, i) { return duration_1000 })
       .attr("opacity", 1)
     }
