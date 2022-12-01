@@ -283,21 +283,20 @@ function sec8_1_1(loaded){
     elem.style.marginTop = ((w_height/2)-(height/2.1)) +'px';
     
     d3.selectAll(".age_box").on('change', function() {
-        if (this.value == 4){ reset()}
+        if (this.value == 4){ reset() }
         if(this.checked) {
           console.log('You checked the checkbox:');
           console.log(this.value);  
           checked.push(this.value)
           isChecked = true;
         } else {
-          console.log('You unchecked the checkbox:');
-          console.log(this.value);  
           var v = this.value
           if (v < 4) {
-          this.checked = true;
+            console.log('You unchecked the checkbox:');
+            console.log(this.value);  
+            this.checked = true;
           }
-          checked 
-          = checked.filter((element) => element !== this.value);
+          checked = checked.filter((element) => element !== this.value);
           isChecked = false;
         }
         console.log(checked)

@@ -188,7 +188,8 @@ function sec7_1_1(loaded) {
     .attr("fill", mainColor['blue'])
     // .attr("stroke", '#323D52')
     .attr("cx", 0).attr("cy", 0).attr("r", 0)
-    .attr('transform', 'translate(' + (pieX / 2 + (radius * 4) + acc) + ',' + pieY * 2 + ')')
+    .attr('transform', 'translate(' + (-pieX * 1.37) + ',' + pieY * 2 + ')')
+//(pieX / 2 + (radius * 4) + acc)
 
   // text-labels-left   
     var yAxisTxts = ["Data", "Model", "Accuracy"]
@@ -388,9 +389,12 @@ function sec7_1_1(loaded) {
       .attr("stroke", mainColor['blue'])
       .attr("stroke-dashoffset", 0)
 
+    var x_dist = lengthScale_acc(+(acc_data[selectedList-1])) + (-pieX * 1.37)
+    console.log(x_dist)
     accAxis
       .transition(transition_500)
       .delay(function (d, i) { return duration_2500 })
+      .attr("transform","translate(" + x_dist + ","+ (pieY * 2) +")")
       .attr("r", 5)
 
     accLine_result
@@ -403,6 +407,7 @@ function sec7_1_1(loaded) {
     text_acc
       .attr("fill", mainColor['darkblue'])
       .transition(transition_500)
+      .attr("transform","translate("+x_dist+","+((pieY*2) + radius)+")rotate(90)")
       .text(function(d, i){return acc_data[selectedList-1]})
       .delay(function (d, i) { return duration_2500 })
       .attr("opacity", 1)

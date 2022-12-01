@@ -153,13 +153,19 @@ async function sec4_6_1(loaded){
     .attr("stroke", function(d, i){return (i == i && i > 1) ? mainColor['red']:mainColor['darkblue']})
     .attr("stroke-dashoffset", function(d, i){return (i == i && i > 1) ? 0:400})
  
+  // acc x axis  
+  var lengthScale_acc = d3.scaleLinear()
+  .domain([0,1]).range([heightMargin*4.8, height-heightMargin]);
+
+  var x_dist = lengthScale_acc(0.96) + (-pieX * 1.37)
+  console.log(x_dist)
    
   // acc line  
   var accLine = pieArea.append("line")
     .attr("stroke", '#323D52')
     .style("stroke-width", 0)
     .attr("x1", radius*2).attr("y1", pieY-radius)
-    .attr("x2", accX_base).attr("y2", pieY*2+acc)
+    .attr("x2", x_dist).attr("y2", pieY*2+acc)
     accLine
     .attr("stroke-dashoffset", 400)
     .attr("stroke-dasharray", 4)
@@ -203,21 +209,18 @@ async function sec4_6_1(loaded){
     .transition(transition_2500)
     .delay(function (d, i) { return duration_1500 })
     .attr("width", radius * 10)
-
-  // acc x axis  
-  var lengthScale_acc = d3.scaleLinear()
-    .domain([0,1]).range([heightMargin*4.8, height-heightMargin]);
-
-    pieArea.append('g').attr('class', 'x axis')
+  
+  pieArea.append('g').attr('class', 'x axis')
     .attr('transform','translate('+(-pieX*1.37)+','+pieY*2+')')
     .call(d3.axisBottom(lengthScale_acc).tickFormat(function(d){return d;}));
+
 
   // acc dot on x axis
   var accAxis = pieArea.append('circle')
     .attr("fill", mainColor['darkblue'])
     // .attr("stroke", '#323D52')
     .attr("cx", 0).attr("cy", 0).attr("r", 0)
-    .attr('transform','translate('+(pieX/2+(radius*4)+acc)+','+pieY*2+')')
+    .attr('transform','translate('+x_dist+','+pieY*2+')')
     .transition(transition_500)
     .delay(function(d, i){return duration_2000})
     .attr("r", 5)
@@ -292,7 +295,8 @@ var text_fold3 = pieArea.append("text")
     .style("stroke-width", 0)
     .attr("x1", accX_base+acc).attr("y1", pieY*2)
     .attr("x2", accX_base+acc).attr("y2", ((pieY*2)+(radius*2))-margin_s)
-    accLine_result
+  
+  accLine_result
     .attr("stroke-dashoffset", 400)
     .attr("stroke-dasharray", 4)
     .transition(transition_250)
@@ -307,7 +311,7 @@ var text_fold3 = pieArea.append("text")
     .attr('class', 'acc-txt text-sm')
     .attr("x", 0).attr("y", 0)
     .attr("opacity", 0)
-    .attr('transform','translate('+ (accX_base+acc-margin_s)+','+((pieY*2)+(radius*2))+')rotate(-270)')
+    .attr('transform','translate('+ (x_dist-margin_s)+','+((pieY*2)+(radius))+')rotate(-315)')
     .transition(transition_500)
     .delay(function(d, i){return duration_2500})
     .attr("opacity", 1)
@@ -321,7 +325,7 @@ var text_fold3 = pieArea.append("text")
   //   .transition(transition_500)
   //   .delay(function(d, i){return duration_2500})
   //   .attr("opacity", 1)
-  
+  /*
   var text_acc_k20 = pieArea.append("text")
     .text(accValues[0])
     .attr('class', 'acc-txt text-sm')
@@ -330,7 +334,7 @@ var text_fold3 = pieArea.append("text")
     .attr('transform','translate('+ (accX_base+acc-margin_s)+','+((pieY*2)+(radius*2))+')rotate(-270)')
     .transition(transition_500)
     .delay(function(d, i){return duration_2500})
-    .attr("opacity", 1)
+    .attr("opacity", 1) */
   
     await delay(4000);
     reset()
@@ -414,7 +418,7 @@ var text_fold3 = pieArea.append("text")
       .attr('class', 'acc-txt text-sm')
       .attr("x", 0).attr("y", 0)
       .attr("opacity", 0)
-      .attr('transform','translate('+ (accX_base+acc-(margin_s*5))+','+((pieY*2)+(radius*2))+')rotate(-270)')
+      .attr('transform','translate('+ (x_dist-(margin_s*5))+','+((pieY*2)+(radius))+')rotate(-315)')
       .transition(transition_500)
       .delay(function(d, i){return duration_2500})
       .attr("opacity", 1)
@@ -439,7 +443,7 @@ var text_fold3 = pieArea.append("text")
       .attr('class', 'acc-txt text-sm')
       .attr("x", 0).attr("y", 0)
       .attr("opacity", 0)
-      .attr('transform','translate('+ (accX_base+acc-(margin_s*9))+','+((pieY*2)+(radius*2))+')rotate(-270)')
+      .attr('transform','translate('+ (x_dist+(margin_s*3))+','+((pieY*2)+(radius))+')rotate(-315)')
       .transition(transition_500)
       .delay(function(d, i){return duration_2500})
       .attr("opacity", 1)

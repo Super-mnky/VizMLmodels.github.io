@@ -402,11 +402,14 @@ function sec6_1_1(loaded){
       .style("stroke", mainColor['blue'])
       .attr("stroke-dashoffset", 0)
 
+      var x_dist = lengthScale_acc(+(getvalue)) + (-pieX * 1.37)
+      console.log(x_dist)
       accAxis
-      .transition(transition_500)
-      .delay(function(d, i){return duration_2500})
-      .attr("r", 5)
-
+        .transition(transition_500)
+        .delay(function (d, i) { return duration_2500 })
+        .attr("transform","translate(" + x_dist + ","+ (pieY * 2) +")")
+        .attr("r", 5)
+    
       accLine_result
       .transition(transition_500)
       .delay(function(d, i){return duration_2500})
@@ -422,6 +425,7 @@ function sec6_1_1(loaded){
 
       .attr("fill", mainColor['darkblue'])
       .delay(function(d, i){return duration_2500})
+      .attr("transform","translate("+x_dist+","+((pieY * 2) + radius)+")rotate(90)")
       .attr("opacity", 1)
 
       pies
