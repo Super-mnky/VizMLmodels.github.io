@@ -416,7 +416,7 @@ function sec7_1_1(loaded) {
       .attr("fill", mainColor['darkblue'])
       .transition(transition_500)
       .attr("transform","translate("+x_dist+","+((pieY*2) + radius)+")rotate(90)")
-      .text(function(d, i){return acc_data[selectedList-1]})
+      .text(function(d, i){return +(acc_data[selectedList-1])*100 + '%'})
       .delay(function (d, i) { return duration_2500 })
       .attr("opacity", 1)
   }

@@ -445,7 +445,7 @@ function sec8_1_1(loaded){
       text_acc
       .attr("fill", mainColor['darkblue'])
       .transition(transition_500)
-      .text(acc_data[idx])
+      .text(+(acc_data[idx])*100 + '%')
       .attr("transform","translate(" + x_dist + ","+ (pieY * multiply_axis + radius) +")rotate(90)")
       .delay(function (d, i) { return duration_1000 })
       .attr("opacity", 1)

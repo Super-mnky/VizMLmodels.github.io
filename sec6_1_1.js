@@ -425,8 +425,7 @@ function sec6_1_1(loaded){
       .transition(transition_500)
 
       //.text(function(d, i){return acc_data[i]})
-      .text(function(d, i){return getvalue})
-
+      .text(function(d, i){return (+getvalue)*100 + '%'})
       .attr("fill", mainColor['darkblue'])
       .delay(function(d, i){return duration_2500})
       .attr("transform","translate("+x_dist+","+((pieY * 2) + radius)+")rotate(90)")
