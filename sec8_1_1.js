@@ -127,9 +127,9 @@ function sec8_1_1(loaded){
     // acc line  
     var accLine = pieArea.append("line")
       .attr("stroke", '#323D52')
-      .style("stroke-width", 0)
+      .style("stroke-width", 1)
       .attr("x1", radius*2+radius*2).attr("y1", (pieY*2))
-      .attr("x2", accX_base).attr("y2", pieY*2+(radius*1.6))
+      .attr("x2", radius*2+radius*2).attr("y2", (pieY*2))
 
     function x2(d, i, radius){
         var x;
@@ -239,11 +239,12 @@ function sec8_1_1(loaded){
         .text(features[i])
     }
     // acc line & text
+    /*
     var accLine_result = pieArea.append("line")
       .attr("stroke", mainColor['blue'])
       .style("stroke-width", 0)
       .attr("x1", accX_base+acc).attr("y1", ((pieY*2)+(radius*2))-margin_s)
-      .attr("x2", accX_base+acc).attr("y2", ((pieY*2)+(radius*3))-margin_s)
+      .attr("x2", accX_base+acc).attr("y2", ((pieY*2)+(radius*3))-margin_s)*/
        
     var text_acc = pieArea.append("text")
       .text(accValues[0])
@@ -379,12 +380,13 @@ function sec8_1_1(loaded){
      
       //accAxis
       //.attr("r", 0)
-
+      /*
       accLine_result
       .attr("opacity", 0)
       .style("stroke-width", 0)
       .attr("stroke-dasharray", "2px")
-      
+      */
+
       text_acc
       .attr("opacity", 0)
     }
@@ -407,35 +409,36 @@ function sec8_1_1(loaded){
       .delay(function(d, i){return duration_500*2})
       .attr("width", radius*10)
 
-      accLine
-      .attr("stroke-dashoffset", 400)
-      .attr("stroke-dasharray", 4)
-      .transition(transition_250)
-      .delay(function(d, i){return duration_500*2})
-      .attr("opacity", 1)
-      .style("stroke-width", 2)
-      .attr("stroke", mainColor['blue'])
-      .attr("stroke-dashoffset", 0)
-
       var idx = 15 - checked.reduce(function (acc, x) { acc += 2**(+x); return acc}, 0)
       console.log(idx)
-
+      
       var x_dist = lengthScale_acc(+(acc_data[idx])) + (-pieX * 1.37)
       console.log(x_dist)
   
+      accLine
+      .attr("stroke-dashoffset", 400)
+      .attr("stroke-dasharray", 4)
+      .attr("x1", radius*2+radius*2).attr("y1", (pieY*2))
+      .transition(transition_250)
+      .delay(function(d, i){return duration_500*2})
+      .attr("opacity", 1)
+      .attr("x2", x_dist).attr("y2", (pieY * multiply_axis))
+      .attr("stroke", mainColor['blue'])
+      .attr("stroke-dashoffset", 0)
+
       accAxis
       .transition(transition_500)
       .delay(function(d, i){return duration_500*2})
       .attr("transform","translate(" + x_dist + ","+ (pieY * multiply_axis) +")")
       .attr("r", 5)
-
+      /*
       accLine_result
       .transition(transition_500)
       .delay(function(d, i){return duration_500*2})
       .attr("opacity", 1)
       .style("stroke-width", 1)
       .attr("stroke-dasharray", "2px")
-      
+      */
       var RMSE;
       if (isChecked){RMSE = 0} else {RMSE = 1}
 

@@ -241,6 +241,8 @@ function bubbleChart() {
         radius: radiusScale(+d.SepalLengthCm),
         value: +d.SepalLengthCm,
         valueX: +d.SepalWidthCm,
+        petalL: +d.PetalLengthCm,
+        petalW: +d.PetalWidthCm,
         group: d.Species,
         x: Math.random() * 900,
         y: Math.random() * 800
@@ -458,11 +460,17 @@ function bubbleChart() {
     // change outline to indicate hover state.
     d3.select(this).attr('stroke', mainColor['darkblue']);
 
-    var content = '<span class="name">Length: </span><span class="value">' +
+    var content = '<span class="name">Sepal Length: </span><span class="value">' +
                   addCommas(d.value) +
                   'cm</span><br/>' +
-                  '<span class="name">Width: </span><span class="value">' +
+                  '<span class="name">Sepal Width: </span><span class="value">' +
                   addCommas(d.valueX) +
+                  'cm</span><br/>' +
+                  '<span class="name">Petal Length: </span><span class="value">' +
+                  addCommas(d.petalL) +
+                  'cm</span><br/>' +
+                  '<span class="name">Petal Width: </span><span class="value">' +
+                  addCommas(d.petalW) +
                   'cm</span><br/>' +
                   '<span class="name">Species: </span><span class="value">' +
                   d.group +

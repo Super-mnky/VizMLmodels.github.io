@@ -166,7 +166,8 @@ async function sec4_6_1(loaded){
     .style("stroke-width", 0)
     .attr("x1", radius*2).attr("y1", pieY-radius)
     .attr("x2", x_dist).attr("y2", pieY*2+acc)
-    accLine
+    
+  accLine
     .attr("stroke-dashoffset", 400)
     .attr("stroke-dasharray", 4)
     .transition(transition_800)
@@ -289,7 +290,7 @@ var text_fold3 = pieArea.append("text")
   //   .attr("x", 0).attr("y", 0)
   //   .attr('transform','translate('+((-pieX/2)-18)+','+(-pieY/1.3)+')')
 
-  // acc line & text
+  /* acc line & text
   var accLine_result = pieArea.append("line")
     .attr("stroke", '#323D52')
     .style("stroke-width", 0)
@@ -305,7 +306,8 @@ var text_fold3 = pieArea.append("text")
     .attr("stroke", mainColor['darkblue'])
     .attr("stroke-dashoffset", 0)
     .attr('opacity', 1) // removed temporarily
-
+    */
+   
   var text_acc_LR = pieArea.append("text")
     .text(accValues[0])
     .attr('class', 'acc-txt text-sm')

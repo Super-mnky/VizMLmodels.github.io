@@ -131,9 +131,9 @@ function sec7_1_1(loaded) {
   // acc line  
   var accLine = pieArea.append("line")
     .attr("stroke", '#323D52')
-    .style("stroke-width", 0)
+    .style("stroke-width", 1)
     .attr("x1", radius * 2).attr("y1", pieY - radius)
-    .attr("x2", accX_base).attr("y2", pieY * 2 + acc)
+    .attr("x2", radius * 2).attr("y2", pieY - radius)
   // accLine
   // .attr("stroke-dashoffset", 400)
   // .attr("stroke-dasharray", 4)
@@ -247,11 +247,12 @@ function sec7_1_1(loaded) {
   //   .attr('transform', 'translate(' + ((-pieX / 2) - 18) + ',' + (-pieY / 1.3) + ')')
 
   // acc line & text
+  /*
   var accLine_result = pieArea.append("line")
     .attr("stroke", mainColor['blue'])
     .style("stroke-width", 0)
     .attr("x1", accX_base + acc).attr("y1", pieY * 2)
-    .attr("x2", accX_base + acc).attr("y2", ((pieY * 2) + (radius * 2)) - margin_s)
+    .attr("x2", accX_base + acc).attr("y2", ((pieY * 2) + (radius * 2)) - margin_s)*/
   // accLine_result
   // .transition(transition_500)
   // .delay(function(d, i){return duration_2500})
@@ -351,10 +352,12 @@ function sec7_1_1(loaded) {
     accAxis
       .attr("r", 0)
 
+      /*
     accLine_result
       .attr("opacity", 0)
       .style("stroke-width", 0)
       .attr("stroke-dasharray", "2px")
+    */
 
     text_acc
       .attr("opacity", 0)
@@ -379,30 +382,35 @@ function sec7_1_1(loaded) {
       .delay(function (d, i) { return duration_2000 })
       .attr("width", radius * 10)
 
+    var x_dist = lengthScale_acc(+(acc_data[selectedList-1])) + (-pieX * 1.37)
+    console.log(x_dist)
+  
     accLine
       .attr("stroke-dashoffset", 400)
       .attr("stroke-dasharray", 4)
+      .attr("x1", radius * 2).attr("y1", pieY - radius)
+      .attr("x2", radius * 2).attr("y2", pieY - radius)  
       .transition(transition_250)
       .delay(function (d, i) { return duration_2000 })
       .attr("opacity", 1)
-      .style("stroke-width", 2)
+      .attr("x2", x_dist).attr("y2", (pieY * 2))  
       .attr("stroke", mainColor['blue'])
       .attr("stroke-dashoffset", 0)
 
-    var x_dist = lengthScale_acc(+(acc_data[selectedList-1])) + (-pieX * 1.37)
-    console.log(x_dist)
     accAxis
       .transition(transition_500)
       .delay(function (d, i) { return duration_2500 })
       .attr("transform","translate(" + x_dist + ","+ (pieY * 2) +")")
       .attr("r", 5)
 
+      /*
     accLine_result
       .transition(transition_500)
       .delay(function (d, i) { return duration_2500 })
       .attr("opacity", 1)
       .style("stroke-width", 1)
       .attr("stroke-dasharray", "2px")
+    */
 
     text_acc
       .attr("fill", mainColor['darkblue'])
